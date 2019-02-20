@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package drlmcomm;
+
+service DrlmApi {
+  rpc LoginUser (UserRequest) returns (SessionReply) {}
+  rpc AddUser (UserRequest) returns (SessionReply) {}
+  rpc DelUser (UserRequest) returns (SessionReply) {}
+  rpc ListUser (UserRequest) returns (SessionReply) {}
+}
+
+message UserRequest {
+  string user = 1;
+  string pass = 2;
+}
+
+message SessionReply {
+  string message = 1;
+}
