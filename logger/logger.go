@@ -3,11 +3,17 @@ package logger
 import (
 	lfshook "github.com/rifflock/lfshook"
 	log "github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 )
 
 type LoggingConfig struct {
 	Level string
 	File  string
+}
+
+func SetLoggingConfigDefaults() {
+	viper.SetDefault("logging.level", "trace")
+	viper.SetDefault("logging.file", "./drlm-core.log")
 }
 
 func InitLogger(cfg LoggingConfig) {
