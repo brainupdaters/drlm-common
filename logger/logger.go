@@ -11,9 +11,9 @@ type LoggingConfig struct {
 	File  string
 }
 
-func SetLoggingConfigDefaults() {
+func SetLoggingConfigDefaults(app string) {
 	viper.SetDefault("logging.level", "trace")
-	viper.SetDefault("logging.file", "./drlm-core.log")
+	viper.SetDefault("logging.file", app+".log")
 }
 
 func InitLogger(cfg LoggingConfig) {
