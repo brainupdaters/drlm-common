@@ -69,6 +69,45 @@ func (m *UserRequest) GetPass() string {
 	return ""
 }
 
+type AgentRequest struct {
+	Host                 string   `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentRequest) Reset()         { *m = AgentRequest{} }
+func (m *AgentRequest) String() string { return proto.CompactTextString(m) }
+func (*AgentRequest) ProtoMessage()    {}
+func (*AgentRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3fc4245dea50b14b, []int{1}
+}
+
+func (m *AgentRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentRequest.Unmarshal(m, b)
+}
+func (m *AgentRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentRequest.Marshal(b, m, deterministic)
+}
+func (m *AgentRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentRequest.Merge(m, src)
+}
+func (m *AgentRequest) XXX_Size() int {
+	return xxx_messageInfo_AgentRequest.Size(m)
+}
+func (m *AgentRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentRequest proto.InternalMessageInfo
+
+func (m *AgentRequest) GetHost() string {
+	if m != nil {
+		return m.Host
+	}
+	return ""
+}
+
 type SessionReply struct {
 	Message              string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -80,7 +119,7 @@ func (m *SessionReply) Reset()         { *m = SessionReply{} }
 func (m *SessionReply) String() string { return proto.CompactTextString(m) }
 func (*SessionReply) ProtoMessage()    {}
 func (*SessionReply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_3fc4245dea50b14b, []int{1}
+	return fileDescriptor_3fc4245dea50b14b, []int{2}
 }
 
 func (m *SessionReply) XXX_Unmarshal(b []byte) error {
@@ -110,25 +149,29 @@ func (m *SessionReply) GetMessage() string {
 
 func init() {
 	proto.RegisterType((*UserRequest)(nil), "drlmcomm.UserRequest")
+	proto.RegisterType((*AgentRequest)(nil), "drlmcomm.AgentRequest")
 	proto.RegisterType((*SessionReply)(nil), "drlmcomm.SessionReply")
 }
 
 func init() { proto.RegisterFile("drlmcomm.proto", fileDescriptor_3fc4245dea50b14b) }
 
 var fileDescriptor_3fc4245dea50b14b = []byte{
-	// 186 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4b, 0x29, 0xca, 0xc9,
-	0x4d, 0xce, 0xcf, 0xcd, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x80, 0xf1, 0x95, 0x4c,
-	0xb9, 0xb8, 0x43, 0x8b, 0x53, 0x8b, 0x82, 0x52, 0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0x84, 0x84, 0xb8,
-	0x58, 0x4a, 0x8b, 0x53, 0x8b, 0x24, 0x18, 0x15, 0x18, 0x35, 0x38, 0x83, 0xc0, 0x6c, 0x90, 0x58,
-	0x41, 0x62, 0x71, 0xb1, 0x04, 0x13, 0x44, 0x0c, 0xc4, 0x56, 0xd2, 0xe0, 0xe2, 0x09, 0x4e, 0x2d,
-	0x2e, 0xce, 0xcc, 0xcf, 0x0b, 0x4a, 0x2d, 0xc8, 0xa9, 0x14, 0x92, 0xe0, 0x62, 0xcf, 0x4d, 0x2d,
-	0x2e, 0x4e, 0x4c, 0x4f, 0x85, 0x6a, 0x85, 0x71, 0x8d, 0xfe, 0x30, 0x72, 0xb1, 0xbb, 0x14, 0xe5,
-	0xe4, 0x3a, 0x16, 0x64, 0x0a, 0xd9, 0x70, 0x71, 0xfa, 0xe4, 0xa7, 0x67, 0xe6, 0x81, 0x6c, 0x14,
-	0x12, 0xd5, 0x83, 0x3b, 0x0a, 0xc9, 0x05, 0x52, 0x62, 0x08, 0x61, 0x64, 0x1b, 0x94, 0x18, 0x84,
-	0xac, 0xb8, 0xd8, 0x1d, 0x53, 0x52, 0xc8, 0xd6, 0xeb, 0x92, 0x9a, 0x43, 0x9e, 0x5e, 0x6b, 0x2e,
-	0x0e, 0x9f, 0xcc, 0xe2, 0x12, 0xb2, 0x34, 0x27, 0xb1, 0x81, 0x03, 0xdc, 0x18, 0x10, 0x00, 0x00,
-	0xff, 0xff, 0x2a, 0xbe, 0x91, 0x0a, 0x82, 0x01, 0x00, 0x00,
+	// 233 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x92, 0xb1, 0x4a, 0x04, 0x31,
+	0x10, 0x86, 0x3d, 0x15, 0x77, 0x77, 0x3c, 0x2c, 0x06, 0x94, 0xc5, 0x4a, 0x52, 0x5d, 0x75, 0x85,
+	0x62, 0xa3, 0x67, 0x11, 0xd8, 0xf2, 0xaa, 0x15, 0x1f, 0xe0, 0x34, 0xc3, 0x1a, 0x48, 0x36, 0x31,
+	0x93, 0x2b, 0x7c, 0x32, 0x5f, 0x4f, 0xb2, 0xba, 0x9a, 0xea, 0x8a, 0x74, 0xff, 0xfc, 0xcc, 0x47,
+	0x3e, 0x86, 0xc0, 0x85, 0x0a, 0xc6, 0xbe, 0x39, 0x6b, 0xd7, 0x3e, 0xb8, 0xe8, 0xb0, 0x9e, 0x67,
+	0x71, 0x0f, 0xe7, 0x2f, 0x4c, 0xa1, 0xa7, 0x8f, 0x3d, 0x71, 0x44, 0x84, 0xd3, 0x3d, 0x53, 0x68,
+	0x17, 0x37, 0x8b, 0x55, 0xd3, 0x4f, 0x39, 0x75, 0x7e, 0xc7, 0xdc, 0x1e, 0xff, 0x74, 0x29, 0x0b,
+	0x01, 0x4b, 0x39, 0xd0, 0x18, 0x33, 0xee, 0xdd, 0x71, 0x9c, 0xb9, 0x94, 0xc5, 0x0a, 0x96, 0xcf,
+	0xc4, 0xac, 0xdd, 0xd8, 0x93, 0x37, 0x9f, 0xd8, 0x42, 0x65, 0x89, 0x79, 0x37, 0xd0, 0xef, 0xda,
+	0x3c, 0xde, 0x7e, 0x9d, 0x40, 0xd5, 0x05, 0x63, 0xa5, 0xd7, 0xb8, 0x81, 0x66, 0xeb, 0x06, 0x3d,
+	0x26, 0x2b, 0xbc, 0x5c, 0xff, 0x89, 0x67, 0x96, 0xd7, 0x57, 0xff, 0x75, 0xfe, 0x82, 0x38, 0xc2,
+	0x07, 0xa8, 0xa4, 0x52, 0xc5, 0x6c, 0x47, 0xa6, 0x8c, 0x7d, 0x84, 0x7a, 0xab, 0x39, 0x96, 0xc1,
+	0x1b, 0xa8, 0xa5, 0x52, 0xd3, 0x3d, 0x31, 0xdb, 0xca, 0x0f, 0x7c, 0x98, 0xee, 0xc8, 0x94, 0xd2,
+	0x4f, 0xd0, 0x24, 0xf1, 0x42, 0xfc, 0xf5, 0x6c, 0xfa, 0x4f, 0x77, 0xdf, 0x01, 0x00, 0x00, 0xff,
+	0xff, 0x23, 0x88, 0xe3, 0x09, 0x61, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -147,6 +190,9 @@ type DrlmApiClient interface {
 	AddUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*SessionReply, error)
 	DelUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*SessionReply, error)
 	ListUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*SessionReply, error)
+	AddAgent(ctx context.Context, in *AgentRequest, opts ...grpc.CallOption) (*SessionReply, error)
+	DelAgent(ctx context.Context, in *AgentRequest, opts ...grpc.CallOption) (*SessionReply, error)
+	ListAgent(ctx context.Context, in *AgentRequest, opts ...grpc.CallOption) (*SessionReply, error)
 }
 
 type drlmApiClient struct {
@@ -193,12 +239,42 @@ func (c *drlmApiClient) ListUser(ctx context.Context, in *UserRequest, opts ...g
 	return out, nil
 }
 
+func (c *drlmApiClient) AddAgent(ctx context.Context, in *AgentRequest, opts ...grpc.CallOption) (*SessionReply, error) {
+	out := new(SessionReply)
+	err := c.cc.Invoke(ctx, "/drlmcomm.DrlmApi/AddAgent", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *drlmApiClient) DelAgent(ctx context.Context, in *AgentRequest, opts ...grpc.CallOption) (*SessionReply, error) {
+	out := new(SessionReply)
+	err := c.cc.Invoke(ctx, "/drlmcomm.DrlmApi/DelAgent", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *drlmApiClient) ListAgent(ctx context.Context, in *AgentRequest, opts ...grpc.CallOption) (*SessionReply, error) {
+	out := new(SessionReply)
+	err := c.cc.Invoke(ctx, "/drlmcomm.DrlmApi/ListAgent", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DrlmApiServer is the server API for DrlmApi service.
 type DrlmApiServer interface {
 	LoginUser(context.Context, *UserRequest) (*SessionReply, error)
 	AddUser(context.Context, *UserRequest) (*SessionReply, error)
 	DelUser(context.Context, *UserRequest) (*SessionReply, error)
 	ListUser(context.Context, *UserRequest) (*SessionReply, error)
+	AddAgent(context.Context, *AgentRequest) (*SessionReply, error)
+	DelAgent(context.Context, *AgentRequest) (*SessionReply, error)
+	ListAgent(context.Context, *AgentRequest) (*SessionReply, error)
 }
 
 func RegisterDrlmApiServer(s *grpc.Server, srv DrlmApiServer) {
@@ -277,6 +353,60 @@ func _DrlmApi_ListUser_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DrlmApi_AddAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AgentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DrlmApiServer).AddAgent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlmcomm.DrlmApi/AddAgent",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DrlmApiServer).AddAgent(ctx, req.(*AgentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DrlmApi_DelAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AgentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DrlmApiServer).DelAgent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlmcomm.DrlmApi/DelAgent",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DrlmApiServer).DelAgent(ctx, req.(*AgentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DrlmApi_ListAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AgentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DrlmApiServer).ListAgent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlmcomm.DrlmApi/ListAgent",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DrlmApiServer).ListAgent(ctx, req.(*AgentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _DrlmApi_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "drlmcomm.DrlmApi",
 	HandlerType: (*DrlmApiServer)(nil),
@@ -296,6 +426,18 @@ var _DrlmApi_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListUser",
 			Handler:    _DrlmApi_ListUser_Handler,
+		},
+		{
+			MethodName: "AddAgent",
+			Handler:    _DrlmApi_AddAgent_Handler,
+		},
+		{
+			MethodName: "DelAgent",
+			Handler:    _DrlmApi_DelAgent_Handler,
+		},
+		{
+			MethodName: "ListAgent",
+			Handler:    _DrlmApi_ListAgent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
