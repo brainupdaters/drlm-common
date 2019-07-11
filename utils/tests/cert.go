@@ -25,12 +25,16 @@ import (
 	"net/http"
 	"path/filepath"
 	"strings"
+	"testing"
 
 	"github.com/spf13/afero"
+	"github.com/stretchr/testify/assert"
 )
 
 // GenerateCert generates a new TLS certificate and stores it in the specified FS: `path/certname.key` and `path/certname.crt`
-func GenerateCert(certname string, fs afero.Fs, path string) error {
+func GenerateCert(t *testing.T, certname string, fs afero.Fs, path string) {
+	assert := assert.New(t)
+
 	// Request the certificate to the cfssl certs API
 	body := strings.NewReader(fmt.Sprintf(`{
 		"request": {
@@ -46,50 +50,29 @@ func GenerateCert(certname string, fs afero.Fs, path string) error {
 		}
 	}`, certname, certname))
 	req, err := http.NewRequest("POST", "http://tls:8888/api/v1/cfssl/newcert", body)
-	if err != nil {
-		return fmt.Errorf("error creating the certs API request: %v", err)
-	}
+	assert.Nil(err)
+
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	rsp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return fmt.Errorf("error calling the certs API: %v", err)
-	}
+	assert.Nil(err)
 	defer rsp.Body.Close()
 
-	if rsp.StatusCode != http.StatusOK {
-		return fmt.Errorf("invalid HTTP response code: %d", rsp.StatusCode)
-	}
+	assert.Equal(http.StatusOK, rsp.StatusCode)
 
 	// Decode and validate the certificate
 	b, err := ioutil.ReadAll(rsp.Body)
-	if err != nil {
-		return fmt.Errorf("error decoding the HTTP response body: %v", err)
-	}
+	assert.Nil(err)
 
 	var certs certRsp
-	if err = json.Unmarshal(b, &certs); err != nil {
-		return err
-	}
+	assert.Nil(json.Unmarshal(b, &certs))
 
-	if !certs.Success {
-		return fmt.Errorf("unsuccessful certs generation: %v", certs.Errors)
-	}
+	assert.True(certs.Success)
 
 	// Store the certificate
-	if err = fs.MkdirAll(path, 0755); err != nil {
-		return err
-	}
-
-	if err = afero.WriteFile(fs, filepath.Join(path, certname+".key"), []byte(certs.Result.PrivateKey), 0755); err != nil {
-		return err
-	}
-
-	if err = afero.WriteFile(fs, filepath.Join(path, certname+".crt"), []byte(certs.Result.Certificate), 0755); err != nil {
-		return err
-	}
-
-	return nil
+	assert.Nil(fs.MkdirAll(path, 0755))
+	assert.Nil(afero.WriteFile(fs, filepath.Join(path, certname+".key"), []byte(certs.Result.PrivateKey), 0755))
+	assert.Nil(afero.WriteFile(fs, filepath.Join(path, certname+".crt"), []byte(certs.Result.Certificate), 0755))
 }
 
 type certRsp struct {
