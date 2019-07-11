@@ -68,17 +68,26 @@ func GenerateCert(certname string, fs afero.Fs, path string) error {
 	}
 
 	var certs certRsp
-	json.Unmarshal(b, &certs)
+	if err = json.Unmarshal(b, &certs); err != nil {
+		return err
+	}
 
 	if !certs.Success {
 		return fmt.Errorf("unsuccessful certs generation: %v", certs.Errors)
 	}
 
 	// Store the certificate
-	fs.MkdirAll(path, 0755)
+	if err = fs.MkdirAll(path, 0755); err != nil {
+		return err
+	}
 
-	afero.WriteFile(fs, filepath.Join(path, certname+".key"), []byte(certs.Result.PrivateKey), 0755)
-	afero.WriteFile(fs, filepath.Join(path, certname+".crt"), []byte(certs.Result.Certificate), 0755)
+	if err = afero.WriteFile(fs, filepath.Join(path, certname+".key"), []byte(certs.Result.PrivateKey), 0755); err != nil {
+		return err
+	}
+
+	if err = afero.WriteFile(fs, filepath.Join(path, certname+".crt"), []byte(certs.Result.Certificate), 0755); err != nil {
+		return err
+	}
 
 	return nil
 }
