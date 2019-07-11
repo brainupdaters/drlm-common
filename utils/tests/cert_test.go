@@ -33,7 +33,7 @@ func TestGenerateCert(t *testing.T) {
 	t.Run("should work as expected", func(t *testing.T) {
 		fs := afero.NewMemMapFs()
 
-		tests.GenerateCert(t, "testcert", fs, "/etc/certs")
+		tests.GenerateCert(t, fs, "testcert", "/etc/certs")
 
 		const keyFile string = "/etc/certs/testcert.key"
 		const crtFile string = "/etc/certs/testcert.crt"

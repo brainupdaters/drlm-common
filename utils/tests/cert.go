@@ -32,7 +32,7 @@ import (
 )
 
 // GenerateCert generates a new TLS certificate and stores it in the specified FS: `path/certname.key` and `path/certname.crt`
-func GenerateCert(t *testing.T, certname string, fs afero.Fs, path string) {
+func GenerateCert(t *testing.T, fs afero.Fs, certname, path string) {
 	assert := assert.New(t)
 
 	// Request the certificate to the cfssl certs API
