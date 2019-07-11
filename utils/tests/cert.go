@@ -41,8 +41,6 @@ func GenerateCert(certname string, fs afero.Fs, path string) error {
 				"size": 2048
 			},
 			"names": [{
-				"C": "",
-				"ST": "",
 				"O": "Brain Updaters"
 			}]
 		}
