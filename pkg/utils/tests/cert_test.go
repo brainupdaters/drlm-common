@@ -21,7 +21,7 @@ package tests_test
 import (
 	"testing"
 
-	"github.com/brainupdaters/drlm-common/utils/tests"
+	"github.com/brainupdaters/drlm-common/pkg/utils/tests"
 
 	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"

@@ -37,7 +37,7 @@ type Config struct {
 func Init(cfg Config) {
 	level, err := logrus.ParseLevel(cfg.Level)
 	if err != nil {
-		level = logrus.TraceLevel
+		level = logrus.InfoLevel
 	}
 	logrus.SetLevel(level)
 
@@ -59,6 +59,6 @@ func Init(cfg Config) {
 
 // SetDefaults sets the default configurations for Viper
 func SetDefaults(app string) {
-	viper.SetDefault("log.level", "trace")
+	viper.SetDefault("log.level", "info")
 	viper.SetDefault("log.file", app+".log")
 }
