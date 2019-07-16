@@ -18,20 +18,24 @@
 
 package tests
 
-import "net"
+import (
+	"net"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 // GetFreePort asks the kernel for a free open port that is ready to use.
 // https://github.com/phayes/freeport
-func GetFreePort() (int, error) {
+func GetFreePort(t *testing.T) int {
+	assert := assert.New(t)
+
 	addr, err := net.ResolveTCPAddr("tcp", "localhost:0")
-	if err != nil {
-		return 0, err
-	}
+	assert.Nil(err)
 
 	l, err := net.ListenTCP("tcp", addr)
-	if err != nil {
-		return 0, err
-	}
+	assert.Nil(err)
 	defer l.Close()
-	return l.Addr().(*net.TCPAddr).Port, nil
+
+	return l.Addr().(*net.TCPAddr).Port
 }
