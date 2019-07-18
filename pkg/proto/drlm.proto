@@ -36,7 +36,9 @@ message UserLoginRequest {
     string usr = 2;
     string pwd = 3;
 }
-message UserLoginResponse {}
+message UserLoginResponse {
+	string tkn = 1;
+}
 
 message UserAddRequest {
     string api = 1;
