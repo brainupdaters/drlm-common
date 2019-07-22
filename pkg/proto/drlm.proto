@@ -18,10 +18,13 @@
 
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 package drlm;
 
 service DRLM {
     rpc UserLogin(UserLoginRequest) returns (UserLoginResponse) {}
+    rpc UserTokenRenew(UserTokenRenewRequest) returns (UserTokenRenewResponse) {}
     rpc UserAdd(UserAddRequest) returns (UserAddResponse) {}
     rpc UserDelete(UserDeleteRequest) returns (UserDeleteResponse) {}
     rpc UserList(UserListRequest) returns (UserListResponse) {}
@@ -31,33 +34,32 @@ service DRLM {
 }
 
 message UserLoginRequest {
-    string api = 1;
-
     string usr = 2;
     string pwd = 3;
 }
 message UserLoginResponse {
-	string tkn = 1;
+    string tkn = 1;
+    google.protobuf.Timestamp tkn_expiration = 2;
+}
+
+message UserTokenRenewRequest {}
+message UserTokenRenewResponse {
+    string tkn = 1;
+    google.protobuf.Timestamp tkn_expiration = 2;
 }
 
 message UserAddRequest {
-    string api = 1;
-
     string usr = 2;
     string pwd = 3;
 }
 message UserAddResponse {}
 
 message UserDeleteRequest {
-    string api = 1;
-
     string usr = 2;
 }
 message UserDeleteResponse {}
 
-message UserListRequest {
-    string api = 1;
-}
+message UserListRequest {}
 message UserListResponse {
     message User {
         string usr = 1;
