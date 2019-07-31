@@ -34,7 +34,8 @@ service DRLM {
 }
 
 enum AuthType {
-    LOCAL = 0;
+    UNKNOWN = 0;
+    LOCAL = 1;
 }
 
 message UserLoginRequest {
