@@ -33,6 +33,10 @@ service DRLM {
     // rpc AgentList(AgentListRequest) returns (AgentListResponse) {}
 }
 
+enum AuthType {
+    LOCAL = 0;
+}
+
 message UserLoginRequest {
     string usr = 2;
     string pwd = 3;
@@ -63,6 +67,9 @@ message UserListRequest {}
 message UserListResponse {
     message User {
         string usr = 1;
+        AuthType auth_type = 2;
+        google.protobuf.Timestamp created_at = 3;
+        google.protobuf.Timestamp updated_at = 4;
     }
 
     repeated User users = 1;
