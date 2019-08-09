@@ -28,18 +28,18 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 type AuthType int32
 
 const (
-	AuthType_UNKNOWN AuthType = 0
-	AuthType_LOCAL   AuthType = 1
+	AuthType_AUTH_UNKNOWN AuthType = 0
+	AuthType_AUTH_LOCAL   AuthType = 1
 )
 
 var AuthType_name = map[int32]string{
-	0: "UNKNOWN",
-	1: "LOCAL",
+	0: "AUTH_UNKNOWN",
+	1: "AUTH_LOCAL",
 }
 
 var AuthType_value = map[string]int32{
-	"UNKNOWN": 0,
-	"LOCAL":   1,
+	"AUTH_UNKNOWN": 0,
+	"AUTH_LOCAL":   1,
 }
 
 func (x AuthType) String() string {
@@ -50,9 +50,114 @@ func (AuthType) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_a4bd9cd91f607bb1, []int{0}
 }
 
+type Arch int32
+
+const (
+	Arch_ARCH_UNKNOWN Arch = 0
+	Arch_ARCH_AMD64   Arch = 1
+)
+
+var Arch_name = map[int32]string{
+	0: "ARCH_UNKNOWN",
+	1: "ARCH_AMD64",
+}
+
+var Arch_value = map[string]int32{
+	"ARCH_UNKNOWN": 0,
+	"ARCH_AMD64":   1,
+}
+
+func (x Arch) String() string {
+	return proto.EnumName(Arch_name, int32(x))
+}
+
+func (Arch) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{1}
+}
+
+type OS int32
+
+const (
+	OS_OS_UNKNOWN   OS = 0
+	OS_OS_LINUX     OS = 1
+	OS_OS_WINDOWS   OS = 2
+	OS_OS_DARWIN    OS = 3
+	OS_OS_AIX       OS = 4
+	OS_OS_DRAGONFLY OS = 5
+	OS_OS_FREEBSD   OS = 6
+	OS_OS_NETBSD    OS = 7
+	OS_OS_OPENBSD   OS = 8
+	OS_OS_PLAN9     OS = 9
+	OS_OS_SOLARIS   OS = 10
+)
+
+var OS_name = map[int32]string{
+	0:  "OS_UNKNOWN",
+	1:  "OS_LINUX",
+	2:  "OS_WINDOWS",
+	3:  "OS_DARWIN",
+	4:  "OS_AIX",
+	5:  "OS_DRAGONFLY",
+	6:  "OS_FREEBSD",
+	7:  "OS_NETBSD",
+	8:  "OS_OPENBSD",
+	9:  "OS_PLAN9",
+	10: "OS_SOLARIS",
+}
+
+var OS_value = map[string]int32{
+	"OS_UNKNOWN":   0,
+	"OS_LINUX":     1,
+	"OS_WINDOWS":   2,
+	"OS_DARWIN":    3,
+	"OS_AIX":       4,
+	"OS_DRAGONFLY": 5,
+	"OS_FREEBSD":   6,
+	"OS_NETBSD":    7,
+	"OS_OPENBSD":   8,
+	"OS_PLAN9":     9,
+	"OS_SOLARIS":   10,
+}
+
+func (x OS) String() string {
+	return proto.EnumName(OS_name, int32(x))
+}
+
+func (OS) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{2}
+}
+
+type AgentInstallResponse_Code int32
+
+const (
+	AgentInstallResponse_UNKNOWN AgentInstallResponse_Code = 0
+	AgentInstallResponse_OK      AgentInstallResponse_Code = 1
+	AgentInstallResponse_FAILED  AgentInstallResponse_Code = 2
+)
+
+var AgentInstallResponse_Code_name = map[int32]string{
+	0: "UNKNOWN",
+	1: "OK",
+	2: "FAILED",
+}
+
+var AgentInstallResponse_Code_value = map[string]int32{
+	"UNKNOWN": 0,
+	"OK":      1,
+	"FAILED":  2,
+}
+
+func (x AgentInstallResponse_Code) String() string {
+	return proto.EnumName(AgentInstallResponse_Code_name, int32(x))
+}
+
+func (AgentInstallResponse_Code) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{13, 0}
+}
+
 type UserLoginRequest struct {
-	Usr                  string   `protobuf:"bytes,2,opt,name=usr,proto3" json:"usr,omitempty"`
-	Pwd                  string   `protobuf:"bytes,3,opt,name=pwd,proto3" json:"pwd,omitempty"`
+	Usr                  string   `protobuf:"bytes,1,opt,name=usr,proto3" json:"usr,omitempty"`
+	Pwd                  string   `protobuf:"bytes,2,opt,name=pwd,proto3" json:"pwd,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -223,8 +328,8 @@ func (m *UserTokenRenewResponse) GetTknExpiration() *timestamp.Timestamp {
 }
 
 type UserAddRequest struct {
-	Usr                  string   `protobuf:"bytes,2,opt,name=usr,proto3" json:"usr,omitempty"`
-	Pwd                  string   `protobuf:"bytes,3,opt,name=pwd,proto3" json:"pwd,omitempty"`
+	Usr                  string   `protobuf:"bytes,1,opt,name=usr,proto3" json:"usr,omitempty"`
+	Pwd                  string   `protobuf:"bytes,2,opt,name=pwd,proto3" json:"pwd,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -301,7 +406,7 @@ func (m *UserAddResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_UserAddResponse proto.InternalMessageInfo
 
 type UserDeleteRequest struct {
-	Usr                  string   `protobuf:"bytes,2,opt,name=usr,proto3" json:"usr,omitempty"`
+	Usr                  string   `protobuf:"bytes,1,opt,name=usr,proto3" json:"usr,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -486,7 +591,7 @@ func (m *UserListResponse_User) GetAuthType() AuthType {
 	if m != nil {
 		return m.AuthType
 	}
-	return AuthType_UNKNOWN
+	return AuthType_AUTH_UNKNOWN
 }
 
 func (m *UserListResponse_User) GetCreatedAt() *timestamp.Timestamp {
@@ -503,8 +608,552 @@ func (m *UserListResponse_User) GetUpdatedAt() *timestamp.Timestamp {
 	return nil
 }
 
+type AgentAddRequest struct {
+	Host                 string   `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	Port                 int32    `protobuf:"varint,2,opt,name=port,proto3" json:"port,omitempty"`
+	User                 string   `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
+	Sudoer               bool     `protobuf:"varint,4,opt,name=sudoer,proto3" json:"sudoer,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentAddRequest) Reset()         { *m = AgentAddRequest{} }
+func (m *AgentAddRequest) String() string { return proto.CompactTextString(m) }
+func (*AgentAddRequest) ProtoMessage()    {}
+func (*AgentAddRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{10}
+}
+
+func (m *AgentAddRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentAddRequest.Unmarshal(m, b)
+}
+func (m *AgentAddRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentAddRequest.Marshal(b, m, deterministic)
+}
+func (m *AgentAddRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentAddRequest.Merge(m, src)
+}
+func (m *AgentAddRequest) XXX_Size() int {
+	return xxx_messageInfo_AgentAddRequest.Size(m)
+}
+func (m *AgentAddRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentAddRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentAddRequest proto.InternalMessageInfo
+
+func (m *AgentAddRequest) GetHost() string {
+	if m != nil {
+		return m.Host
+	}
+	return ""
+}
+
+func (m *AgentAddRequest) GetPort() int32 {
+	if m != nil {
+		return m.Port
+	}
+	return 0
+}
+
+func (m *AgentAddRequest) GetUser() string {
+	if m != nil {
+		return m.User
+	}
+	return ""
+}
+
+func (m *AgentAddRequest) GetSudoer() bool {
+	if m != nil {
+		return m.Sudoer
+	}
+	return false
+}
+
+type AgentAddResponse struct {
+	Arch                 Arch     `protobuf:"varint,1,opt,name=arch,proto3,enum=drlm.Arch" json:"arch,omitempty"`
+	Os                   OS       `protobuf:"varint,2,opt,name=os,proto3,enum=drlm.OS" json:"os,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentAddResponse) Reset()         { *m = AgentAddResponse{} }
+func (m *AgentAddResponse) String() string { return proto.CompactTextString(m) }
+func (*AgentAddResponse) ProtoMessage()    {}
+func (*AgentAddResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{11}
+}
+
+func (m *AgentAddResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentAddResponse.Unmarshal(m, b)
+}
+func (m *AgentAddResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentAddResponse.Marshal(b, m, deterministic)
+}
+func (m *AgentAddResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentAddResponse.Merge(m, src)
+}
+func (m *AgentAddResponse) XXX_Size() int {
+	return xxx_messageInfo_AgentAddResponse.Size(m)
+}
+func (m *AgentAddResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentAddResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentAddResponse proto.InternalMessageInfo
+
+func (m *AgentAddResponse) GetArch() Arch {
+	if m != nil {
+		return m.Arch
+	}
+	return Arch_ARCH_UNKNOWN
+}
+
+func (m *AgentAddResponse) GetOs() OS {
+	if m != nil {
+		return m.Os
+	}
+	return OS_OS_UNKNOWN
+}
+
+type AgentInstallRequest struct {
+	Bin                  []byte   `protobuf:"bytes,1,opt,name=bin,proto3" json:"bin,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentInstallRequest) Reset()         { *m = AgentInstallRequest{} }
+func (m *AgentInstallRequest) String() string { return proto.CompactTextString(m) }
+func (*AgentInstallRequest) ProtoMessage()    {}
+func (*AgentInstallRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{12}
+}
+
+func (m *AgentInstallRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentInstallRequest.Unmarshal(m, b)
+}
+func (m *AgentInstallRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentInstallRequest.Marshal(b, m, deterministic)
+}
+func (m *AgentInstallRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentInstallRequest.Merge(m, src)
+}
+func (m *AgentInstallRequest) XXX_Size() int {
+	return xxx_messageInfo_AgentInstallRequest.Size(m)
+}
+func (m *AgentInstallRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentInstallRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentInstallRequest proto.InternalMessageInfo
+
+func (m *AgentInstallRequest) GetBin() []byte {
+	if m != nil {
+		return m.Bin
+	}
+	return nil
+}
+
+type AgentInstallResponse struct {
+	Message              string                    `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Code                 AgentInstallResponse_Code `protobuf:"varint,2,opt,name=code,proto3,enum=drlm.AgentInstallResponse_Code" json:"code,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                  `json:"-"`
+	XXX_unrecognized     []byte                    `json:"-"`
+	XXX_sizecache        int32                     `json:"-"`
+}
+
+func (m *AgentInstallResponse) Reset()         { *m = AgentInstallResponse{} }
+func (m *AgentInstallResponse) String() string { return proto.CompactTextString(m) }
+func (*AgentInstallResponse) ProtoMessage()    {}
+func (*AgentInstallResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{13}
+}
+
+func (m *AgentInstallResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentInstallResponse.Unmarshal(m, b)
+}
+func (m *AgentInstallResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentInstallResponse.Marshal(b, m, deterministic)
+}
+func (m *AgentInstallResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentInstallResponse.Merge(m, src)
+}
+func (m *AgentInstallResponse) XXX_Size() int {
+	return xxx_messageInfo_AgentInstallResponse.Size(m)
+}
+func (m *AgentInstallResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentInstallResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentInstallResponse proto.InternalMessageInfo
+
+func (m *AgentInstallResponse) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
+func (m *AgentInstallResponse) GetCode() AgentInstallResponse_Code {
+	if m != nil {
+		return m.Code
+	}
+	return AgentInstallResponse_UNKNOWN
+}
+
+type AgentDeleteRequest struct {
+	Host                 string   `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	Cleanup              bool     `protobuf:"varint,2,opt,name=cleanup,proto3" json:"cleanup,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentDeleteRequest) Reset()         { *m = AgentDeleteRequest{} }
+func (m *AgentDeleteRequest) String() string { return proto.CompactTextString(m) }
+func (*AgentDeleteRequest) ProtoMessage()    {}
+func (*AgentDeleteRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{14}
+}
+
+func (m *AgentDeleteRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentDeleteRequest.Unmarshal(m, b)
+}
+func (m *AgentDeleteRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentDeleteRequest.Marshal(b, m, deterministic)
+}
+func (m *AgentDeleteRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentDeleteRequest.Merge(m, src)
+}
+func (m *AgentDeleteRequest) XXX_Size() int {
+	return xxx_messageInfo_AgentDeleteRequest.Size(m)
+}
+func (m *AgentDeleteRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentDeleteRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentDeleteRequest proto.InternalMessageInfo
+
+func (m *AgentDeleteRequest) GetHost() string {
+	if m != nil {
+		return m.Host
+	}
+	return ""
+}
+
+func (m *AgentDeleteRequest) GetCleanup() bool {
+	if m != nil {
+		return m.Cleanup
+	}
+	return false
+}
+
+type AgentDeleteResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentDeleteResponse) Reset()         { *m = AgentDeleteResponse{} }
+func (m *AgentDeleteResponse) String() string { return proto.CompactTextString(m) }
+func (*AgentDeleteResponse) ProtoMessage()    {}
+func (*AgentDeleteResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{15}
+}
+
+func (m *AgentDeleteResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentDeleteResponse.Unmarshal(m, b)
+}
+func (m *AgentDeleteResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentDeleteResponse.Marshal(b, m, deterministic)
+}
+func (m *AgentDeleteResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentDeleteResponse.Merge(m, src)
+}
+func (m *AgentDeleteResponse) XXX_Size() int {
+	return xxx_messageInfo_AgentDeleteResponse.Size(m)
+}
+func (m *AgentDeleteResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentDeleteResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentDeleteResponse proto.InternalMessageInfo
+
+type AgentListRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentListRequest) Reset()         { *m = AgentListRequest{} }
+func (m *AgentListRequest) String() string { return proto.CompactTextString(m) }
+func (*AgentListRequest) ProtoMessage()    {}
+func (*AgentListRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{16}
+}
+
+func (m *AgentListRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentListRequest.Unmarshal(m, b)
+}
+func (m *AgentListRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentListRequest.Marshal(b, m, deterministic)
+}
+func (m *AgentListRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentListRequest.Merge(m, src)
+}
+func (m *AgentListRequest) XXX_Size() int {
+	return xxx_messageInfo_AgentListRequest.Size(m)
+}
+func (m *AgentListRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentListRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentListRequest proto.InternalMessageInfo
+
+type AgentListResponse struct {
+	Agents               []*AgentListResponse_Agent `protobuf:"bytes,1,rep,name=agents,proto3" json:"agents,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                   `json:"-"`
+	XXX_unrecognized     []byte                     `json:"-"`
+	XXX_sizecache        int32                      `json:"-"`
+}
+
+func (m *AgentListResponse) Reset()         { *m = AgentListResponse{} }
+func (m *AgentListResponse) String() string { return proto.CompactTextString(m) }
+func (*AgentListResponse) ProtoMessage()    {}
+func (*AgentListResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{17}
+}
+
+func (m *AgentListResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentListResponse.Unmarshal(m, b)
+}
+func (m *AgentListResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentListResponse.Marshal(b, m, deterministic)
+}
+func (m *AgentListResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentListResponse.Merge(m, src)
+}
+func (m *AgentListResponse) XXX_Size() int {
+	return xxx_messageInfo_AgentListResponse.Size(m)
+}
+func (m *AgentListResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentListResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentListResponse proto.InternalMessageInfo
+
+func (m *AgentListResponse) GetAgents() []*AgentListResponse_Agent {
+	if m != nil {
+		return m.Agents
+	}
+	return nil
+}
+
+type AgentListResponse_Agent struct {
+	Host                 string               `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	Port                 int32                `protobuf:"varint,2,opt,name=port,proto3" json:"port,omitempty"`
+	User                 string               `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
+	Sudoer               bool                 `protobuf:"varint,4,opt,name=sudoer,proto3" json:"sudoer,omitempty"`
+	Version              string               `protobuf:"bytes,5,opt,name=version,proto3" json:"version,omitempty"`
+	Arch                 Arch                 `protobuf:"varint,6,opt,name=arch,proto3,enum=drlm.Arch" json:"arch,omitempty"`
+	Os                   OS                   `protobuf:"varint,7,opt,name=os,proto3,enum=drlm.OS" json:"os,omitempty"`
+	OsVersion            string               `protobuf:"bytes,8,opt,name=os_version,json=osVersion,proto3" json:"os_version,omitempty"`
+	Distro               string               `protobuf:"bytes,9,opt,name=distro,proto3" json:"distro,omitempty"`
+	DistroVersion        string               `protobuf:"bytes,10,opt,name=distro_version,json=distroVersion,proto3" json:"distro_version,omitempty"`
+	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,12,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *AgentListResponse_Agent) Reset()         { *m = AgentListResponse_Agent{} }
+func (m *AgentListResponse_Agent) String() string { return proto.CompactTextString(m) }
+func (*AgentListResponse_Agent) ProtoMessage()    {}
+func (*AgentListResponse_Agent) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{17, 0}
+}
+
+func (m *AgentListResponse_Agent) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentListResponse_Agent.Unmarshal(m, b)
+}
+func (m *AgentListResponse_Agent) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentListResponse_Agent.Marshal(b, m, deterministic)
+}
+func (m *AgentListResponse_Agent) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentListResponse_Agent.Merge(m, src)
+}
+func (m *AgentListResponse_Agent) XXX_Size() int {
+	return xxx_messageInfo_AgentListResponse_Agent.Size(m)
+}
+func (m *AgentListResponse_Agent) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentListResponse_Agent.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentListResponse_Agent proto.InternalMessageInfo
+
+func (m *AgentListResponse_Agent) GetHost() string {
+	if m != nil {
+		return m.Host
+	}
+	return ""
+}
+
+func (m *AgentListResponse_Agent) GetPort() int32 {
+	if m != nil {
+		return m.Port
+	}
+	return 0
+}
+
+func (m *AgentListResponse_Agent) GetUser() string {
+	if m != nil {
+		return m.User
+	}
+	return ""
+}
+
+func (m *AgentListResponse_Agent) GetSudoer() bool {
+	if m != nil {
+		return m.Sudoer
+	}
+	return false
+}
+
+func (m *AgentListResponse_Agent) GetVersion() string {
+	if m != nil {
+		return m.Version
+	}
+	return ""
+}
+
+func (m *AgentListResponse_Agent) GetArch() Arch {
+	if m != nil {
+		return m.Arch
+	}
+	return Arch_ARCH_UNKNOWN
+}
+
+func (m *AgentListResponse_Agent) GetOs() OS {
+	if m != nil {
+		return m.Os
+	}
+	return OS_OS_UNKNOWN
+}
+
+func (m *AgentListResponse_Agent) GetOsVersion() string {
+	if m != nil {
+		return m.OsVersion
+	}
+	return ""
+}
+
+func (m *AgentListResponse_Agent) GetDistro() string {
+	if m != nil {
+		return m.Distro
+	}
+	return ""
+}
+
+func (m *AgentListResponse_Agent) GetDistroVersion() string {
+	if m != nil {
+		return m.DistroVersion
+	}
+	return ""
+}
+
+func (m *AgentListResponse_Agent) GetCreatedAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.CreatedAt
+	}
+	return nil
+}
+
+func (m *AgentListResponse_Agent) GetUpdatedAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.UpdatedAt
+	}
+	return nil
+}
+
+type AgentSyncRequest struct {
+	Host                 string   `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentSyncRequest) Reset()         { *m = AgentSyncRequest{} }
+func (m *AgentSyncRequest) String() string { return proto.CompactTextString(m) }
+func (*AgentSyncRequest) ProtoMessage()    {}
+func (*AgentSyncRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{18}
+}
+
+func (m *AgentSyncRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentSyncRequest.Unmarshal(m, b)
+}
+func (m *AgentSyncRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentSyncRequest.Marshal(b, m, deterministic)
+}
+func (m *AgentSyncRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentSyncRequest.Merge(m, src)
+}
+func (m *AgentSyncRequest) XXX_Size() int {
+	return xxx_messageInfo_AgentSyncRequest.Size(m)
+}
+func (m *AgentSyncRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentSyncRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentSyncRequest proto.InternalMessageInfo
+
+func (m *AgentSyncRequest) GetHost() string {
+	if m != nil {
+		return m.Host
+	}
+	return ""
+}
+
+type AgentSyncResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentSyncResponse) Reset()         { *m = AgentSyncResponse{} }
+func (m *AgentSyncResponse) String() string { return proto.CompactTextString(m) }
+func (*AgentSyncResponse) ProtoMessage()    {}
+func (*AgentSyncResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{19}
+}
+
+func (m *AgentSyncResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentSyncResponse.Unmarshal(m, b)
+}
+func (m *AgentSyncResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentSyncResponse.Marshal(b, m, deterministic)
+}
+func (m *AgentSyncResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentSyncResponse.Merge(m, src)
+}
+func (m *AgentSyncResponse) XXX_Size() int {
+	return xxx_messageInfo_AgentSyncResponse.Size(m)
+}
+func (m *AgentSyncResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentSyncResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentSyncResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterEnum("drlm.AuthType", AuthType_name, AuthType_value)
+	proto.RegisterEnum("drlm.Arch", Arch_name, Arch_value)
+	proto.RegisterEnum("drlm.OS", OS_name, OS_value)
+	proto.RegisterEnum("drlm.AgentInstallResponse_Code", AgentInstallResponse_Code_name, AgentInstallResponse_Code_value)
 	proto.RegisterType((*UserLoginRequest)(nil), "drlm.UserLoginRequest")
 	proto.RegisterType((*UserLoginResponse)(nil), "drlm.UserLoginResponse")
 	proto.RegisterType((*UserTokenRenewRequest)(nil), "drlm.UserTokenRenewRequest")
@@ -516,43 +1165,88 @@ func init() {
 	proto.RegisterType((*UserListRequest)(nil), "drlm.UserListRequest")
 	proto.RegisterType((*UserListResponse)(nil), "drlm.UserListResponse")
 	proto.RegisterType((*UserListResponse_User)(nil), "drlm.UserListResponse.User")
+	proto.RegisterType((*AgentAddRequest)(nil), "drlm.AgentAddRequest")
+	proto.RegisterType((*AgentAddResponse)(nil), "drlm.AgentAddResponse")
+	proto.RegisterType((*AgentInstallRequest)(nil), "drlm.AgentInstallRequest")
+	proto.RegisterType((*AgentInstallResponse)(nil), "drlm.AgentInstallResponse")
+	proto.RegisterType((*AgentDeleteRequest)(nil), "drlm.AgentDeleteRequest")
+	proto.RegisterType((*AgentDeleteResponse)(nil), "drlm.AgentDeleteResponse")
+	proto.RegisterType((*AgentListRequest)(nil), "drlm.AgentListRequest")
+	proto.RegisterType((*AgentListResponse)(nil), "drlm.AgentListResponse")
+	proto.RegisterType((*AgentListResponse_Agent)(nil), "drlm.AgentListResponse.Agent")
+	proto.RegisterType((*AgentSyncRequest)(nil), "drlm.AgentSyncRequest")
+	proto.RegisterType((*AgentSyncResponse)(nil), "drlm.AgentSyncResponse")
 }
 
 func init() { proto.RegisterFile("drlm.proto", fileDescriptor_a4bd9cd91f607bb1) }
 
 var fileDescriptor_a4bd9cd91f607bb1 = []byte{
-	// 483 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x53, 0x5d, 0x8b, 0xd3, 0x40,
-	0x14, 0x6d, 0xda, 0xae, 0xdb, 0xdc, 0x62, 0xed, 0x0e, 0xdb, 0x6e, 0x88, 0x82, 0x4b, 0x40, 0x58,
-	0x14, 0xb2, 0x58, 0x45, 0x14, 0x41, 0x08, 0xae, 0x4f, 0x66, 0xbb, 0x10, 0xba, 0xf8, 0x58, 0xb2,
-	0xe6, 0xda, 0x86, 0xb4, 0xc9, 0x98, 0xb9, 0xa1, 0xee, 0xb3, 0x3f, 0xcb, 0x1f, 0xe1, 0x5f, 0x92,
-	0x64, 0x26, 0x1f, 0xb6, 0x55, 0xf1, 0x61, 0xdf, 0xa6, 0x67, 0xce, 0xb9, 0x73, 0x7a, 0xee, 0x09,
-	0x40, 0x90, 0xae, 0xd6, 0x36, 0x4f, 0x13, 0x4a, 0x58, 0x37, 0x3f, 0x9b, 0x8f, 0x17, 0x49, 0xb2,
-	0x58, 0xe1, 0x79, 0x81, 0xdd, 0x64, 0x5f, 0xce, 0x29, 0x5c, 0xa3, 0x20, 0x7f, 0xcd, 0x25, 0xcd,
-	0x7a, 0x05, 0xc3, 0x6b, 0x81, 0xa9, 0x9b, 0x2c, 0xc2, 0xd8, 0xc3, 0xaf, 0x19, 0x0a, 0x62, 0x43,
-	0xe8, 0x64, 0x22, 0x35, 0xda, 0xa7, 0xda, 0x99, 0xee, 0xe5, 0xc7, 0x1c, 0xe1, 0x9b, 0xc0, 0xe8,
-	0x48, 0x84, 0x6f, 0x02, 0x6b, 0x09, 0x47, 0x0d, 0x9d, 0xe0, 0x49, 0x2c, 0x30, 0xa7, 0x51, 0x14,
-	0x1b, 0x9a, 0xa4, 0x51, 0x14, 0x33, 0x07, 0x06, 0x14, 0xc5, 0x73, 0xfc, 0xc6, 0xc3, 0xd4, 0xa7,
-	0x30, 0x89, 0x8b, 0xa9, 0xfd, 0x89, 0x69, 0x4b, 0x63, 0x76, 0x69, 0xcc, 0x9e, 0x95, 0xc6, 0xbc,
-	0xfb, 0x14, 0xc5, 0x1f, 0x2a, 0x81, 0x75, 0x02, 0xa3, 0xfc, 0xa5, 0x59, 0x12, 0x61, 0xec, 0x61,
-	0x8c, 0x1b, 0x65, 0xd3, 0x5a, 0xc3, 0x78, 0xfb, 0xe2, 0x2e, 0x7d, 0xbc, 0x84, 0x41, 0xfe, 0x9c,
-	0x13, 0x04, 0xff, 0x93, 0xd3, 0x11, 0x3c, 0xa8, 0x54, 0xd2, 0x9d, 0xf5, 0x44, 0x46, 0x77, 0x81,
-	0x2b, 0x24, 0xfc, 0xe3, 0x2c, 0xeb, 0x18, 0x58, 0x93, 0xa6, 0xc4, 0x6a, 0x9e, 0x1b, 0x0a, 0x2a,
-	0x73, 0xf8, 0xde, 0x56, 0x3b, 0x2c, 0x30, 0x15, 0xc1, 0x73, 0x38, 0xc8, 0x04, 0xa6, 0xc2, 0xd0,
-	0x4e, 0x3b, 0x67, 0xfd, 0xc9, 0x43, 0xbb, 0xa8, 0xc6, 0x36, 0xad, 0x00, 0x3c, 0xc9, 0x34, 0x7f,
-	0x68, 0xd0, 0xcd, 0x7f, 0x97, 0x5e, 0xb4, 0xfa, 0x7f, 0x3d, 0x03, 0xdd, 0xcf, 0x68, 0x39, 0xa7,
-	0x5b, 0x8e, 0x85, 0xc7, 0xc1, 0x64, 0x20, 0x27, 0x3a, 0x19, 0x2d, 0x67, 0xb7, 0x1c, 0xbd, 0x9e,
-	0xaf, 0x4e, 0xec, 0x0d, 0xc0, 0xe7, 0x14, 0x7d, 0xc2, 0x60, 0xee, 0x53, 0x91, 0xc5, 0xdf, 0x73,
-	0xd6, 0x15, 0xdb, 0xa1, 0x5c, 0x9a, 0xf1, 0xa0, 0x94, 0x76, 0xff, 0x2d, 0x55, 0x6c, 0x87, 0x9e,
-	0x5a, 0xd0, 0x2b, 0xbd, 0xb0, 0x3e, 0x1c, 0x5e, 0x4f, 0x3f, 0x4e, 0xaf, 0x3e, 0x4d, 0x87, 0x2d,
-	0xa6, 0xc3, 0x81, 0x7b, 0xf5, 0xde, 0x71, 0x87, 0xda, 0xe4, 0x67, 0x1b, 0xba, 0x17, 0x9e, 0x7b,
-	0xc9, 0xde, 0x81, 0x5e, 0xb5, 0x97, 0x8d, 0x1b, 0xd9, 0x34, 0x3e, 0x03, 0xf3, 0x64, 0x07, 0x57,
-	0x3b, 0x68, 0xb1, 0x4b, 0xd9, 0x85, 0xba, 0x7a, 0xac, 0x11, 0xf0, 0x4e, 0x53, 0xcd, 0x47, 0xfb,
-	0x2f, 0xab, 0x71, 0xaf, 0xe1, 0x50, 0x95, 0x84, 0x1d, 0xd7, 0xd4, 0xba, 0x69, 0xe6, 0x68, 0x0b,
-	0xad, 0x94, 0x0e, 0x40, 0x5d, 0x12, 0xd6, 0x70, 0xfc, 0x5b, 0xbb, 0x4c, 0x63, 0xf7, 0xa2, 0x1a,
-	0xf1, 0x16, 0x7a, 0x65, 0x2d, 0xd8, 0x68, 0xbb, 0x26, 0x52, 0x3e, 0xde, 0xdf, 0x1e, 0xab, 0x75,
-	0x73, 0xaf, 0x58, 0xca, 0x8b, 0x5f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x45, 0x21, 0xa6, 0xb6, 0x7a,
-	0x04, 0x00, 0x00,
+	// 1028 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x55, 0x5d, 0x6e, 0xdb, 0x46,
+	0x10, 0x36, 0x25, 0xea, 0x87, 0x63, 0x5b, 0xa1, 0x37, 0xb6, 0xc2, 0xa8, 0x4d, 0x13, 0x10, 0x48,
+	0x63, 0xb8, 0x85, 0x82, 0x3a, 0x69, 0xd0, 0xa0, 0x40, 0x00, 0xc6, 0x92, 0x5b, 0x21, 0x34, 0x19,
+	0x2c, 0xed, 0x3a, 0x7d, 0x12, 0x68, 0x71, 0x2b, 0x09, 0x92, 0x48, 0x96, 0xbb, 0xaa, 0xeb, 0xe7,
+	0xbc, 0xf7, 0x06, 0xbd, 0x41, 0x6f, 0xd0, 0x4b, 0xf4, 0x48, 0xc5, 0x2e, 0x97, 0x14, 0xf5, 0x93,
+	0x04, 0x09, 0x90, 0xb7, 0x9d, 0x6f, 0xe6, 0x9b, 0x9d, 0x99, 0x9d, 0x9d, 0x01, 0x08, 0x92, 0xe9,
+	0xac, 0x1d, 0x27, 0x11, 0x8b, 0x90, 0xca, 0xcf, 0xad, 0xfb, 0xc3, 0x28, 0x1a, 0x4e, 0xc9, 0x63,
+	0x81, 0x5d, 0xcd, 0x7f, 0x7b, 0xcc, 0xc6, 0x33, 0x42, 0x99, 0x3f, 0x8b, 0x53, 0x33, 0xf3, 0x19,
+	0xe8, 0x17, 0x94, 0x24, 0x76, 0x34, 0x1c, 0x87, 0x98, 0xfc, 0x3e, 0x27, 0x94, 0x21, 0x1d, 0xca,
+	0x73, 0x9a, 0x18, 0xca, 0x03, 0xe5, 0x50, 0xc3, 0xfc, 0xc8, 0x91, 0xf8, 0x3a, 0x30, 0x4a, 0x29,
+	0x12, 0x5f, 0x07, 0xe6, 0x08, 0xf6, 0x0a, 0x3c, 0x1a, 0x47, 0x21, 0x25, 0xdc, 0x8c, 0x4d, 0xc2,
+	0x8c, 0xc8, 0x26, 0x21, 0xb2, 0xa0, 0xc1, 0x26, 0x61, 0x9f, 0xfc, 0x19, 0x8f, 0x13, 0x9f, 0x8d,
+	0xa3, 0x50, 0xf8, 0xd8, 0x3e, 0x6e, 0xb5, 0xd3, 0xc0, 0xda, 0x59, 0x60, 0xed, 0xf3, 0x2c, 0x30,
+	0xbc, 0xcb, 0x26, 0x61, 0x37, 0x27, 0x98, 0x77, 0xe0, 0x80, 0xdf, 0x74, 0x1e, 0x4d, 0x48, 0x88,
+	0x49, 0x48, 0xae, 0x65, 0x98, 0xe6, 0x0c, 0x9a, 0xab, 0x8a, 0xcf, 0x19, 0xc7, 0x53, 0x68, 0xf0,
+	0xeb, 0xac, 0x20, 0xf8, 0x98, 0x3a, 0xed, 0xc1, 0xad, 0x9c, 0x95, 0x46, 0x67, 0x3e, 0x4c, 0x4b,
+	0xd7, 0x21, 0x53, 0xc2, 0xc8, 0x3b, 0x7d, 0x99, 0xfb, 0x80, 0x8a, 0x66, 0x92, 0x2c, 0xfd, 0xd9,
+	0x63, 0xca, 0xb2, 0x3a, 0xbc, 0x2d, 0xc9, 0x37, 0x14, 0x98, 0x2c, 0xc1, 0x77, 0x50, 0x99, 0x53,
+	0x92, 0x50, 0x43, 0x79, 0x50, 0x3e, 0xdc, 0x3e, 0xfe, 0xa2, 0x2d, 0x5a, 0x63, 0xd5, 0x4c, 0x00,
+	0x38, 0xb5, 0x6c, 0xfd, 0xab, 0x80, 0xca, 0xe5, 0x0d, 0x79, 0x7d, 0x03, 0x9a, 0x3f, 0x67, 0xa3,
+	0x3e, 0xbb, 0x89, 0x89, 0xc8, 0xae, 0x71, 0xdc, 0x48, 0x3d, 0x5a, 0x73, 0x36, 0x3a, 0xbf, 0x89,
+	0x09, 0xae, 0xfb, 0xf2, 0x84, 0x9e, 0x03, 0x0c, 0x12, 0xe2, 0x33, 0x12, 0xf4, 0x7d, 0x66, 0x94,
+	0x3f, 0x58, 0x67, 0x4d, 0x5a, 0x5b, 0x8c, 0x53, 0xe7, 0x71, 0x90, 0x51, 0xd5, 0x0f, 0x53, 0xa5,
+	0xb5, 0xc5, 0x4c, 0x02, 0xb7, 0xac, 0x21, 0x09, 0x59, 0xe1, 0x7d, 0x10, 0xa8, 0xa3, 0x88, 0x32,
+	0x99, 0x88, 0x38, 0x73, 0x2c, 0x8e, 0x12, 0x26, 0x92, 0xa8, 0x60, 0x71, 0xe6, 0x18, 0xaf, 0x80,
+	0x08, 0x55, 0xc3, 0xe2, 0x8c, 0x9a, 0x50, 0xa5, 0xf3, 0x20, 0x22, 0x89, 0x88, 0xa2, 0x8e, 0xa5,
+	0x64, 0xda, 0xa0, 0x2f, 0xae, 0x91, 0xb5, 0xfe, 0x0a, 0x54, 0x3f, 0x19, 0x8c, 0xc4, 0x3d, 0x8d,
+	0x63, 0x90, 0x85, 0x49, 0x06, 0x23, 0x2c, 0x70, 0x64, 0x40, 0x29, 0xa2, 0xb2, 0x6c, 0xf5, 0x54,
+	0xeb, 0x7a, 0xb8, 0x14, 0x51, 0xf3, 0x11, 0xdc, 0x16, 0xde, 0x7a, 0x21, 0x65, 0xfe, 0x74, 0x5a,
+	0x68, 0x86, 0xab, 0x71, 0xda, 0xbf, 0x3b, 0x98, 0x1f, 0xcd, 0xbf, 0x14, 0xd8, 0x5f, 0xb6, 0x94,
+	0x77, 0x1b, 0x50, 0x9b, 0x11, 0x4a, 0xfd, 0x21, 0x91, 0x69, 0x66, 0x22, 0x7a, 0x02, 0xea, 0x20,
+	0x0a, 0xb2, 0xe7, 0xba, 0x2f, 0xa3, 0xda, 0xe0, 0xa3, 0x7d, 0x12, 0x05, 0x04, 0x0b, 0x63, 0xf3,
+	0x11, 0xa8, 0x5c, 0x42, 0xdb, 0x50, 0xbb, 0x70, 0x5e, 0x39, 0xee, 0xa5, 0xa3, 0x6f, 0xa1, 0x2a,
+	0x94, 0xdc, 0x57, 0xba, 0x82, 0x00, 0xaa, 0xa7, 0x56, 0xcf, 0xee, 0x76, 0xf4, 0x92, 0xf9, 0x12,
+	0x90, 0xf0, 0xb5, 0xdc, 0xc5, 0x9b, 0x2a, 0x6e, 0x40, 0x6d, 0x30, 0x25, 0x7e, 0x38, 0x8f, 0x45,
+	0x28, 0x75, 0x9c, 0x89, 0xe6, 0x81, 0xcc, 0x7e, 0xa5, 0xc5, 0x91, 0x2c, 0x71, 0xb1, 0xc7, 0xff,
+	0x2b, 0xc3, 0x5e, 0x01, 0x94, 0xc9, 0x7f, 0x0f, 0x55, 0x9f, 0x83, 0x59, 0x97, 0xdf, 0x2b, 0x24,
+	0xb9, 0xd4, 0xe6, 0x02, 0xc1, 0xd2, 0xb8, 0xf5, 0xb6, 0x0c, 0x15, 0x81, 0x7c, 0x8e, 0x0e, 0xe1,
+	0xf9, 0xfe, 0x41, 0x12, 0xca, 0x67, 0x4c, 0x25, 0x7d, 0x11, 0x29, 0xe6, 0x7d, 0x52, 0x7d, 0x6f,
+	0x9f, 0xd4, 0xd6, 0xfb, 0x04, 0xdd, 0x03, 0x88, 0x68, 0x3f, 0x73, 0x5b, 0x17, 0x6e, 0xb5, 0x88,
+	0xfe, 0x22, 0x1d, 0x37, 0xa1, 0x1a, 0x8c, 0x29, 0x4b, 0x22, 0x43, 0x13, 0x2a, 0x29, 0xa1, 0x87,
+	0xd0, 0x48, 0x4f, 0x39, 0x15, 0x84, 0x7e, 0x37, 0x45, 0x33, 0xfa, 0xf2, 0x87, 0xdd, 0xfe, 0xf4,
+	0x0f, 0xbb, 0xf3, 0x31, 0x1f, 0xf6, 0x6b, 0xf9, 0xcc, 0xde, 0x4d, 0x38, 0x78, 0x4f, 0xff, 0x98,
+	0xb7, 0xe5, 0xcb, 0xa7, 0x76, 0xe9, 0x83, 0x1e, 0x7d, 0x0b, 0xf5, 0x6c, 0xf2, 0x20, 0x1d, 0x76,
+	0xac, 0x8b, 0xf3, 0x9f, 0xfb, 0x8b, 0x86, 0x6d, 0x00, 0x08, 0xc4, 0x76, 0x4f, 0x2c, 0x5b, 0x57,
+	0x8e, 0x0e, 0x41, 0xe5, 0x65, 0x16, 0x96, 0xf8, 0x64, 0xd5, 0x92, 0x23, 0xd6, 0x59, 0xe7, 0xd9,
+	0x53, 0x5d, 0x39, 0xfa, 0x47, 0x81, 0x92, 0xeb, 0x71, 0xd8, 0xf5, 0x0a, 0x66, 0x3b, 0x50, 0x77,
+	0xbd, 0xbe, 0xdd, 0x73, 0x2e, 0xde, 0xe8, 0x8a, 0xd4, 0x5e, 0xf6, 0x9c, 0x8e, 0x7b, 0xe9, 0xe9,
+	0x25, 0xb4, 0x0b, 0x9a, 0xeb, 0xf5, 0x3b, 0x16, 0xbe, 0xec, 0x39, 0x7a, 0x99, 0x7f, 0x13, 0xd7,
+	0xeb, 0x5b, 0xbd, 0x37, 0xba, 0xca, 0x6f, 0xe4, 0x2a, 0x6c, 0xfd, 0xe4, 0x3a, 0xa7, 0xf6, 0xaf,
+	0x7a, 0x45, 0x92, 0x4f, 0x71, 0xb7, 0xfb, 0xd2, 0xeb, 0xe8, 0x55, 0x49, 0x76, 0xba, 0xe7, 0x5c,
+	0xac, 0x49, 0xb5, 0xfb, 0xba, 0xeb, 0x70, 0xb9, 0x2e, 0x6f, 0x7e, 0x6d, 0x5b, 0xce, 0x73, 0x5d,
+	0x93, 0x5a, 0xcf, 0xb5, 0x2d, 0xdc, 0xf3, 0x74, 0x38, 0xfe, 0xbb, 0x02, 0x6a, 0x07, 0xdb, 0x67,
+	0xe8, 0x05, 0x68, 0xf9, 0x3a, 0x46, 0xcd, 0xc2, 0xb0, 0x2f, 0xec, 0xf5, 0xd6, 0x9d, 0x35, 0x5c,
+	0xfe, 0xb8, 0x2d, 0x74, 0x96, 0x2e, 0xb7, 0xc5, 0x2e, 0x45, 0x85, 0x8d, 0xb1, 0xb6, 0x7a, 0x5b,
+	0x5f, 0x6e, 0x56, 0xe6, 0xee, 0x7e, 0x80, 0x9a, 0xdc, 0x7a, 0x68, 0x7f, 0x61, 0xba, 0x18, 0xcd,
+	0xad, 0x83, 0x15, 0x34, 0x67, 0x5a, 0x00, 0x8b, 0xad, 0x87, 0x0a, 0x11, 0x2f, 0x0d, 0x9a, 0x96,
+	0xb1, 0xae, 0xc8, 0x5d, 0xfc, 0x08, 0xf5, 0x6c, 0xcf, 0xa1, 0x83, 0xd5, 0xbd, 0x97, 0xd2, 0x9b,
+	0x9b, 0xd7, 0x61, 0x4a, 0xce, 0xe6, 0x7b, 0x46, 0x5e, 0x59, 0x2b, 0x19, 0x79, 0x75, 0x0d, 0x98,
+	0x5b, 0xa8, 0x07, 0x3b, 0xc5, 0x01, 0x8b, 0xee, 0x6e, 0x1a, 0xba, 0xa9, 0x93, 0xd6, 0xbb, 0xe7,
+	0xb1, 0xb9, 0x75, 0xa8, 0xa0, 0x0e, 0x6c, 0x17, 0x66, 0x23, 0x32, 0x0a, 0xe6, 0xcb, 0x95, 0xb8,
+	0xbb, 0x41, 0x93, 0x07, 0xf4, 0x02, 0xb4, 0x7c, 0x18, 0xa2, 0xe6, 0xda, 0x74, 0x5c, 0x6a, 0x8b,
+	0xb5, 0xa9, 0x59, 0xe0, 0xf3, 0xbf, 0xb7, 0xc4, 0x2f, 0x7c, 0xda, 0x25, 0x7e, 0xf1, 0x93, 0x9a,
+	0x5b, 0x57, 0x55, 0x31, 0x02, 0x9e, 0xfc, 0x1f, 0x00, 0x00, 0xff, 0xff, 0xe3, 0x0c, 0x66, 0xfa,
+	0x99, 0x0a, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -567,11 +1261,26 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type DRLMClient interface {
+	// UserLogin logs in as a local user
 	UserLogin(ctx context.Context, in *UserLoginRequest, opts ...grpc.CallOption) (*UserLoginResponse, error)
+	// UserTokenRenew renews the login token
 	UserTokenRenew(ctx context.Context, in *UserTokenRenewRequest, opts ...grpc.CallOption) (*UserTokenRenewResponse, error)
+	// UserAdd creates a new user
 	UserAdd(ctx context.Context, in *UserAddRequest, opts ...grpc.CallOption) (*UserAddResponse, error)
+	// UserDelete removes an user
 	UserDelete(ctx context.Context, in *UserDeleteRequest, opts ...grpc.CallOption) (*UserDeleteResponse, error)
+	// UserList lists all the users
 	UserList(ctx context.Context, in *UserListRequest, opts ...grpc.CallOption) (*UserListResponse, error)
+	// AgentAdd adds a new Agent to the DB
+	AgentAdd(ctx context.Context, in *AgentAddRequest, opts ...grpc.CallOption) (*AgentAddResponse, error)
+	// AgentInstall installs the agent binary to the agent machine
+	AgentInstall(ctx context.Context, opts ...grpc.CallOption) (DRLM_AgentInstallClient, error)
+	// AgentDelete removes the agent from the DB and might do a clenup in the agent machine
+	AgentDelete(ctx context.Context, in *AgentDeleteRequest, opts ...grpc.CallOption) (*AgentDeleteResponse, error)
+	// AgentList returns a list of all the agents
+	AgentList(ctx context.Context, in *AgentListRequest, opts ...grpc.CallOption) (*AgentListResponse, error)
+	// AgentSync updates the agent OS and plugins info, such as OS version, programs versions...
+	AgentSync(ctx context.Context, in *AgentSyncRequest, opts ...grpc.CallOption) (*AgentSyncResponse, error)
 }
 
 type dRLMClient struct {
@@ -627,13 +1336,98 @@ func (c *dRLMClient) UserList(ctx context.Context, in *UserListRequest, opts ...
 	return out, nil
 }
 
+func (c *dRLMClient) AgentAdd(ctx context.Context, in *AgentAddRequest, opts ...grpc.CallOption) (*AgentAddResponse, error) {
+	out := new(AgentAddResponse)
+	err := c.cc.Invoke(ctx, "/drlm.DRLM/AgentAdd", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dRLMClient) AgentInstall(ctx context.Context, opts ...grpc.CallOption) (DRLM_AgentInstallClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_DRLM_serviceDesc.Streams[0], "/drlm.DRLM/AgentInstall", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &dRLMAgentInstallClient{stream}
+	return x, nil
+}
+
+type DRLM_AgentInstallClient interface {
+	Send(*AgentInstallRequest) error
+	CloseAndRecv() (*AgentInstallResponse, error)
+	grpc.ClientStream
+}
+
+type dRLMAgentInstallClient struct {
+	grpc.ClientStream
+}
+
+func (x *dRLMAgentInstallClient) Send(m *AgentInstallRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *dRLMAgentInstallClient) CloseAndRecv() (*AgentInstallResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(AgentInstallResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *dRLMClient) AgentDelete(ctx context.Context, in *AgentDeleteRequest, opts ...grpc.CallOption) (*AgentDeleteResponse, error) {
+	out := new(AgentDeleteResponse)
+	err := c.cc.Invoke(ctx, "/drlm.DRLM/AgentDelete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dRLMClient) AgentList(ctx context.Context, in *AgentListRequest, opts ...grpc.CallOption) (*AgentListResponse, error) {
+	out := new(AgentListResponse)
+	err := c.cc.Invoke(ctx, "/drlm.DRLM/AgentList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dRLMClient) AgentSync(ctx context.Context, in *AgentSyncRequest, opts ...grpc.CallOption) (*AgentSyncResponse, error) {
+	out := new(AgentSyncResponse)
+	err := c.cc.Invoke(ctx, "/drlm.DRLM/AgentSync", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DRLMServer is the server API for DRLM service.
 type DRLMServer interface {
+	// UserLogin logs in as a local user
 	UserLogin(context.Context, *UserLoginRequest) (*UserLoginResponse, error)
+	// UserTokenRenew renews the login token
 	UserTokenRenew(context.Context, *UserTokenRenewRequest) (*UserTokenRenewResponse, error)
+	// UserAdd creates a new user
 	UserAdd(context.Context, *UserAddRequest) (*UserAddResponse, error)
+	// UserDelete removes an user
 	UserDelete(context.Context, *UserDeleteRequest) (*UserDeleteResponse, error)
+	// UserList lists all the users
 	UserList(context.Context, *UserListRequest) (*UserListResponse, error)
+	// AgentAdd adds a new Agent to the DB
+	AgentAdd(context.Context, *AgentAddRequest) (*AgentAddResponse, error)
+	// AgentInstall installs the agent binary to the agent machine
+	AgentInstall(DRLM_AgentInstallServer) error
+	// AgentDelete removes the agent from the DB and might do a clenup in the agent machine
+	AgentDelete(context.Context, *AgentDeleteRequest) (*AgentDeleteResponse, error)
+	// AgentList returns a list of all the agents
+	AgentList(context.Context, *AgentListRequest) (*AgentListResponse, error)
+	// AgentSync updates the agent OS and plugins info, such as OS version, programs versions...
+	AgentSync(context.Context, *AgentSyncRequest) (*AgentSyncResponse, error)
 }
 
 // UnimplementedDRLMServer can be embedded to have forward compatible implementations.
@@ -654,6 +1448,21 @@ func (*UnimplementedDRLMServer) UserDelete(ctx context.Context, req *UserDeleteR
 }
 func (*UnimplementedDRLMServer) UserList(ctx context.Context, req *UserListRequest) (*UserListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserList not implemented")
+}
+func (*UnimplementedDRLMServer) AgentAdd(ctx context.Context, req *AgentAddRequest) (*AgentAddResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AgentAdd not implemented")
+}
+func (*UnimplementedDRLMServer) AgentInstall(srv DRLM_AgentInstallServer) error {
+	return status.Errorf(codes.Unimplemented, "method AgentInstall not implemented")
+}
+func (*UnimplementedDRLMServer) AgentDelete(ctx context.Context, req *AgentDeleteRequest) (*AgentDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AgentDelete not implemented")
+}
+func (*UnimplementedDRLMServer) AgentList(ctx context.Context, req *AgentListRequest) (*AgentListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AgentList not implemented")
+}
+func (*UnimplementedDRLMServer) AgentSync(ctx context.Context, req *AgentSyncRequest) (*AgentSyncResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AgentSync not implemented")
 }
 
 func RegisterDRLMServer(s *grpc.Server, srv DRLMServer) {
@@ -750,6 +1559,104 @@ func _DRLM_UserList_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DRLM_AgentAdd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AgentAddRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DRLMServer).AgentAdd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlm.DRLM/AgentAdd",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DRLMServer).AgentAdd(ctx, req.(*AgentAddRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DRLM_AgentInstall_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(DRLMServer).AgentInstall(&dRLMAgentInstallServer{stream})
+}
+
+type DRLM_AgentInstallServer interface {
+	SendAndClose(*AgentInstallResponse) error
+	Recv() (*AgentInstallRequest, error)
+	grpc.ServerStream
+}
+
+type dRLMAgentInstallServer struct {
+	grpc.ServerStream
+}
+
+func (x *dRLMAgentInstallServer) SendAndClose(m *AgentInstallResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *dRLMAgentInstallServer) Recv() (*AgentInstallRequest, error) {
+	m := new(AgentInstallRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func _DRLM_AgentDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AgentDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DRLMServer).AgentDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlm.DRLM/AgentDelete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DRLMServer).AgentDelete(ctx, req.(*AgentDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DRLM_AgentList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AgentListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DRLMServer).AgentList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlm.DRLM/AgentList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DRLMServer).AgentList(ctx, req.(*AgentListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DRLM_AgentSync_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AgentSyncRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DRLMServer).AgentSync(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlm.DRLM/AgentSync",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DRLMServer).AgentSync(ctx, req.(*AgentSyncRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _DRLM_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "drlm.DRLM",
 	HandlerType: (*DRLMServer)(nil),
@@ -774,7 +1681,29 @@ var _DRLM_serviceDesc = grpc.ServiceDesc{
 			MethodName: "UserList",
 			Handler:    _DRLM_UserList_Handler,
 		},
+		{
+			MethodName: "AgentAdd",
+			Handler:    _DRLM_AgentAdd_Handler,
+		},
+		{
+			MethodName: "AgentDelete",
+			Handler:    _DRLM_AgentDelete_Handler,
+		},
+		{
+			MethodName: "AgentList",
+			Handler:    _DRLM_AgentList_Handler,
+		},
+		{
+			MethodName: "AgentSync",
+			Handler:    _DRLM_AgentSync_Handler,
+		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "AgentInstall",
+			Handler:       _DRLM_AgentInstall_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "drlm.proto",
 }

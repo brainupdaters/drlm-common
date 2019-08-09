@@ -23,24 +23,64 @@ import "google/protobuf/timestamp.proto";
 package drlm;
 
 service DRLM {
+    // UserLogin logs in as a local user
     rpc UserLogin(UserLoginRequest) returns (UserLoginResponse) {}
+
+    // UserTokenRenew renews the login token
     rpc UserTokenRenew(UserTokenRenewRequest) returns (UserTokenRenewResponse) {}
+
+    // UserAdd creates a new user
     rpc UserAdd(UserAddRequest) returns (UserAddResponse) {}
+
+    // UserDelete removes an user
     rpc UserDelete(UserDeleteRequest) returns (UserDeleteResponse) {}
+
+    // UserList lists all the users
     rpc UserList(UserListRequest) returns (UserListResponse) {}
-    // rpc AgentAdd(AgentAddRequest) returns (AgentAddResponse) {}
-    // rpc AgentDelete(AgentDeleteRequest) returns (AgentDeleteResponse) {}
-    // rpc AgentList(AgentListRequest) returns (AgentListResponse) {}
+
+    // AgentAdd adds a new Agent to the DB
+    rpc AgentAdd(AgentAddRequest) returns (AgentAddResponse) {}
+
+    // AgentInstall installs the agent binary to the agent machine
+    rpc AgentInstall(stream AgentInstallRequest) returns (AgentInstallResponse) {}
+
+    // AgentDelete removes the agent from the DB and might do a clenup in the agent machine
+    rpc AgentDelete(AgentDeleteRequest) returns (AgentDeleteResponse) {}
+
+    // AgentList returns a list of all the agents
+    rpc AgentList(AgentListRequest) returns (AgentListResponse) {}
+
+    // AgentSync updates the agent OS and plugins info, such as OS version, programs versions...
+    rpc AgentSync(AgentSyncRequest) returns (AgentSyncResponse) {}
 }
 
 enum AuthType {
-    UNKNOWN = 0;
-    LOCAL = 1;
+    AUTH_UNKNOWN = 0;
+    AUTH_LOCAL = 1;
+}
+
+enum Arch {
+    ARCH_UNKNOWN = 0;
+    ARCH_AMD64 = 1;
+}
+
+enum OS {
+    OS_UNKNOWN = 0;
+    OS_LINUX = 1;
+    OS_WINDOWS = 2;
+    OS_DARWIN = 3;
+    OS_AIX = 4;
+    OS_DRAGONFLY = 5;
+    OS_FREEBSD = 6;
+    OS_NETBSD = 7;
+    OS_OPENBSD = 8;
+    OS_PLAN9 = 9;
+    OS_SOLARIS = 10;
 }
 
 message UserLoginRequest {
-    string usr = 2;
-    string pwd = 3;
+    string usr = 1;
+    string pwd = 2;
 }
 message UserLoginResponse {
     string tkn = 1;
@@ -54,13 +94,13 @@ message UserTokenRenewResponse {
 }
 
 message UserAddRequest {
-    string usr = 2;
-    string pwd = 3;
+    string usr = 1;
+    string pwd = 2;
 }
 message UserAddResponse {}
 
 message UserDeleteRequest {
-    string usr = 2;
+    string usr = 1;
 }
 message UserDeleteResponse {}
 
@@ -75,3 +115,62 @@ message UserListResponse {
 
     repeated User users = 1;
 }
+
+message AgentAddRequest {
+    string host = 1;
+    int32 port = 2;
+    string user = 3;
+    bool sudoer = 4;
+}
+message AgentAddResponse {
+    Arch arch = 1;
+    OS os = 2;
+}
+
+message AgentInstallRequest {
+    bytes bin = 1;
+}
+message AgentInstallResponse {
+    enum Code {
+        UNKNOWN = 0;
+        OK = 1;
+        FAILED = 2;
+    }
+
+    string message = 1;
+    Code code = 2;
+}
+
+
+message AgentDeleteRequest {
+    string host = 1;
+    bool cleanup = 2;
+}
+message AgentDeleteResponse{}
+
+message AgentListRequest {}
+message AgentListResponse {
+    message Agent {
+        string host = 1;
+        int32 port = 2;
+        string user = 3;
+        bool sudoer = 4;
+
+        string version = 5;
+        Arch arch = 6;
+        OS os = 7;
+        string os_version = 8;
+        string distro = 9;
+        string distro_version = 10;
+
+        google.protobuf.Timestamp created_at = 11;
+        google.protobuf.Timestamp updated_at = 12;
+    }
+
+    repeated Agent agents = 1;
+}
+
+message AgentSyncRequest {
+    string host = 1;
+}
+message AgentSyncResponse {}
