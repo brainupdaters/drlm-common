@@ -49,9 +49,6 @@ service DRLM {
 
     // AgentList returns a list of all the agents
     rpc AgentList(AgentListRequest) returns (AgentListResponse) {}
-
-    // AgentSync updates the agent OS and plugins info, such as OS version, programs versions...
-    rpc AgentSync(AgentSyncRequest) returns (AgentSyncResponse) {}
 }
 
 enum AuthType {
@@ -120,7 +117,8 @@ message AgentAddRequest {
     string host = 1;
     int32 port = 2;
     string user = 3;
-    bool sudoer = 4;
+    string password = 4;
+    bool is_admin = 5;
 }
 message AgentAddResponse {
     Arch arch = 1;
@@ -169,8 +167,3 @@ message AgentListResponse {
 
     repeated Agent agents = 1;
 }
-
-message AgentSyncRequest {
-    string host = 1;
-}
-message AgentSyncResponse {}
