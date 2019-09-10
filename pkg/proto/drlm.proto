@@ -49,6 +49,18 @@ service DRLM {
 
     // AgentList returns a list of all the agents
     rpc AgentList(AgentListRequest) returns (AgentListResponse) {}
+
+    // JobSchedule schedules a new job
+    rpc JobSchedule(JobScheduleRequest) returns (JobScheduleResponse) {}
+
+    // JobCancel cancels an scheduled or running Job
+    rpc JobCancel(JobCancelRequest) returns (JobCancelResponse) {}
+
+    // JobList returns a list with the the jobs of an agent. If the agent ID is 0, it will return all the jobs
+    rpc JobList(JobListRequest) returns (JobListResponse) {}
+
+    // JobNotify notifies a change in a job (this is called from the agent) (status change, stdout...)
+    rpc JobNotify(JobNotifyRequest) returns (JobNotifyResponse) {}
 }
 
 enum AuthType {
@@ -73,6 +85,15 @@ enum OS {
     OS_OPENBSD = 8;
     OS_PLAN9 = 9;
     OS_SOLARIS = 10;
+}
+
+enum JobStatus {
+    JOB_STATUS_UNKNOWN = 0;
+    JOB_STATUS_SCHEDULED = 1;
+    JOB_STATUS_RUNNING = 2;
+    JOB_STATUS_FINISHED = 3;
+    JOB_STATUS_FAILED = 4;
+    JOB_STATUS_CANCELLED = 5;
 }
 
 message UserLoginRequest {
@@ -167,3 +188,36 @@ message AgentListResponse {
 
     repeated Agent agents = 1;
 }
+
+message JobScheduleRequest {
+    int32 agent_id = 1;
+    string name = 2;
+}
+message JobScheduleResponse {}
+
+message JobCancelRequest {
+    int32 job_id = 1;
+}
+message JobCancelResponse {}
+
+message JobListRequest {
+    int32 agent_id = 1;
+}
+message JobListResponse {
+    message Job {
+        int32 id = 1;
+        string name = 2;
+        int32 agent_id = 3;
+        JobStatus status = 4;
+        string info = 5;
+    }
+
+    repeated Job jobs = 1;
+}
+
+message JobNotifyRequest {
+    int32 job_id = 1;
+    JobStatus status = 2;
+    string info = 3;
+}
+message JobNotifyResponse {}
