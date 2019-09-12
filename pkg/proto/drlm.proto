@@ -190,24 +190,24 @@ message AgentListResponse {
 }
 
 message JobScheduleRequest {
-    int32 agent_id = 1;
+    uint32 agent_id = 1;
     string name = 2;
 }
 message JobScheduleResponse {}
 
 message JobCancelRequest {
-    int32 job_id = 1;
+    uint32 job_id = 1;
 }
 message JobCancelResponse {}
 
 message JobListRequest {
-    int32 agent_id = 1;
+    uint32 agent_id = 1;
 }
 message JobListResponse {
     message Job {
-        int32 id = 1;
+        uint32 id = 1;
         string name = 2;
-        int32 agent_id = 3;
+        uint32 agent_id = 3;
         JobStatus status = 4;
         string info = 5;
     }
@@ -216,7 +216,7 @@ message JobListResponse {
 }
 
 message JobNotifyRequest {
-    int32 job_id = 1;
+    uint32 job_id = 1;
     JobStatus status = 2;
     string info = 3;
 }
