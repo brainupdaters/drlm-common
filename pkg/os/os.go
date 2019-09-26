@@ -59,7 +59,7 @@ func (os OS) IsUnix() bool {
 
 // DetectOS detects the OS the Client is running
 func DetectOS(c Client) (OS, error) {
-	out, err := c.Exec("uname -s")
+	out, err := c.Exec("uname", "-s")
 	if err != nil {
 		// NOT UNIX
 		return Unknown, fmt.Errorf("error getting the OS: %v", err)
@@ -83,7 +83,7 @@ func DetectOS(c Client) (OS, error) {
 // DetectVersion returns the OS version
 func (os OS) DetectVersion(c Client) (string, error) {
 	if os.IsUnix() {
-		out, err := c.Exec("uname -r")
+		out, err := c.Exec("uname", "-r")
 		if err != nil {
 			return "", fmt.Errorf("error detecting the OS version: %v", err)
 		}
