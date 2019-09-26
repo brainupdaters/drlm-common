@@ -101,3 +101,25 @@ func (os OS) CmdSSHCopyID(c Client, usr string, key []byte) error {
 		return ErrUnsupportedOS
 	}
 }
+
+// CmdSSHGetPublicKey returns the SSH public key of an user
+func (os OS) CmdSSHGetPublicKey(c Client, usr string) ([]byte, error) {
+	switch {
+	case os.IsUnix():
+		home, err := os.CmdFSHome(c, usr)
+		if err != nil {
+			return nil, fmt.Errorf("error getting the public key: %v", err)
+		}
+
+		pubKeyPath := filepath.Join(home, ".ssh", "id_rsa.pub")
+		pubKey, err := os.CmdFSReadFile(c, pubKeyPath)
+		if err != nil {
+			return nil, fmt.Errorf("error getting the public key: %v", err)
+		}
+
+		return pubKey, nil
+
+	default:
+		return nil, ErrUnsupportedOS
+	}
+}
