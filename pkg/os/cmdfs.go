@@ -172,22 +172,6 @@ func (os OS) CmdFSChmod(c Client, path string, permissions stdOS.FileMode) error
 	}
 }
 
-// CmdFSReadFile returns the content of a file
-func (os OS) CmdFSReadFile(c Client, path string) ([]byte, error) {
-	switch {
-	case os.IsUnix():
-		f, err := c.Exec("cat", path)
-		if err != nil {
-			return nil, fmt.Errorf("error reading the file: %v", err)
-		}
-
-		return f, nil
-
-	default:
-		return nil, ErrUnsupportedOS
-	}
-}
-
 // CmdFSAppendToFile adds contents to a file. If it doesn't exist, it creates it
 func (os OS) CmdFSAppendToFile(c Client, path string, b []byte) error {
 	return cmdFSAppendToFile(os, c, false, path, b)
