@@ -87,19 +87,19 @@ func (os OS) CmdSSHCopyID(c Client, usr string, key []byte) error {
 			return fmt.Errorf("error adding the key to the authorized_keys file: %v", err)
 		}
 
-		err = os.CmdFSChown(c, tmpAuthKeys, usr, grp)
+		err = os.CmdFSMove(c, tmpAuthKeys, authKeys)
+		if err != nil {
+			return fmt.Errorf("error replacing the authorized_keys file: %v", err)
+		}
+
+		err = os.CmdFSChown(c, authKeys, usr, grp)
 		if err != nil {
 			return fmt.Errorf("error changing the authorized_keys owner: %v", err)
 		}
 
-		err = os.CmdFSChmod(c, tmpAuthKeys, 0600)
+		err = os.CmdFSChmod(c, authKeys, 0600)
 		if err != nil {
 			return fmt.Errorf("error changing the authorized_keys permissions: %v", err)
-		}
-
-		err = os.CmdFSMove(c, tmpAuthKeys, authKeys)
-		if err != nil {
-			return fmt.Errorf("error replacing the authorized_keys file: %v", err)
 		}
 
 		return nil
