@@ -49,7 +49,7 @@ func (c *ClientLocal) ExecAdmin(os OS, name string, arg ...string) ([]byte, erro
 
 // ClientSSH is an OS client using SSH
 type ClientSSH struct {
-	Session *ssh.Conn
+	Session *ssh.Session
 	IsAdmin bool
 }
 
