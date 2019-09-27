@@ -61,6 +61,27 @@ func (os OS) CmdFSTempDir() string {
 	}
 }
 
+// CmdFSCheckFile checks if a file exists
+func (os OS) CmdFSCheckFile(c Client, dir string) (bool, error) {
+	switch {
+	case os.IsUnix():
+		out, err := c.Exec("sh", "-c", fmt.Sprintf(`test -f "%q" && echo "file exists" || echo "file not found"`, dir))
+		if err != nil {
+			return false, fmt.Errorf("error checking the file existence: %v", err)
+		}
+
+		if strings.TrimSpace(string(out)) == "file exists" {
+			return true, nil
+		}
+
+		return false, nil
+
+		// TODO: Windows support
+	default:
+		return false, ErrUnsupportedOS
+	}
+}
+
 // CmdFSCheckDir checks if a directory exists
 func (os OS) CmdFSCheckDir(c Client, dir string) (bool, error) {
 	switch {
