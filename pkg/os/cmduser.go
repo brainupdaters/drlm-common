@@ -16,7 +16,7 @@ func (os OS) CmdUserCreate(c Client, name, pwd string) error {
 		}
 
 		cryptPwd := strings.TrimSpace(string(out))
-		_, err = c.ExecAdmin(os, "useradd", "-m", "-c", "DRLM Agent user", "-p", cryptPwd, name)
+		_, err = c.ExecAdmin(os, "useradd", "-m", "-c", `"DRLM Agent user"`, "-p", fmt.Sprintf(`"%s"`, cryptPwd), fmt.Sprintf(`"%s"`, name))
 		if err != nil {
 			return fmt.Errorf("error creating the user: %v", err)
 		}
