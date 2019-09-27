@@ -70,11 +70,18 @@ func (os OS) CmdSSHCopyID(c Client, usr string, key []byte) error {
 
 		authKeys := filepath.Join(sshDir, "authorized_keys")
 		tmpAuthKeys := filepath.Join(os.CmdFSTempDir(), "drlm_core_authorized_keys")
-		err = os.CmdFSCopy(c, authKeys, tmpAuthKeys)
+		exists, err = os.CmdFSCheckFile(c, authKeys)
 		if err != nil {
-			return fmt.Errorf("error copying the authorized_keys file: %v", err)
+			return fmt.Errorf("error checking for the authorized_keys file: %v", err)
 		}
 
+		if exists {
+			if err = os.CmdFSCopy(c, authKeys, tmpAuthKeys); err != nil {
+				return fmt.Errorf("error copying the authorized_keys file: %v", err)
+			}
+		}
+
+		// TODO: Refactor all the err = to if err =
 		err = os.CmdFSAppendToFile(c, tmpAuthKeys, key)
 		if err != nil {
 			return fmt.Errorf("error adding the key to the authorized_keys file: %v", err)
