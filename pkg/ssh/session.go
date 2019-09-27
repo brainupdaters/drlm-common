@@ -63,7 +63,7 @@ type Session struct {
 
 // Close closes the session
 func (s *Session) Close() error {
-	return s.Close()
+	return s.s.Close()
 }
 
 // Exec executes a command and gets the output
