@@ -49,14 +49,14 @@ func (c *ClientLocal) ExecAdmin(os OS, name string, arg ...string) ([]byte, erro
 
 // ClientSSH is an OS client using SSH
 type ClientSSH struct {
-	Session *ssh.Session
+	Conn    *ssh.Conn
 	IsAdmin bool
 }
 
 // Exec executes a command through SSH
 func (c *ClientSSH) Exec(name string, arg ...string) ([]byte, error) {
 	cmd := append([]string{name}, arg...)
-	return c.Session.Exec(strings.Join(cmd, " "))
+	return c.Conn.Exec(strings.Join(cmd, " "))
 }
 
 // ExecAdmin executes a command that requires Admin privilages
