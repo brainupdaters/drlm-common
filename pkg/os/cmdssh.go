@@ -41,7 +41,7 @@ func (os OS) CmdSSHCopyID(c Client, usr string, key []byte) error {
 
 		grp, err := os.CmdUserGroup(c, usr)
 		if err != nil {
-			return err
+			return fmt.Errorf("error copying the SSH key: %v", err)
 		}
 
 		sshDir := filepath.Join(home, ".ssh")

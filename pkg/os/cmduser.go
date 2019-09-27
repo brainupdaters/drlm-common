@@ -32,7 +32,7 @@ func (os OS) CmdUserCreate(c Client, name, pwd string) error {
 func (os OS) CmdUserGroup(c Client, usr string) (string, error) {
 	switch {
 	case os.IsUnix():
-		out, err := c.Exec("id", "-gd", usr)
+		out, err := c.Exec("id", "-gn", usr)
 		if err != nil {
 			return "", fmt.Errorf("error getting the user group: %v", err)
 		}
