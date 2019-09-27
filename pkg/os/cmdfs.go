@@ -3,7 +3,6 @@ package os
 import (
 	"errors"
 	"fmt"
-	stdOS "os"
 	"strings"
 )
 
@@ -177,10 +176,10 @@ func (os OS) CmdFSChown(c Client, path, usr, grp string) error {
 }
 
 // CmdFSChmod changes the permissions of a file or a directory
-func (os OS) CmdFSChmod(c Client, path string, permissions stdOS.FileMode) error {
+func (os OS) CmdFSChmod(c Client, path string, perm string) error {
 	switch {
 	case os.IsUnix():
-		_, err := c.ExecAdmin(os, "chmod", permissions.String(), path)
+		_, err := c.ExecAdmin(os, "chmod", perm, path)
 		if err != nil {
 			return fmt.Errorf("error changing the permissions: %v", err)
 		}

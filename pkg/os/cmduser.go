@@ -82,7 +82,7 @@ func (os OS) CmdUserMakeAdmin(c Client, usr string) error {
 				return fmt.Errorf("error changing the owner of /etc/sudoers.d: %v", err)
 			}
 
-			err = os.CmdFSChmod(c, "/etc/sudoers.d", 0755)
+			err = os.CmdFSChmod(c, "/etc/sudoers.d", "0755")
 			if err != nil {
 				return fmt.Errorf("error changing the permissions of /etc/sudoers.d: %v", err)
 			}
@@ -105,7 +105,7 @@ func (os OS) CmdUserMakeAdmin(c Client, usr string) error {
 			return fmt.Errorf("error changing the owner of the user sudoer file: %v", err)
 		}
 
-		err = os.CmdFSChmod(c, sudoFile, 0440)
+		err = os.CmdFSChmod(c, sudoFile, "0440")
 		if err != nil {
 			return fmt.Errorf("error changing the permissions of the user sudoer file: %v", err)
 		}
