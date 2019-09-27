@@ -17,7 +17,7 @@ func (os OS) CmdSSHGetHostKeys(c Client, host string, port int) ([]string, error
 		}
 
 		var keys []string
-		for _, l := range strings.Split(string(out), "\n") {
+		for _, l := range strings.Split(strings.TrimSpace(string(out)), "\n") {
 			if !strings.HasPrefix(l, "# ") {
 				keys = append(keys, l)
 			}
