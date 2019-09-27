@@ -12,32 +12,32 @@ import (
 )
 
 // NewSessionWithKey creates a new session using a private key as authentication
-func NewSessionWithKey(host string, port int, user string, keysPath string, hostKeys []string) (*Conn, error) {
+func NewSessionWithKey(host string, port int, user string, keysPath string, hostKeys []string) (*Session, error) {
 	b, err := afero.ReadFile(fs.FS, filepath.Join(keysPath, "id_rsa"))
 	if err != nil {
-		return &Conn{}, fmt.Errorf("error reading the private key: %v", err)
+		return &Session{}, fmt.Errorf("error reading the private key: %v", err)
 	}
 
 	privKey, err := stdSSH.ParsePrivateKey(b)
 	if err != nil {
-		return &Conn{}, fmt.Errorf("error parsing the private key: %v", err)
+		return &Session{}, fmt.Errorf("error parsing the private key: %v", err)
 	}
 
 	return newSession(host, port, user, []stdSSH.AuthMethod{stdSSH.PublicKeys(privKey)}, hostKeys)
 }
 
 // NewSessionWithPassword creates a new session using a password as authentication
-func NewSessionWithPassword(host string, port int, user, pass string, hostKeys []string) (*Conn, error) {
+func NewSessionWithPassword(host string, port int, user, pass string, hostKeys []string) (*Session, error) {
 	return newSession(host, port, user, []stdSSH.AuthMethod{stdSSH.Password(pass)}, hostKeys)
 }
 
 // newSession creates a new SSH session
-func newSession(host string, port int, user string, auth []stdSSH.AuthMethod, hostKeys []string) (*Conn, error) {
+func newSession(host string, port int, user string, auth []stdSSH.AuthMethod, hostKeys []string) (*Session, error) {
 	var hk []stdSSH.PublicKey
 	for _, k := range hostKeys {
 		_, _, h, _, _, err := stdSSH.ParseKnownHosts([]byte(k))
 		if err != nil {
-			return &Conn{}, fmt.Errorf("error parsing the host public key: %v", err)
+			return &Session{}, fmt.Errorf("error parsing the host public key: %v", err)
 		}
 
 		hk = append(hk, h)
@@ -50,24 +50,24 @@ func newSession(host string, port int, user string, auth []stdSSH.AuthMethod, ho
 
 	conn, err := stdSSH.Dial("tcp", fmt.Sprintf("%s:%d", host, port), sshCfg)
 	if err != nil {
-		return &Conn{}, fmt.Errorf("error dialing the host: %v", err)
+		return &Session{}, fmt.Errorf("error dialing the host: %v", err)
 	}
 
-	return &Conn{conn}, nil
+	return &Session{conn}, nil
 }
 
-// Conn is a wrapper of ssh.Client to make calls easier
-type Conn struct {
+// Session is a wrapper of ssh.Client to make calls easier
+type Session struct {
 	s *stdSSH.Client
 }
 
 // Close closes the session
-func (s *Conn) Close() error {
+func (s *Session) Close() error {
 	return s.Close()
 }
 
 // Exec executes a command and gets the output
-func (s *Conn) Exec(cmd string) ([]byte, error) {
+func (s *Session) Exec(cmd string) ([]byte, error) {
 	sshSess, err := s.s.NewSession()
 	if err != nil {
 		return nil, fmt.Errorf("error creating the SSH session: %v", err)
