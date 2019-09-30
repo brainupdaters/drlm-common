@@ -7,6 +7,7 @@ import (
 
 	"github.com/brainupdaters/drlm-common/pkg/fs"
 
+	"github.com/pkg/sftp"
 	"github.com/spf13/afero"
 	stdSSH "golang.org/x/crypto/ssh"
 )
@@ -95,4 +96,14 @@ func (s *Session) Exec(cmd string) ([]byte, error) {
 	}
 
 	return stdout.Bytes(), nil
+}
+
+// SFTP returns an SFTP client
+func (s *Session) SFTP() (*sftp.Client, error) {
+	cli, err := sftp.NewClient(s.s)
+	if err != nil {
+		return nil, fmt.Errorf("error creating the SFTP client: %v", err)
+	}
+
+	return cli, nil
 }

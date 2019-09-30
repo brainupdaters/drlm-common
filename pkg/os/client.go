@@ -68,3 +68,25 @@ func (c *ClientSSH) ExecAdmin(os OS, name string, arg ...string) ([]byte, error)
 	name, arg = os.cmdAsAdmin(name, arg...)
 	return c.Exec(name, arg...)
 }
+
+// WriteFile writes a new file to the remote host
+func (c *ClientSSH) WriteFile(path string, content []byte) error {
+	sftp, err := c.Session.SFTP()
+	if err != nil {
+		return err
+	}
+	defer sftp.Close()
+
+	f, err := sftp.Create(path)
+	if err != nil {
+		return fmt.Errorf("error creating the file: %v", err)
+	}
+	defer f.Close()
+
+	_, err = f.Write(content)
+	if err != nil {
+		return fmt.Errorf("error writting the content to the file: %v", err)
+	}
+
+	return nil
+}
