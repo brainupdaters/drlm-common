@@ -37,6 +37,9 @@ const (
 // ErrUnsupportedOS is an error that gets returned when the command is not supported in the OS
 var ErrUnsupportedOS = errors.New("os not supported yet")
 
+// ErrUnsupportedClient is an error that gets returned when the command is not supported by the client type
+var ErrUnsupportedClient = errors.New("client not supported yet")
+
 // IsUnix returns whether the OS is an Unix-like OS
 func (os OS) IsUnix() bool {
 	switch os {
