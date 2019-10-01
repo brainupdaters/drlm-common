@@ -9,7 +9,7 @@ import (
 func (os OS) CmdPkgInstallBinary(c Client, usr, name string, b []byte) error {
 	switch os {
 	case Linux:
-		ssh, ok := (c).(ClientSSH)
+		ssh, ok := c.(*ClientSSH)
 		if !ok {
 			return ErrUnsupportedClient
 		}
