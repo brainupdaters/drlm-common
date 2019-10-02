@@ -35,7 +35,7 @@ func (os OS) CmdUserCreate(c client.Client, name, pwd string) error {
 func (os OS) CmdUserUID(c client.Client, usr string) (int, error) {
 	switch {
 	case os.IsUnix():
-		out, err := c.Exec("id", usr)
+		out, err := c.Exec("id", "-u", usr)
 		if err != nil {
 			return 0, fmt.Errorf("error getting the user UID: %v", err)
 		}
