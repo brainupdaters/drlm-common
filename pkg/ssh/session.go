@@ -54,16 +54,23 @@ func newSession(host string, port int, user string, auth []stdSSH.AuthMethod, ho
 		return &Session{}, fmt.Errorf("error dialing the host: %v", err)
 	}
 
-	return &Session{conn}, nil
+	cli, err := sftp.NewClient(conn)
+	if err != nil {
+		return nil, fmt.Errorf("error creating the SFTP client: %v", err)
+	}
+
+	return &Session{conn, cli}, nil
 }
 
 // Session is a wrapper of ssh.Client to make calls easier
 type Session struct {
-	s *stdSSH.Client
+	s    *stdSSH.Client
+	SFTP *sftp.Client
 }
 
 // Close closes the session
 func (s *Session) Close() error {
+	s.SFTP.Close()
 	return s.s.Close()
 }
 
@@ -96,14 +103,4 @@ func (s *Session) Exec(cmd string) ([]byte, error) {
 	}
 
 	return stdout.Bytes(), nil
-}
-
-// SFTP returns an SFTP client
-func (s *Session) SFTP() (*sftp.Client, error) {
-	cli, err := sftp.NewClient(s.s)
-	if err != nil {
-		return nil, fmt.Errorf("error creating the SFTP client: %v", err)
-	}
-
-	return cli, nil
 }

@@ -3,6 +3,8 @@ package os
 import (
 	"fmt"
 	"strings"
+
+	"github.com/brainupdaters/drlm-common/pkg/os/client"
 )
 
 // Arch is the architecture of a CPU
@@ -16,7 +18,7 @@ const (
 )
 
 // DetectArch returns the architecture of the OS
-func DetectArch(c Client) (Arch, error) {
+func DetectArch(c client.Client) (Arch, error) {
 	out, err := c.Exec("uname", "-m")
 	if err != nil {
 		// TOOD: Windows support

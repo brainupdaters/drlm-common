@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+
+	"github.com/brainupdaters/drlm-common/pkg/os/client"
 )
 
 // OS is an Operative System
@@ -37,23 +39,10 @@ const (
 // ErrUnsupportedOS is an error that gets returned when the command is not supported in the OS
 var ErrUnsupportedOS = errors.New("os not supported yet")
 
-// ErrUnsupportedClient is an error that gets returned when the command is not supported by the client type
-var ErrUnsupportedClient = errors.New("client not supported yet")
-
 // IsUnix returns whether the OS is an Unix-like OS
 func (os OS) IsUnix() bool {
 	switch os {
-	case Linux:
-		return true
-	case Darwin:
-		return true
-	case Dragonfly:
-		return true
-	case FreeBSD:
-		return true
-	case NetBSD:
-		return true
-	case OpenBSD:
+	case Linux, Darwin, Dragonfly, FreeBSD, NetBSD, OpenBSD:
 		return true
 	default:
 		return false
@@ -61,7 +50,7 @@ func (os OS) IsUnix() bool {
 }
 
 // DetectOS detects the OS the Client is running
-func DetectOS(c Client) (OS, error) {
+func DetectOS(c client.Client) (OS, error) {
 	out, err := c.Exec("uname", "-s")
 	if err != nil {
 		// NOT UNIX
@@ -84,30 +73,29 @@ func DetectOS(c Client) (OS, error) {
 }
 
 // DetectVersion returns the OS version
-func (os OS) DetectVersion(c Client) (string, error) {
-	if os.IsUnix() {
+func (os OS) DetectVersion(c client.Client) (string, error) {
+	switch {
+	case os.IsUnix():
 		out, err := c.Exec("uname", "-r")
 		if err != nil {
 			return "", fmt.Errorf("error detecting the OS version: %v", err)
 		}
 
 		return strings.TrimSpace(string(out)), nil
-	}
 
-	switch os {
 	default:
-		return "unknown", nil
+		return "unknown", ErrUnsupportedOS
 	}
 }
 
 // DetectDistro returns the OS distro and distro version (or the OS equivalent)
-func (os OS) DetectDistro(c Client) (string, string, error) {
+func (os OS) DetectDistro(c client.Client) (string, string, error) {
 	distro := "unknown"
 	version := "unknown"
 
 	switch os {
 	case Linux:
-		out, err := c.Exec("cat /etc/os-release")
+		out, err := c.ReadFile("cat /etc/os-release")
 		if err != nil {
 			return distro, version, fmt.Errorf("error detecting the linux distro: %v", err)
 		}
@@ -121,21 +109,10 @@ func (os OS) DetectDistro(c Client) (string, string, error) {
 				version = strings.TrimSpace(strings.Split(l, "=")[1])
 			}
 		}
-	}
 
-	return distro, version, nil
-}
+		return distro, version, nil
 
-// cmdAsAdmin modifies a command to execute it with administrator permissions (e.g. sudo)
-func (os OS) cmdAsAdmin(name string, arg ...string) (string, []string) {
-	switch os {
-	case Linux:
-		newArg := append([]string{}, name)
-		newArg = append(newArg, arg...)
-		return "sudo", newArg
-
-		// TODO: Add support for all the other things
 	default:
-		return name, arg
+		return "unknown", "unknown", ErrUnsupportedOS
 	}
 }
