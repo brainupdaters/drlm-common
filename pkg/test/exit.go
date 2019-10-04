@@ -16,33 +16,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package tests
+package test
 
 import (
 	"os"
 	"os/exec"
-	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
-// AssertExits asserts that the function passed as parameter exits with an unsuccessful code
+// Exits asserts that the function passed as parameter exits with an unsuccessful code
 // to test functions with commands or that returns values, you can do this:
 // tests.AssertExits(t func() { funcWithArgs(a, b) })
 // TODO: Coverage
-func AssertExits(t *testing.T, f func()) {
-	if os.Getenv("ASSERT_EXISTS_"+t.Name()) == "1" {
+func (t *Test) Exits(f func()) {
+	if os.Getenv("ASSERT_EXISTS_"+t.T().Name()) == "1" {
 		f()
 		return
 	}
 
-	cmd := exec.Command(os.Args[0], "-test.run="+t.Name())
-	cmd.Env = append(os.Environ(), "ASSERT_EXISTS_"+t.Name()+"=1")
+	cmd := exec.Command(os.Args[0], "-test.run="+t.T().Name())
+	cmd.Env = append(os.Environ(), "ASSERT_EXISTS_"+t.T().Name()+"=1")
 	err := cmd.Run()
 
 	if e, ok := err.(*exec.ExitError); ok && !e.Success() {
 		return
 	}
 
-	assert.Fail(t, "expecting unsuccessful exit")
+	t.Fail("expecting unsuccessful exit")
 }

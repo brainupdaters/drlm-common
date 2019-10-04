@@ -16,26 +16,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package tests_test
+package test_test
 
 import (
+	"fmt"
 	"net"
-	"strconv"
 	"testing"
 
-	"github.com/brainupdaters/drlm-common/pkg/tests"
+	"github.com/brainupdaters/drlm-common/pkg/test"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/suite"
 )
 
-func TestGetFreePort(t *testing.T) {
-	assert := assert.New(t)
+type TestFreePortSuite struct {
+	test.Test
+}
 
-	port := tests.GetFreePort(t)
+func TestFreePort(t *testing.T) {
+	suite.Run(t, new(TestFreePortSuite))
+}
 
-	// Try to listen on the port
-	l, err := net.Listen("tcp", "localhost"+":"+strconv.Itoa(port))
-	assert.Nil(err)
+func (s *TestFreePortSuite) TestFreePort() {
+	port := s.FreePort()
 
+	l, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", port))
 	defer l.Close()
+
+	s.Nil(err)
+
 }

@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package tests
+package test
 
 import (
 	"encoding/json"
@@ -25,16 +25,14 @@ import (
 	"net/http"
 	"path/filepath"
 	"strings"
-	"testing"
+
+	"github.com/brainupdaters/drlm-common/pkg/fs"
 
 	"github.com/spf13/afero"
-	"github.com/stretchr/testify/assert"
 )
 
-// GenerateCert generates a new TLS certificate and stores it in the specified FS: `path/certname.key` and `path/certname.crt`
-func GenerateCert(t *testing.T, fs afero.Fs, certname, path string) {
-	assert := assert.New(t)
-
+// GenerateCert generates a new TLS certificate and stores it into fs.FS: `path/certname.key` and `path/certname.crt`
+func (t *Test) GenerateCert(certname, path string) {
 	// Request the certificate to the cfssl certs API
 	body := strings.NewReader(fmt.Sprintf(`{
 		"request": {
@@ -50,29 +48,27 @@ func GenerateCert(t *testing.T, fs afero.Fs, certname, path string) {
 		}
 	}`, certname, certname))
 	req, err := http.NewRequest("POST", "http://tls:8888/api/v1/cfssl/newcert", body)
-	assert.Nil(err)
+	t.Require().Nil(err)
 
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	rsp, err := http.DefaultClient.Do(req)
-	assert.Nil(err)
+	t.Require().Nil(err)
+	t.Require().Equal(http.StatusOK, rsp.StatusCode)
 	defer rsp.Body.Close()
-
-	assert.Equal(http.StatusOK, rsp.StatusCode)
 
 	// Decode and validate the certificate
 	b, err := ioutil.ReadAll(rsp.Body)
-	assert.Nil(err)
+	t.Require().Nil(err)
 
 	var certs certRsp
-	assert.Nil(json.Unmarshal(b, &certs))
-
-	assert.True(certs.Success)
+	t.Require().Nil(json.Unmarshal(b, &certs))
+	t.Require().True(certs.Success)
 
 	// Store the certificate
-	assert.Nil(fs.MkdirAll(path, 0755))
-	assert.Nil(afero.WriteFile(fs, filepath.Join(path, certname+".key"), []byte(certs.Result.PrivateKey), 0755))
-	assert.Nil(afero.WriteFile(fs, filepath.Join(path, certname+".crt"), []byte(certs.Result.Certificate), 0755))
+	t.Require().Nil(fs.FS.MkdirAll(path, 0755))
+	t.Require().Nil(afero.WriteFile(fs.FS, filepath.Join(path, certname+".key"), []byte(certs.Result.PrivateKey), 0755))
+	t.Require().Nil(afero.WriteFile(fs.FS, filepath.Join(path, certname+".crt"), []byte(certs.Result.Certificate), 0755))
 }
 
 type certRsp struct {
