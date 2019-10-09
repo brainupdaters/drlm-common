@@ -142,12 +142,14 @@ message AgentAddRequest {
     bool is_admin = 5;
 }
 message AgentAddResponse {
-    Arch arch = 1;
-    OS os = 2;
+    uint32 id = 1;
+    Arch arch = 2;
+    OS os = 3;
 }
 
 message AgentInstallRequest {
-    bytes bin = 1;
+    uint32 id = 1;
+    bytes bin = 2;
 }
 message AgentInstallResponse {
     enum Code {
