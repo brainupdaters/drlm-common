@@ -50,6 +50,9 @@ service DRLM {
     // AgentList returns a list of all the agents
     rpc AgentList(AgentListRequest) returns (AgentListResponse) {}
 
+    // AgentGet returns a specific agent
+    rpc AgentGet(AgentGetRequest) returns (AgentGetResponse) {}
+
     // JobSchedule schedules a new job
     rpc JobSchedule(JobScheduleRequest) returns (JobScheduleResponse) {}
 
@@ -189,6 +192,26 @@ message AgentListResponse {
     }
 
     repeated Agent agents = 1;
+}
+
+message AgentGetRequest {
+    int32 id = 1;
+}
+message AgentGetResponse {
+    string host = 1;
+    int32 port = 2;
+    string user = 3;
+    bool sudoer = 4;
+
+    string version = 5;
+    Arch arch = 6;
+    OS os = 7;
+    string os_version = 8;
+    string distro = 9;
+    string distro_version = 10;
+
+    google.protobuf.Timestamp created_at = 11;
+    google.protobuf.Timestamp updated_at = 12;
 }
 
 message JobScheduleRequest {
