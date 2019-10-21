@@ -175,20 +175,22 @@ message AgentDeleteResponse{}
 message AgentListRequest {}
 message AgentListResponse {
     message Agent {
-        string host = 1;
-        int32 port = 2;
-        string user = 3;
-        bool sudoer = 4;
+        uint32 id = 1;
 
-        string version = 5;
-        Arch arch = 6;
-        OS os = 7;
-        string os_version = 8;
-        string distro = 9;
-        string distro_version = 10;
+        string host = 2;
+        int32 port = 3;
+        string user = 4;
+        bool sudoer = 5;
 
-        google.protobuf.Timestamp created_at = 11;
-        google.protobuf.Timestamp updated_at = 12;
+        string version = 6;
+        Arch arch = 7;
+        OS os = 8;
+        string os_version = 9;
+        string distro = 10;
+        string distro_version = 11;
+
+        google.protobuf.Timestamp created_at = 12;
+        google.protobuf.Timestamp updated_at = 13;
     }
 
     repeated Agent agents = 1;
@@ -198,20 +200,22 @@ message AgentGetRequest {
     int32 id = 1;
 }
 message AgentGetResponse {
-    string host = 1;
-    int32 port = 2;
-    string user = 3;
-    bool sudoer = 4;
+        uint32 id = 1;
 
-    string version = 5;
-    Arch arch = 6;
-    OS os = 7;
-    string os_version = 8;
-    string distro = 9;
-    string distro_version = 10;
+        string host = 2;
+        int32 port = 3;
+        string user = 4;
+        bool sudoer = 5;
 
-    google.protobuf.Timestamp created_at = 11;
-    google.protobuf.Timestamp updated_at = 12;
+        string version = 6;
+        Arch arch = 7;
+        OS os = 8;
+        string os_version = 9;
+        string distro = 10;
+        string distro_version = 11;
+
+        google.protobuf.Timestamp created_at = 12;
+        google.protobuf.Timestamp updated_at = 13;
 }
 
 message JobScheduleRequest {
