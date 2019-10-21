@@ -144,14 +144,10 @@ message AgentAddRequest {
     string password = 4;
     bool is_admin = 5;
 }
-message AgentAddResponse {
-    uint32 id = 1;
-    Arch arch = 2;
-    OS os = 3;
-}
+message AgentAddResponse {}
 
 message AgentInstallRequest {
-    uint32 id = 1;
+    string host = 1;
     bytes bin = 2;
 }
 message AgentInstallResponse {
@@ -175,51 +171,47 @@ message AgentDeleteResponse{}
 message AgentListRequest {}
 message AgentListResponse {
     message Agent {
-        uint32 id = 1;
+        string host = 1;
+        int32 port = 2;
+        string user = 3;
+        bool sudoer = 4;
 
-        string host = 2;
-        int32 port = 3;
-        string user = 4;
-        bool sudoer = 5;
+        string version = 5;
+        Arch arch = 6;
+        OS os = 7;
+        string os_version = 8;
+        string distro = 9;
+        string distro_version = 10;
 
-        string version = 6;
-        Arch arch = 7;
-        OS os = 8;
-        string os_version = 9;
-        string distro = 10;
-        string distro_version = 11;
-
-        google.protobuf.Timestamp created_at = 12;
-        google.protobuf.Timestamp updated_at = 13;
+        google.protobuf.Timestamp created_at = 11;
+        google.protobuf.Timestamp updated_at = 12;
     }
 
     repeated Agent agents = 1;
 }
 
 message AgentGetRequest {
-    int32 id = 1;
+    string host = 1;
 }
 message AgentGetResponse {
-        uint32 id = 1;
+        string host = 1;
+        int32 port = 2;
+        string user = 3;
+        bool sudoer = 4;
 
-        string host = 2;
-        int32 port = 3;
-        string user = 4;
-        bool sudoer = 5;
+        string version = 5;
+        Arch arch = 6;
+        OS os = 7;
+        string os_version = 8;
+        string distro = 9;
+        string distro_version = 10;
 
-        string version = 6;
-        Arch arch = 7;
-        OS os = 8;
-        string os_version = 9;
-        string distro = 10;
-        string distro_version = 11;
-
-        google.protobuf.Timestamp created_at = 12;
-        google.protobuf.Timestamp updated_at = 13;
+        google.protobuf.Timestamp created_at = 11;
+        google.protobuf.Timestamp updated_at = 12;
 }
 
 message JobScheduleRequest {
-    uint32 agent_id = 1;
+    string agent_host = 1;
     string name = 2;
 }
 message JobScheduleResponse {}
@@ -230,13 +222,13 @@ message JobCancelRequest {
 message JobCancelResponse {}
 
 message JobListRequest {
-    uint32 agent_id = 1;
+    string agent_host = 1;
 }
 message JobListResponse {
     message Job {
         uint32 id = 1;
         string name = 2;
-        uint32 agent_id = 3;
+        string agent_host = 3;
         JobStatus status = 4;
         string info = 5;
     }
