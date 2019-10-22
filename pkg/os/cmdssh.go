@@ -10,10 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/brainupdaters/drlm-common/pkg/fs"
 	"github.com/brainupdaters/drlm-common/pkg/os/client"
 
-	"github.com/spf13/afero"
 	"golang.org/x/crypto/ssh"
 )
 
@@ -154,11 +152,11 @@ func (os OS) CmdSSHGenerateKeyPair(c client.Client, path string) error {
 	}
 	pKB := pem.EncodeToMemory(pBlock)
 
-	if err := afero.WriteFile(fs.FS, filepath.Join(path, "id_rsa"), pKB, 0400); err != nil {
+	if err := c.Write(filepath.Join(path, "id_rsa"), pKB); err != nil {
 		return fmt.Errorf("error writting the private key: %v", err)
 	}
 
-	if err := afero.WriteFile(fs.FS, filepath.Join(path, "id_rsa.pub"), kB, 0400); err != nil {
+	if err := c.Write(filepath.Join(path, "id_rsa.pub"), kB); err != nil {
 		return fmt.Errorf("error writting the public key: %v", err)
 	}
 
