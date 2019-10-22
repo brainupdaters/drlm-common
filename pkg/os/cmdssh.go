@@ -1,12 +1,20 @@
 package os
 
 import (
+	"crypto/rand"
+	"crypto/rsa"
+	"crypto/x509"
+	"encoding/pem"
 	"fmt"
 	"path/filepath"
 	"strconv"
 	"strings"
 
+	"github.com/brainupdaters/drlm-common/pkg/fs"
 	"github.com/brainupdaters/drlm-common/pkg/os/client"
+
+	"github.com/spf13/afero"
+	"golang.org/x/crypto/ssh"
 )
 
 // CmdSSHGetHostKeys returns the public SSH keys of a host
@@ -118,4 +126,41 @@ func (os OS) CmdSSHGetKeysPath(c client.Client, usr string) (string, error) {
 	default:
 		return "", ErrUnsupportedOS
 	}
+}
+
+// CmdSSHGenerateKeyPair generates an RSA 4096 key pair and saves them to the path as `id_rsa` and `id_rsa.pub`
+func (os OS) CmdSSHGenerateKeyPair(c client.Client, path string) error {
+	pK, err := rsa.GenerateKey(rand.Reader, 4096)
+	if err != nil {
+		return fmt.Errorf("error generating the private key: %v", err)
+	}
+
+	if err := pK.Validate(); err != nil {
+		return fmt.Errorf("invalid private key generated: %v", err)
+	}
+
+	k, err := ssh.NewPublicKey(&pK.PublicKey)
+	if err != nil {
+		return fmt.Errorf("error generating the public key: %v", err)
+	}
+
+	kB := ssh.MarshalAuthorizedKey(k)
+
+	pDER := x509.MarshalPKCS1PrivateKey(pK)
+	pBlock := &pem.Block{
+		Type:    "RSA PRIVATE KEY",
+		Headers: nil,
+		Bytes:   pDER,
+	}
+	pKB := pem.EncodeToMemory(pBlock)
+
+	if err := afero.WriteFile(fs.FS, filepath.Join(path, "id_rsa"), pKB, 0400); err != nil {
+		return fmt.Errorf("error writting the private key: %v", err)
+	}
+
+	if err := afero.WriteFile(fs.FS, filepath.Join(path, "id_rsa.pub"), kB, 0400); err != nil {
+		return fmt.Errorf("error writting the public key: %v", err)
+	}
+
+	return nil
 }
