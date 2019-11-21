@@ -22,6 +22,18 @@ service DRLM {
     // UserList lists all the users
     rpc UserList(UserListRequest) returns (UserListResponse) {}
 
+    // PluginRepoAdd adds a new plugin repository
+    rpc PluginRepoAdd(PluginRepoAddRequest) returns (PluginRepoAddResponse) {}
+
+    // PluginRepoDelete removes a plugin repository
+    rpc PluginRepoDelete(PluginRepoDeleteRequest) returns (PluginRepoDeleteResponse) {}
+
+    // PluginRepoList lists the plugin repositories
+    rpc PluginRepoList(PluginRepoListRequest) returns (PluginRepoListResponse) {}
+
+    // PluginList returns a list of all the available plugins
+    rpc PluginList (PluginListRequest) returns (PluginListResponse) {}
+
     // AgentAdd adds a new Agent to the DB
     rpc AgentAdd(AgentAddRequest) returns (AgentAddResponse) {}
 
@@ -36,6 +48,18 @@ service DRLM {
 
     // AgentGet returns a specific agent
     rpc AgentGet(AgentGetRequest) returns (AgentGetResponse) {}
+
+    // AgentPluginAdd adds a new plugin to the Agent
+    rpc AgentPluginAdd (AgentPluginAddRequest) returns (AgentPluginAddResponse) {}
+
+    // AgentPluginRemove removes a plugin from the Agent
+    rpc AgentPluginRemove (AgentPluginRemoveRequest) returns (AgentPluginRemoveResponse) {}
+
+    // AgentPluginUpdate updates a plugin of the Agent
+    rpc AgentPluginUpdate (AgentPluginUpdateRequest) returns (AgentPluginUpdateResponse) {}
+
+    // AgentPluginList lists the plugins of the Agent
+    rpc AgentPluginList (AgentPluginListRequest) returns (AgentPluginListResponse) {}
 
     // JobSchedule schedules a new job
     rpc JobSchedule(JobScheduleRequest) returns (JobScheduleResponse) {}
@@ -121,6 +145,43 @@ message UserListResponse {
     repeated User users = 1;
 }
 
+message PluginRepoAddRequest {
+    string name = 1;
+    string url = 2;
+    string usr = 3;
+    string pwd = 4;
+}
+message PluginRepoAddResponse {}
+
+message PluginRepoDeleteRequest {
+    string name = 1;
+}
+message PluginRepoDeleteResponse {}
+
+message PluginRepoListRequest {}
+message PluginRepoListResponse {
+    message PluginRepo {
+        string name = 1;
+        string url = 2;
+    }
+
+    repeated PluginRepo repos = 1;
+}
+
+message PluginListRequest {
+    string repo = 1;
+}
+message PluginListResponse {
+    message Plugin {
+        string repo = 1;
+        string name = 2;
+        string version = 3;
+        string description = 4;
+    }
+
+    repeated Plugin plugins = 1;
+}
+
 message AgentAddRequest {
     string host = 1;
     int32 port = 2;
@@ -192,6 +253,33 @@ message AgentGetResponse {
 
         google.protobuf.Timestamp created_at = 11;
         google.protobuf.Timestamp updated_at = 12;
+}
+
+message AgentPluginAddRequest {
+    string host = 1;
+    string plugin = 2;
+    string version = 3;
+}
+message AgentPluginAddResponse {}
+
+message AgentPluginRemoveRequest {
+    string host = 1;
+    string plugin = 2;
+}
+message AgentPluginRemoveResponse {}
+
+message AgentPluginUpdateRequest {
+    string host = 1;
+    string plugin = 2;
+    string version = 3;
+}
+message AgentPluginUpdateResponse {}
+
+message AgentPluginListRequest {
+    string host = 1;
+}
+message AgentPluginListResponse {
+    repeated string plugins = 1;
 }
 
 message JobScheduleRequest {

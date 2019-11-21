@@ -189,7 +189,7 @@ func (x AgentInstallResponse_Code) String() string {
 }
 
 func (AgentInstallResponse_Code) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{13, 0}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{21, 0}
 }
 
 type UserLoginRequest struct {
@@ -645,6 +645,428 @@ func (m *UserListResponse_User) GetUpdatedAt() *timestamp.Timestamp {
 	return nil
 }
 
+type PluginRepoAddRequest struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Url                  string   `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	Usr                  string   `protobuf:"bytes,3,opt,name=usr,proto3" json:"usr,omitempty"`
+	Pwd                  string   `protobuf:"bytes,4,opt,name=pwd,proto3" json:"pwd,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PluginRepoAddRequest) Reset()         { *m = PluginRepoAddRequest{} }
+func (m *PluginRepoAddRequest) String() string { return proto.CompactTextString(m) }
+func (*PluginRepoAddRequest) ProtoMessage()    {}
+func (*PluginRepoAddRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{10}
+}
+
+func (m *PluginRepoAddRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PluginRepoAddRequest.Unmarshal(m, b)
+}
+func (m *PluginRepoAddRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PluginRepoAddRequest.Marshal(b, m, deterministic)
+}
+func (m *PluginRepoAddRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PluginRepoAddRequest.Merge(m, src)
+}
+func (m *PluginRepoAddRequest) XXX_Size() int {
+	return xxx_messageInfo_PluginRepoAddRequest.Size(m)
+}
+func (m *PluginRepoAddRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PluginRepoAddRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PluginRepoAddRequest proto.InternalMessageInfo
+
+func (m *PluginRepoAddRequest) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *PluginRepoAddRequest) GetUrl() string {
+	if m != nil {
+		return m.Url
+	}
+	return ""
+}
+
+func (m *PluginRepoAddRequest) GetUsr() string {
+	if m != nil {
+		return m.Usr
+	}
+	return ""
+}
+
+func (m *PluginRepoAddRequest) GetPwd() string {
+	if m != nil {
+		return m.Pwd
+	}
+	return ""
+}
+
+type PluginRepoAddResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PluginRepoAddResponse) Reset()         { *m = PluginRepoAddResponse{} }
+func (m *PluginRepoAddResponse) String() string { return proto.CompactTextString(m) }
+func (*PluginRepoAddResponse) ProtoMessage()    {}
+func (*PluginRepoAddResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{11}
+}
+
+func (m *PluginRepoAddResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PluginRepoAddResponse.Unmarshal(m, b)
+}
+func (m *PluginRepoAddResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PluginRepoAddResponse.Marshal(b, m, deterministic)
+}
+func (m *PluginRepoAddResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PluginRepoAddResponse.Merge(m, src)
+}
+func (m *PluginRepoAddResponse) XXX_Size() int {
+	return xxx_messageInfo_PluginRepoAddResponse.Size(m)
+}
+func (m *PluginRepoAddResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PluginRepoAddResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PluginRepoAddResponse proto.InternalMessageInfo
+
+type PluginRepoDeleteRequest struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PluginRepoDeleteRequest) Reset()         { *m = PluginRepoDeleteRequest{} }
+func (m *PluginRepoDeleteRequest) String() string { return proto.CompactTextString(m) }
+func (*PluginRepoDeleteRequest) ProtoMessage()    {}
+func (*PluginRepoDeleteRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{12}
+}
+
+func (m *PluginRepoDeleteRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PluginRepoDeleteRequest.Unmarshal(m, b)
+}
+func (m *PluginRepoDeleteRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PluginRepoDeleteRequest.Marshal(b, m, deterministic)
+}
+func (m *PluginRepoDeleteRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PluginRepoDeleteRequest.Merge(m, src)
+}
+func (m *PluginRepoDeleteRequest) XXX_Size() int {
+	return xxx_messageInfo_PluginRepoDeleteRequest.Size(m)
+}
+func (m *PluginRepoDeleteRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PluginRepoDeleteRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PluginRepoDeleteRequest proto.InternalMessageInfo
+
+func (m *PluginRepoDeleteRequest) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+type PluginRepoDeleteResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PluginRepoDeleteResponse) Reset()         { *m = PluginRepoDeleteResponse{} }
+func (m *PluginRepoDeleteResponse) String() string { return proto.CompactTextString(m) }
+func (*PluginRepoDeleteResponse) ProtoMessage()    {}
+func (*PluginRepoDeleteResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{13}
+}
+
+func (m *PluginRepoDeleteResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PluginRepoDeleteResponse.Unmarshal(m, b)
+}
+func (m *PluginRepoDeleteResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PluginRepoDeleteResponse.Marshal(b, m, deterministic)
+}
+func (m *PluginRepoDeleteResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PluginRepoDeleteResponse.Merge(m, src)
+}
+func (m *PluginRepoDeleteResponse) XXX_Size() int {
+	return xxx_messageInfo_PluginRepoDeleteResponse.Size(m)
+}
+func (m *PluginRepoDeleteResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PluginRepoDeleteResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PluginRepoDeleteResponse proto.InternalMessageInfo
+
+type PluginRepoListRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PluginRepoListRequest) Reset()         { *m = PluginRepoListRequest{} }
+func (m *PluginRepoListRequest) String() string { return proto.CompactTextString(m) }
+func (*PluginRepoListRequest) ProtoMessage()    {}
+func (*PluginRepoListRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{14}
+}
+
+func (m *PluginRepoListRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PluginRepoListRequest.Unmarshal(m, b)
+}
+func (m *PluginRepoListRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PluginRepoListRequest.Marshal(b, m, deterministic)
+}
+func (m *PluginRepoListRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PluginRepoListRequest.Merge(m, src)
+}
+func (m *PluginRepoListRequest) XXX_Size() int {
+	return xxx_messageInfo_PluginRepoListRequest.Size(m)
+}
+func (m *PluginRepoListRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PluginRepoListRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PluginRepoListRequest proto.InternalMessageInfo
+
+type PluginRepoListResponse struct {
+	Repos                []*PluginRepoListResponse_PluginRepo `protobuf:"bytes,1,rep,name=repos,proto3" json:"repos,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                             `json:"-"`
+	XXX_unrecognized     []byte                               `json:"-"`
+	XXX_sizecache        int32                                `json:"-"`
+}
+
+func (m *PluginRepoListResponse) Reset()         { *m = PluginRepoListResponse{} }
+func (m *PluginRepoListResponse) String() string { return proto.CompactTextString(m) }
+func (*PluginRepoListResponse) ProtoMessage()    {}
+func (*PluginRepoListResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{15}
+}
+
+func (m *PluginRepoListResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PluginRepoListResponse.Unmarshal(m, b)
+}
+func (m *PluginRepoListResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PluginRepoListResponse.Marshal(b, m, deterministic)
+}
+func (m *PluginRepoListResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PluginRepoListResponse.Merge(m, src)
+}
+func (m *PluginRepoListResponse) XXX_Size() int {
+	return xxx_messageInfo_PluginRepoListResponse.Size(m)
+}
+func (m *PluginRepoListResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PluginRepoListResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PluginRepoListResponse proto.InternalMessageInfo
+
+func (m *PluginRepoListResponse) GetRepos() []*PluginRepoListResponse_PluginRepo {
+	if m != nil {
+		return m.Repos
+	}
+	return nil
+}
+
+type PluginRepoListResponse_PluginRepo struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Url                  string   `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PluginRepoListResponse_PluginRepo) Reset()         { *m = PluginRepoListResponse_PluginRepo{} }
+func (m *PluginRepoListResponse_PluginRepo) String() string { return proto.CompactTextString(m) }
+func (*PluginRepoListResponse_PluginRepo) ProtoMessage()    {}
+func (*PluginRepoListResponse_PluginRepo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{15, 0}
+}
+
+func (m *PluginRepoListResponse_PluginRepo) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PluginRepoListResponse_PluginRepo.Unmarshal(m, b)
+}
+func (m *PluginRepoListResponse_PluginRepo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PluginRepoListResponse_PluginRepo.Marshal(b, m, deterministic)
+}
+func (m *PluginRepoListResponse_PluginRepo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PluginRepoListResponse_PluginRepo.Merge(m, src)
+}
+func (m *PluginRepoListResponse_PluginRepo) XXX_Size() int {
+	return xxx_messageInfo_PluginRepoListResponse_PluginRepo.Size(m)
+}
+func (m *PluginRepoListResponse_PluginRepo) XXX_DiscardUnknown() {
+	xxx_messageInfo_PluginRepoListResponse_PluginRepo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PluginRepoListResponse_PluginRepo proto.InternalMessageInfo
+
+func (m *PluginRepoListResponse_PluginRepo) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *PluginRepoListResponse_PluginRepo) GetUrl() string {
+	if m != nil {
+		return m.Url
+	}
+	return ""
+}
+
+type PluginListRequest struct {
+	Repo                 string   `protobuf:"bytes,1,opt,name=repo,proto3" json:"repo,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PluginListRequest) Reset()         { *m = PluginListRequest{} }
+func (m *PluginListRequest) String() string { return proto.CompactTextString(m) }
+func (*PluginListRequest) ProtoMessage()    {}
+func (*PluginListRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{16}
+}
+
+func (m *PluginListRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PluginListRequest.Unmarshal(m, b)
+}
+func (m *PluginListRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PluginListRequest.Marshal(b, m, deterministic)
+}
+func (m *PluginListRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PluginListRequest.Merge(m, src)
+}
+func (m *PluginListRequest) XXX_Size() int {
+	return xxx_messageInfo_PluginListRequest.Size(m)
+}
+func (m *PluginListRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_PluginListRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PluginListRequest proto.InternalMessageInfo
+
+func (m *PluginListRequest) GetRepo() string {
+	if m != nil {
+		return m.Repo
+	}
+	return ""
+}
+
+type PluginListResponse struct {
+	Plugins              []*PluginListResponse_Plugin `protobuf:"bytes,1,rep,name=plugins,proto3" json:"plugins,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                     `json:"-"`
+	XXX_unrecognized     []byte                       `json:"-"`
+	XXX_sizecache        int32                        `json:"-"`
+}
+
+func (m *PluginListResponse) Reset()         { *m = PluginListResponse{} }
+func (m *PluginListResponse) String() string { return proto.CompactTextString(m) }
+func (*PluginListResponse) ProtoMessage()    {}
+func (*PluginListResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{17}
+}
+
+func (m *PluginListResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PluginListResponse.Unmarshal(m, b)
+}
+func (m *PluginListResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PluginListResponse.Marshal(b, m, deterministic)
+}
+func (m *PluginListResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PluginListResponse.Merge(m, src)
+}
+func (m *PluginListResponse) XXX_Size() int {
+	return xxx_messageInfo_PluginListResponse.Size(m)
+}
+func (m *PluginListResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_PluginListResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PluginListResponse proto.InternalMessageInfo
+
+func (m *PluginListResponse) GetPlugins() []*PluginListResponse_Plugin {
+	if m != nil {
+		return m.Plugins
+	}
+	return nil
+}
+
+type PluginListResponse_Plugin struct {
+	Repo                 string   `protobuf:"bytes,1,opt,name=repo,proto3" json:"repo,omitempty"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Version              string   `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	Description          string   `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PluginListResponse_Plugin) Reset()         { *m = PluginListResponse_Plugin{} }
+func (m *PluginListResponse_Plugin) String() string { return proto.CompactTextString(m) }
+func (*PluginListResponse_Plugin) ProtoMessage()    {}
+func (*PluginListResponse_Plugin) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{17, 0}
+}
+
+func (m *PluginListResponse_Plugin) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PluginListResponse_Plugin.Unmarshal(m, b)
+}
+func (m *PluginListResponse_Plugin) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PluginListResponse_Plugin.Marshal(b, m, deterministic)
+}
+func (m *PluginListResponse_Plugin) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PluginListResponse_Plugin.Merge(m, src)
+}
+func (m *PluginListResponse_Plugin) XXX_Size() int {
+	return xxx_messageInfo_PluginListResponse_Plugin.Size(m)
+}
+func (m *PluginListResponse_Plugin) XXX_DiscardUnknown() {
+	xxx_messageInfo_PluginListResponse_Plugin.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PluginListResponse_Plugin proto.InternalMessageInfo
+
+func (m *PluginListResponse_Plugin) GetRepo() string {
+	if m != nil {
+		return m.Repo
+	}
+	return ""
+}
+
+func (m *PluginListResponse_Plugin) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *PluginListResponse_Plugin) GetVersion() string {
+	if m != nil {
+		return m.Version
+	}
+	return ""
+}
+
+func (m *PluginListResponse_Plugin) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
 type AgentAddRequest struct {
 	Host                 string   `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
 	Port                 int32    `protobuf:"varint,2,opt,name=port,proto3" json:"port,omitempty"`
@@ -660,7 +1082,7 @@ func (m *AgentAddRequest) Reset()         { *m = AgentAddRequest{} }
 func (m *AgentAddRequest) String() string { return proto.CompactTextString(m) }
 func (*AgentAddRequest) ProtoMessage()    {}
 func (*AgentAddRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{10}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{18}
 }
 
 func (m *AgentAddRequest) XXX_Unmarshal(b []byte) error {
@@ -726,7 +1148,7 @@ func (m *AgentAddResponse) Reset()         { *m = AgentAddResponse{} }
 func (m *AgentAddResponse) String() string { return proto.CompactTextString(m) }
 func (*AgentAddResponse) ProtoMessage()    {}
 func (*AgentAddResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{11}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{19}
 }
 
 func (m *AgentAddResponse) XXX_Unmarshal(b []byte) error {
@@ -759,7 +1181,7 @@ func (m *AgentInstallRequest) Reset()         { *m = AgentInstallRequest{} }
 func (m *AgentInstallRequest) String() string { return proto.CompactTextString(m) }
 func (*AgentInstallRequest) ProtoMessage()    {}
 func (*AgentInstallRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{12}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{20}
 }
 
 func (m *AgentInstallRequest) XXX_Unmarshal(b []byte) error {
@@ -806,7 +1228,7 @@ func (m *AgentInstallResponse) Reset()         { *m = AgentInstallResponse{} }
 func (m *AgentInstallResponse) String() string { return proto.CompactTextString(m) }
 func (*AgentInstallResponse) ProtoMessage()    {}
 func (*AgentInstallResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{13}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{21}
 }
 
 func (m *AgentInstallResponse) XXX_Unmarshal(b []byte) error {
@@ -853,7 +1275,7 @@ func (m *AgentDeleteRequest) Reset()         { *m = AgentDeleteRequest{} }
 func (m *AgentDeleteRequest) String() string { return proto.CompactTextString(m) }
 func (*AgentDeleteRequest) ProtoMessage()    {}
 func (*AgentDeleteRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{14}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{22}
 }
 
 func (m *AgentDeleteRequest) XXX_Unmarshal(b []byte) error {
@@ -898,7 +1320,7 @@ func (m *AgentDeleteResponse) Reset()         { *m = AgentDeleteResponse{} }
 func (m *AgentDeleteResponse) String() string { return proto.CompactTextString(m) }
 func (*AgentDeleteResponse) ProtoMessage()    {}
 func (*AgentDeleteResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{15}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{23}
 }
 
 func (m *AgentDeleteResponse) XXX_Unmarshal(b []byte) error {
@@ -929,7 +1351,7 @@ func (m *AgentListRequest) Reset()         { *m = AgentListRequest{} }
 func (m *AgentListRequest) String() string { return proto.CompactTextString(m) }
 func (*AgentListRequest) ProtoMessage()    {}
 func (*AgentListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{16}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{24}
 }
 
 func (m *AgentListRequest) XXX_Unmarshal(b []byte) error {
@@ -961,7 +1383,7 @@ func (m *AgentListResponse) Reset()         { *m = AgentListResponse{} }
 func (m *AgentListResponse) String() string { return proto.CompactTextString(m) }
 func (*AgentListResponse) ProtoMessage()    {}
 func (*AgentListResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{17}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{25}
 }
 
 func (m *AgentListResponse) XXX_Unmarshal(b []byte) error {
@@ -1011,7 +1433,7 @@ func (m *AgentListResponse_Agent) Reset()         { *m = AgentListResponse_Agent
 func (m *AgentListResponse_Agent) String() string { return proto.CompactTextString(m) }
 func (*AgentListResponse_Agent) ProtoMessage()    {}
 func (*AgentListResponse_Agent) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{17, 0}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{25, 0}
 }
 
 func (m *AgentListResponse_Agent) XXX_Unmarshal(b []byte) error {
@@ -1127,7 +1549,7 @@ func (m *AgentGetRequest) Reset()         { *m = AgentGetRequest{} }
 func (m *AgentGetRequest) String() string { return proto.CompactTextString(m) }
 func (*AgentGetRequest) ProtoMessage()    {}
 func (*AgentGetRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{18}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{26}
 }
 
 func (m *AgentGetRequest) XXX_Unmarshal(b []byte) error {
@@ -1177,7 +1599,7 @@ func (m *AgentGetResponse) Reset()         { *m = AgentGetResponse{} }
 func (m *AgentGetResponse) String() string { return proto.CompactTextString(m) }
 func (*AgentGetResponse) ProtoMessage()    {}
 func (*AgentGetResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{19}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{27}
 }
 
 func (m *AgentGetResponse) XXX_Unmarshal(b []byte) error {
@@ -1282,6 +1704,334 @@ func (m *AgentGetResponse) GetUpdatedAt() *timestamp.Timestamp {
 	return nil
 }
 
+type AgentPluginAddRequest struct {
+	Host                 string   `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	Plugin               string   `protobuf:"bytes,2,opt,name=plugin,proto3" json:"plugin,omitempty"`
+	Version              string   `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentPluginAddRequest) Reset()         { *m = AgentPluginAddRequest{} }
+func (m *AgentPluginAddRequest) String() string { return proto.CompactTextString(m) }
+func (*AgentPluginAddRequest) ProtoMessage()    {}
+func (*AgentPluginAddRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{28}
+}
+
+func (m *AgentPluginAddRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentPluginAddRequest.Unmarshal(m, b)
+}
+func (m *AgentPluginAddRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentPluginAddRequest.Marshal(b, m, deterministic)
+}
+func (m *AgentPluginAddRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentPluginAddRequest.Merge(m, src)
+}
+func (m *AgentPluginAddRequest) XXX_Size() int {
+	return xxx_messageInfo_AgentPluginAddRequest.Size(m)
+}
+func (m *AgentPluginAddRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentPluginAddRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentPluginAddRequest proto.InternalMessageInfo
+
+func (m *AgentPluginAddRequest) GetHost() string {
+	if m != nil {
+		return m.Host
+	}
+	return ""
+}
+
+func (m *AgentPluginAddRequest) GetPlugin() string {
+	if m != nil {
+		return m.Plugin
+	}
+	return ""
+}
+
+func (m *AgentPluginAddRequest) GetVersion() string {
+	if m != nil {
+		return m.Version
+	}
+	return ""
+}
+
+type AgentPluginAddResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentPluginAddResponse) Reset()         { *m = AgentPluginAddResponse{} }
+func (m *AgentPluginAddResponse) String() string { return proto.CompactTextString(m) }
+func (*AgentPluginAddResponse) ProtoMessage()    {}
+func (*AgentPluginAddResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{29}
+}
+
+func (m *AgentPluginAddResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentPluginAddResponse.Unmarshal(m, b)
+}
+func (m *AgentPluginAddResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentPluginAddResponse.Marshal(b, m, deterministic)
+}
+func (m *AgentPluginAddResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentPluginAddResponse.Merge(m, src)
+}
+func (m *AgentPluginAddResponse) XXX_Size() int {
+	return xxx_messageInfo_AgentPluginAddResponse.Size(m)
+}
+func (m *AgentPluginAddResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentPluginAddResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentPluginAddResponse proto.InternalMessageInfo
+
+type AgentPluginRemoveRequest struct {
+	Host                 string   `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	Plugin               string   `protobuf:"bytes,2,opt,name=plugin,proto3" json:"plugin,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentPluginRemoveRequest) Reset()         { *m = AgentPluginRemoveRequest{} }
+func (m *AgentPluginRemoveRequest) String() string { return proto.CompactTextString(m) }
+func (*AgentPluginRemoveRequest) ProtoMessage()    {}
+func (*AgentPluginRemoveRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{30}
+}
+
+func (m *AgentPluginRemoveRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentPluginRemoveRequest.Unmarshal(m, b)
+}
+func (m *AgentPluginRemoveRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentPluginRemoveRequest.Marshal(b, m, deterministic)
+}
+func (m *AgentPluginRemoveRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentPluginRemoveRequest.Merge(m, src)
+}
+func (m *AgentPluginRemoveRequest) XXX_Size() int {
+	return xxx_messageInfo_AgentPluginRemoveRequest.Size(m)
+}
+func (m *AgentPluginRemoveRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentPluginRemoveRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentPluginRemoveRequest proto.InternalMessageInfo
+
+func (m *AgentPluginRemoveRequest) GetHost() string {
+	if m != nil {
+		return m.Host
+	}
+	return ""
+}
+
+func (m *AgentPluginRemoveRequest) GetPlugin() string {
+	if m != nil {
+		return m.Plugin
+	}
+	return ""
+}
+
+type AgentPluginRemoveResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentPluginRemoveResponse) Reset()         { *m = AgentPluginRemoveResponse{} }
+func (m *AgentPluginRemoveResponse) String() string { return proto.CompactTextString(m) }
+func (*AgentPluginRemoveResponse) ProtoMessage()    {}
+func (*AgentPluginRemoveResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{31}
+}
+
+func (m *AgentPluginRemoveResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentPluginRemoveResponse.Unmarshal(m, b)
+}
+func (m *AgentPluginRemoveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentPluginRemoveResponse.Marshal(b, m, deterministic)
+}
+func (m *AgentPluginRemoveResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentPluginRemoveResponse.Merge(m, src)
+}
+func (m *AgentPluginRemoveResponse) XXX_Size() int {
+	return xxx_messageInfo_AgentPluginRemoveResponse.Size(m)
+}
+func (m *AgentPluginRemoveResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentPluginRemoveResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentPluginRemoveResponse proto.InternalMessageInfo
+
+type AgentPluginUpdateRequest struct {
+	Host                 string   `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	Plugin               string   `protobuf:"bytes,2,opt,name=plugin,proto3" json:"plugin,omitempty"`
+	Version              string   `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentPluginUpdateRequest) Reset()         { *m = AgentPluginUpdateRequest{} }
+func (m *AgentPluginUpdateRequest) String() string { return proto.CompactTextString(m) }
+func (*AgentPluginUpdateRequest) ProtoMessage()    {}
+func (*AgentPluginUpdateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{32}
+}
+
+func (m *AgentPluginUpdateRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentPluginUpdateRequest.Unmarshal(m, b)
+}
+func (m *AgentPluginUpdateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentPluginUpdateRequest.Marshal(b, m, deterministic)
+}
+func (m *AgentPluginUpdateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentPluginUpdateRequest.Merge(m, src)
+}
+func (m *AgentPluginUpdateRequest) XXX_Size() int {
+	return xxx_messageInfo_AgentPluginUpdateRequest.Size(m)
+}
+func (m *AgentPluginUpdateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentPluginUpdateRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentPluginUpdateRequest proto.InternalMessageInfo
+
+func (m *AgentPluginUpdateRequest) GetHost() string {
+	if m != nil {
+		return m.Host
+	}
+	return ""
+}
+
+func (m *AgentPluginUpdateRequest) GetPlugin() string {
+	if m != nil {
+		return m.Plugin
+	}
+	return ""
+}
+
+func (m *AgentPluginUpdateRequest) GetVersion() string {
+	if m != nil {
+		return m.Version
+	}
+	return ""
+}
+
+type AgentPluginUpdateResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentPluginUpdateResponse) Reset()         { *m = AgentPluginUpdateResponse{} }
+func (m *AgentPluginUpdateResponse) String() string { return proto.CompactTextString(m) }
+func (*AgentPluginUpdateResponse) ProtoMessage()    {}
+func (*AgentPluginUpdateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{33}
+}
+
+func (m *AgentPluginUpdateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentPluginUpdateResponse.Unmarshal(m, b)
+}
+func (m *AgentPluginUpdateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentPluginUpdateResponse.Marshal(b, m, deterministic)
+}
+func (m *AgentPluginUpdateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentPluginUpdateResponse.Merge(m, src)
+}
+func (m *AgentPluginUpdateResponse) XXX_Size() int {
+	return xxx_messageInfo_AgentPluginUpdateResponse.Size(m)
+}
+func (m *AgentPluginUpdateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentPluginUpdateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentPluginUpdateResponse proto.InternalMessageInfo
+
+type AgentPluginListRequest struct {
+	Host                 string   `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentPluginListRequest) Reset()         { *m = AgentPluginListRequest{} }
+func (m *AgentPluginListRequest) String() string { return proto.CompactTextString(m) }
+func (*AgentPluginListRequest) ProtoMessage()    {}
+func (*AgentPluginListRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{34}
+}
+
+func (m *AgentPluginListRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentPluginListRequest.Unmarshal(m, b)
+}
+func (m *AgentPluginListRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentPluginListRequest.Marshal(b, m, deterministic)
+}
+func (m *AgentPluginListRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentPluginListRequest.Merge(m, src)
+}
+func (m *AgentPluginListRequest) XXX_Size() int {
+	return xxx_messageInfo_AgentPluginListRequest.Size(m)
+}
+func (m *AgentPluginListRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentPluginListRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentPluginListRequest proto.InternalMessageInfo
+
+func (m *AgentPluginListRequest) GetHost() string {
+	if m != nil {
+		return m.Host
+	}
+	return ""
+}
+
+type AgentPluginListResponse struct {
+	Plugins              []string `protobuf:"bytes,1,rep,name=plugins,proto3" json:"plugins,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AgentPluginListResponse) Reset()         { *m = AgentPluginListResponse{} }
+func (m *AgentPluginListResponse) String() string { return proto.CompactTextString(m) }
+func (*AgentPluginListResponse) ProtoMessage()    {}
+func (*AgentPluginListResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_a4bd9cd91f607bb1, []int{35}
+}
+
+func (m *AgentPluginListResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AgentPluginListResponse.Unmarshal(m, b)
+}
+func (m *AgentPluginListResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AgentPluginListResponse.Marshal(b, m, deterministic)
+}
+func (m *AgentPluginListResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentPluginListResponse.Merge(m, src)
+}
+func (m *AgentPluginListResponse) XXX_Size() int {
+	return xxx_messageInfo_AgentPluginListResponse.Size(m)
+}
+func (m *AgentPluginListResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentPluginListResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentPluginListResponse proto.InternalMessageInfo
+
+func (m *AgentPluginListResponse) GetPlugins() []string {
+	if m != nil {
+		return m.Plugins
+	}
+	return nil
+}
+
 type JobScheduleRequest struct {
 	AgentHost            string   `protobuf:"bytes,1,opt,name=agent_host,json=agentHost,proto3" json:"agent_host,omitempty"`
 	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -1294,7 +2044,7 @@ func (m *JobScheduleRequest) Reset()         { *m = JobScheduleRequest{} }
 func (m *JobScheduleRequest) String() string { return proto.CompactTextString(m) }
 func (*JobScheduleRequest) ProtoMessage()    {}
 func (*JobScheduleRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{20}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{36}
 }
 
 func (m *JobScheduleRequest) XXX_Unmarshal(b []byte) error {
@@ -1339,7 +2089,7 @@ func (m *JobScheduleResponse) Reset()         { *m = JobScheduleResponse{} }
 func (m *JobScheduleResponse) String() string { return proto.CompactTextString(m) }
 func (*JobScheduleResponse) ProtoMessage()    {}
 func (*JobScheduleResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{21}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{37}
 }
 
 func (m *JobScheduleResponse) XXX_Unmarshal(b []byte) error {
@@ -1371,7 +2121,7 @@ func (m *JobCancelRequest) Reset()         { *m = JobCancelRequest{} }
 func (m *JobCancelRequest) String() string { return proto.CompactTextString(m) }
 func (*JobCancelRequest) ProtoMessage()    {}
 func (*JobCancelRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{22}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{38}
 }
 
 func (m *JobCancelRequest) XXX_Unmarshal(b []byte) error {
@@ -1409,7 +2159,7 @@ func (m *JobCancelResponse) Reset()         { *m = JobCancelResponse{} }
 func (m *JobCancelResponse) String() string { return proto.CompactTextString(m) }
 func (*JobCancelResponse) ProtoMessage()    {}
 func (*JobCancelResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{23}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{39}
 }
 
 func (m *JobCancelResponse) XXX_Unmarshal(b []byte) error {
@@ -1441,7 +2191,7 @@ func (m *JobListRequest) Reset()         { *m = JobListRequest{} }
 func (m *JobListRequest) String() string { return proto.CompactTextString(m) }
 func (*JobListRequest) ProtoMessage()    {}
 func (*JobListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{24}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{40}
 }
 
 func (m *JobListRequest) XXX_Unmarshal(b []byte) error {
@@ -1480,7 +2230,7 @@ func (m *JobListResponse) Reset()         { *m = JobListResponse{} }
 func (m *JobListResponse) String() string { return proto.CompactTextString(m) }
 func (*JobListResponse) ProtoMessage()    {}
 func (*JobListResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{25}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{41}
 }
 
 func (m *JobListResponse) XXX_Unmarshal(b []byte) error {
@@ -1523,7 +2273,7 @@ func (m *JobListResponse_Job) Reset()         { *m = JobListResponse_Job{} }
 func (m *JobListResponse_Job) String() string { return proto.CompactTextString(m) }
 func (*JobListResponse_Job) ProtoMessage()    {}
 func (*JobListResponse_Job) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{25, 0}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{41, 0}
 }
 
 func (m *JobListResponse_Job) XXX_Unmarshal(b []byte) error {
@@ -1592,7 +2342,7 @@ func (m *JobNotifyRequest) Reset()         { *m = JobNotifyRequest{} }
 func (m *JobNotifyRequest) String() string { return proto.CompactTextString(m) }
 func (*JobNotifyRequest) ProtoMessage()    {}
 func (*JobNotifyRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{26}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{42}
 }
 
 func (m *JobNotifyRequest) XXX_Unmarshal(b []byte) error {
@@ -1644,7 +2394,7 @@ func (m *JobNotifyResponse) Reset()         { *m = JobNotifyResponse{} }
 func (m *JobNotifyResponse) String() string { return proto.CompactTextString(m) }
 func (*JobNotifyResponse) ProtoMessage()    {}
 func (*JobNotifyResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_a4bd9cd91f607bb1, []int{27}
+	return fileDescriptor_a4bd9cd91f607bb1, []int{43}
 }
 
 func (m *JobNotifyResponse) XXX_Unmarshal(b []byte) error {
@@ -1682,6 +2432,16 @@ func init() {
 	proto.RegisterType((*UserListRequest)(nil), "drlm.UserListRequest")
 	proto.RegisterType((*UserListResponse)(nil), "drlm.UserListResponse")
 	proto.RegisterType((*UserListResponse_User)(nil), "drlm.UserListResponse.User")
+	proto.RegisterType((*PluginRepoAddRequest)(nil), "drlm.PluginRepoAddRequest")
+	proto.RegisterType((*PluginRepoAddResponse)(nil), "drlm.PluginRepoAddResponse")
+	proto.RegisterType((*PluginRepoDeleteRequest)(nil), "drlm.PluginRepoDeleteRequest")
+	proto.RegisterType((*PluginRepoDeleteResponse)(nil), "drlm.PluginRepoDeleteResponse")
+	proto.RegisterType((*PluginRepoListRequest)(nil), "drlm.PluginRepoListRequest")
+	proto.RegisterType((*PluginRepoListResponse)(nil), "drlm.PluginRepoListResponse")
+	proto.RegisterType((*PluginRepoListResponse_PluginRepo)(nil), "drlm.PluginRepoListResponse.PluginRepo")
+	proto.RegisterType((*PluginListRequest)(nil), "drlm.PluginListRequest")
+	proto.RegisterType((*PluginListResponse)(nil), "drlm.PluginListResponse")
+	proto.RegisterType((*PluginListResponse_Plugin)(nil), "drlm.PluginListResponse.Plugin")
 	proto.RegisterType((*AgentAddRequest)(nil), "drlm.AgentAddRequest")
 	proto.RegisterType((*AgentAddResponse)(nil), "drlm.AgentAddResponse")
 	proto.RegisterType((*AgentInstallRequest)(nil), "drlm.AgentInstallRequest")
@@ -1693,6 +2453,14 @@ func init() {
 	proto.RegisterType((*AgentListResponse_Agent)(nil), "drlm.AgentListResponse.Agent")
 	proto.RegisterType((*AgentGetRequest)(nil), "drlm.AgentGetRequest")
 	proto.RegisterType((*AgentGetResponse)(nil), "drlm.AgentGetResponse")
+	proto.RegisterType((*AgentPluginAddRequest)(nil), "drlm.AgentPluginAddRequest")
+	proto.RegisterType((*AgentPluginAddResponse)(nil), "drlm.AgentPluginAddResponse")
+	proto.RegisterType((*AgentPluginRemoveRequest)(nil), "drlm.AgentPluginRemoveRequest")
+	proto.RegisterType((*AgentPluginRemoveResponse)(nil), "drlm.AgentPluginRemoveResponse")
+	proto.RegisterType((*AgentPluginUpdateRequest)(nil), "drlm.AgentPluginUpdateRequest")
+	proto.RegisterType((*AgentPluginUpdateResponse)(nil), "drlm.AgentPluginUpdateResponse")
+	proto.RegisterType((*AgentPluginListRequest)(nil), "drlm.AgentPluginListRequest")
+	proto.RegisterType((*AgentPluginListResponse)(nil), "drlm.AgentPluginListResponse")
 	proto.RegisterType((*JobScheduleRequest)(nil), "drlm.JobScheduleRequest")
 	proto.RegisterType((*JobScheduleResponse)(nil), "drlm.JobScheduleResponse")
 	proto.RegisterType((*JobCancelRequest)(nil), "drlm.JobCancelRequest")
@@ -1707,94 +2475,117 @@ func init() {
 func init() { proto.RegisterFile("drlm.proto", fileDescriptor_a4bd9cd91f607bb1) }
 
 var fileDescriptor_a4bd9cd91f607bb1 = []byte{
-	// 1386 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x57, 0xcd, 0x72, 0xdb, 0x44,
-	0x1c, 0x8f, 0xfc, 0xed, 0x7f, 0x12, 0x47, 0xd9, 0x26, 0xa9, 0x62, 0x28, 0xed, 0x68, 0xa6, 0xd3,
-	0x10, 0x20, 0x1d, 0xd2, 0xd2, 0xa1, 0xd3, 0x99, 0xce, 0xa8, 0xb1, 0x93, 0x38, 0x75, 0xa5, 0x8e,
-	0x14, 0x93, 0x72, 0xf2, 0xc8, 0xd6, 0x26, 0x56, 0x63, 0x6b, 0x8d, 0xb4, 0x26, 0xf4, 0x5c, 0xb8,
-	0xf6, 0x01, 0xb8, 0xf0, 0x02, 0xbc, 0x01, 0x2f, 0xc0, 0x91, 0x47, 0x62, 0x76, 0xb5, 0x92, 0xd7,
-	0xb2, 0xdb, 0x52, 0x18, 0x86, 0x0b, 0xb7, 0xdd, 0xff, 0xf7, 0xd7, 0xea, 0xff, 0x13, 0x80, 0x17,
-	0x0e, 0x47, 0x7b, 0xe3, 0x90, 0x50, 0x82, 0x0a, 0xec, 0x5c, 0xbf, 0x79, 0x41, 0xc8, 0xc5, 0x10,
-	0xdf, 0xe5, 0xb4, 0xde, 0xe4, 0xfc, 0x2e, 0xf5, 0x47, 0x38, 0xa2, 0xee, 0x68, 0x1c, 0x8b, 0xe9,
-	0x0f, 0x40, 0xed, 0x44, 0x38, 0x6c, 0x93, 0x0b, 0x3f, 0xb0, 0xf1, 0x77, 0x13, 0x1c, 0x51, 0xa4,
-	0x42, 0x7e, 0x12, 0x85, 0x9a, 0x72, 0x4b, 0xd9, 0xa9, 0xda, 0xec, 0xc8, 0x28, 0xe3, 0x2b, 0x4f,
-	0xcb, 0xc5, 0x94, 0xf1, 0x95, 0xa7, 0x0f, 0x60, 0x5d, 0xd2, 0x8b, 0xc6, 0x24, 0x88, 0x30, 0x13,
-	0xa3, 0x97, 0x41, 0xa2, 0x48, 0x2f, 0x03, 0x64, 0x40, 0x8d, 0x5e, 0x06, 0x5d, 0xfc, 0xc3, 0xd8,
-	0x0f, 0x5d, 0xea, 0x93, 0x80, 0xdb, 0x58, 0xde, 0xaf, 0xef, 0xc5, 0x81, 0xed, 0x25, 0x81, 0xed,
-	0x9d, 0x26, 0x81, 0xd9, 0xab, 0xf4, 0x32, 0x68, 0xa6, 0x0a, 0xfa, 0x75, 0xd8, 0x64, 0x9e, 0x4e,
-	0xc9, 0x25, 0x0e, 0x6c, 0x1c, 0xe0, 0x2b, 0x11, 0xa6, 0x3e, 0x82, 0xad, 0x2c, 0xe3, 0xdf, 0x8c,
-	0xe3, 0x3e, 0xd4, 0x98, 0x3b, 0xc3, 0xf3, 0x3e, 0xa4, 0x4e, 0xeb, 0xb0, 0x96, 0x6a, 0xc5, 0xd1,
-	0xe9, 0xb7, 0xe3, 0xd2, 0x35, 0xf0, 0x10, 0x53, 0xfc, 0x56, 0x5b, 0xfa, 0x06, 0x20, 0x59, 0x4c,
-	0x28, 0x0b, 0x7b, 0x6d, 0x3f, 0xa2, 0x49, 0x1d, 0x5e, 0xe7, 0x44, 0x0f, 0x39, 0x4d, 0x94, 0xe0,
-	0x4b, 0x28, 0x4e, 0x22, 0x1c, 0x46, 0x9a, 0x72, 0x2b, 0xbf, 0xb3, 0xbc, 0xff, 0xd1, 0x1e, 0x1f,
-	0x8d, 0xac, 0x18, 0x27, 0xd8, 0xb1, 0x64, 0xfd, 0x37, 0x05, 0x0a, 0xec, 0xbe, 0x20, 0xaf, 0xcf,
-	0xa0, 0xea, 0x4e, 0xe8, 0xa0, 0x4b, 0x5f, 0x8d, 0x31, 0xcf, 0xae, 0xb6, 0x5f, 0x8b, 0x2d, 0x1a,
-	0x13, 0x3a, 0x38, 0x7d, 0x35, 0xc6, 0x76, 0xc5, 0x15, 0x27, 0xf4, 0x10, 0xa0, 0x1f, 0x62, 0x97,
-	0x62, 0xaf, 0xeb, 0x52, 0x2d, 0xff, 0xde, 0x3a, 0x57, 0x85, 0xb4, 0x41, 0x99, 0xea, 0x64, 0xec,
-	0x25, 0xaa, 0x85, 0xf7, 0xab, 0x0a, 0x69, 0x83, 0xea, 0x3f, 0x2a, 0xb0, 0x66, 0x5c, 0xe0, 0x80,
-	0x4a, 0x0d, 0x42, 0x50, 0x18, 0x90, 0x88, 0x8a, 0x4c, 0xf8, 0x99, 0xd1, 0xc6, 0x24, 0xa4, 0x3c,
-	0x8b, 0xa2, 0xcd, 0xcf, 0x8c, 0xc6, 0x4a, 0xc0, 0x63, 0xad, 0xda, 0xfc, 0x8c, 0xea, 0x50, 0x19,
-	0xbb, 0x51, 0x74, 0x45, 0x42, 0x8f, 0x07, 0x52, 0xb5, 0xd3, 0x3b, 0xda, 0x86, 0x8a, 0x1f, 0x75,
-	0x5d, 0x6f, 0xe4, 0x07, 0x5a, 0xf1, 0x96, 0xb2, 0x53, 0xb1, 0xcb, 0x7e, 0x64, 0xb0, 0xab, 0x8e,
-	0x40, 0x9d, 0x46, 0x21, 0x7a, 0xf6, 0x08, 0xae, 0x71, 0x5a, 0x2b, 0x88, 0xa8, 0x3b, 0x1c, 0xbe,
-	0x2b, 0x3a, 0x15, 0xf2, 0x3d, 0x3f, 0x1e, 0xce, 0x15, 0x9b, 0x1d, 0xf5, 0x37, 0x0a, 0x6c, 0xcc,
-	0x6a, 0x8b, 0x0e, 0x6b, 0x50, 0x1e, 0xe1, 0x28, 0x72, 0x2f, 0xb0, 0xb0, 0x90, 0x5c, 0xd1, 0x3d,
-	0x28, 0xf4, 0x89, 0x97, 0x34, 0xea, 0xa6, 0x68, 0xd4, 0x02, 0x1b, 0x7b, 0x07, 0xc4, 0xc3, 0x36,
-	0x17, 0xd6, 0xef, 0x40, 0x81, 0xdd, 0xd0, 0x32, 0x94, 0x3b, 0xe6, 0x53, 0xd3, 0x3a, 0x33, 0xd5,
-	0x25, 0x54, 0x82, 0x9c, 0xf5, 0x54, 0x55, 0x10, 0x40, 0xe9, 0xd0, 0x68, 0xb5, 0x9b, 0x0d, 0x35,
-	0xa7, 0x3f, 0x01, 0xc4, 0x6d, 0xcd, 0xce, 0xef, 0xa2, 0x64, 0x34, 0x28, 0xf7, 0x87, 0xd8, 0x0d,
-	0x26, 0x63, 0x1e, 0x4a, 0xc5, 0x4e, 0xae, 0xfa, 0xa6, 0xa8, 0x48, 0x66, 0xb8, 0x93, 0xe2, 0xc9,
-	0xd3, 0xfd, 0x47, 0x1e, 0xd6, 0x25, 0xa2, 0x48, 0xfe, 0x2b, 0x28, 0xb9, 0x8c, 0x98, 0xcc, 0xf7,
-	0x0d, 0x29, 0xc9, 0x99, 0x01, 0xe7, 0x14, 0x5b, 0x08, 0xd7, 0x5f, 0xe7, 0xa1, 0xc8, 0x29, 0xff,
-	0x68, 0x34, 0xb6, 0xa0, 0x14, 0x4d, 0x3c, 0x82, 0x43, 0x3e, 0x18, 0x15, 0x5b, 0xdc, 0x58, 0xbe,
-	0xdf, 0xe3, 0x30, 0x62, 0x5f, 0x97, 0x62, 0xdc, 0x11, 0x71, 0x45, 0x9f, 0x40, 0xc1, 0x0d, 0xfb,
-	0x03, 0xad, 0xc4, 0x3b, 0x02, 0x22, 0xd8, 0xb0, 0x3f, 0xb0, 0x39, 0x1d, 0x69, 0x90, 0x23, 0x91,
-	0x56, 0xe6, 0xdc, 0x4a, 0xcc, 0xb5, 0x1c, 0x3b, 0x47, 0x22, 0x74, 0x03, 0x80, 0x44, 0xdd, 0xc4,
-	0x6c, 0x85, 0x9b, 0xad, 0x92, 0xe8, 0x1b, 0x61, 0x78, 0x0b, 0x4a, 0x9e, 0x1f, 0xd1, 0x90, 0x68,
-	0x55, 0xce, 0x12, 0x37, 0x74, 0x1b, 0x6a, 0xf1, 0x29, 0x55, 0x05, 0xce, 0x5f, 0x8d, 0xa9, 0x89,
-	0xfa, 0xec, 0x53, 0x5d, 0xfe, 0xfb, 0x4f, 0x75, 0xe5, 0x43, 0x9e, 0xea, 0x6d, 0xf1, 0x52, 0x8f,
-	0x30, 0x7d, 0xc7, 0xf8, 0xe8, 0x6f, 0xf2, 0x62, 0x1c, 0xb8, 0x9c, 0x68, 0xfc, 0xff, 0x7d, 0xfb,
-	0xef, 0xfa, 0x76, 0x04, 0xe8, 0x84, 0xf4, 0x9c, 0xfe, 0x00, 0x7b, 0x93, 0x61, 0xfa, 0xf2, 0x6f,
-	0x00, 0xf0, 0xd7, 0xd5, 0x95, 0xfa, 0x52, 0xe5, 0x94, 0x63, 0xd1, 0x9c, 0xc0, 0x1d, 0x61, 0xb1,
-	0x13, 0xf9, 0x99, 0x3d, 0xff, 0x19, 0x43, 0xe2, 0xf9, 0x7f, 0x0a, 0xea, 0x09, 0xe9, 0x1d, 0xb8,
-	0x41, 0x1f, 0xa7, 0x1f, 0xc9, 0x4d, 0x28, 0xbd, 0x24, 0xbd, 0xae, 0xef, 0x71, 0xcb, 0xab, 0x76,
-	0xf1, 0x25, 0xe9, 0xb5, 0x3c, 0xfd, 0x1a, 0xac, 0x4b, 0xa2, 0x42, 0xff, 0x2e, 0xd4, 0x4e, 0x48,
-	0x4f, 0xfa, 0x78, 0xbc, 0x27, 0x36, 0xfd, 0x77, 0x05, 0xd6, 0x52, 0x0d, 0x31, 0x60, 0x5f, 0x40,
-	0xe1, 0x25, 0xe9, 0x25, 0xdf, 0x95, 0xed, 0xb8, 0xa9, 0x19, 0x21, 0x76, 0xb7, 0xb9, 0x58, 0xfd,
-	0x27, 0x05, 0xf2, 0x27, 0xa4, 0x87, 0x6a, 0x90, 0x4b, 0x63, 0xcc, 0xf9, 0xde, 0xa2, 0xb4, 0x33,
-	0xd1, 0xe4, 0xb3, 0x95, 0xba, 0x03, 0xa5, 0x88, 0xba, 0x74, 0x12, 0xf1, 0xf1, 0xac, 0xed, 0xaf,
-	0xa5, 0xbe, 0x1d, 0x4e, 0xb6, 0x05, 0x9b, 0xd9, 0xf6, 0x83, 0x73, 0x22, 0x86, 0x95, 0x9f, 0xf5,
-	0x73, 0x5e, 0x3b, 0x93, 0x50, 0xff, 0xfc, 0xd5, 0xbb, 0x6b, 0x27, 0xf9, 0xc9, 0xfd, 0x35, 0x3f,
-	0x79, 0xc9, 0x4f, 0x5c, 0xf8, 0xc4, 0x4f, 0x5c, 0x8e, 0xdd, 0xcf, 0xa1, 0x92, 0xe0, 0x00, 0xa4,
-	0xc2, 0x8a, 0xd1, 0x39, 0x3d, 0xee, 0x4e, 0x97, 0x48, 0x0d, 0x80, 0x53, 0xda, 0xd6, 0x81, 0xd1,
-	0x56, 0x95, 0xdd, 0x1d, 0x28, 0xb0, 0x27, 0xc4, 0x25, 0xed, 0x83, 0xac, 0x24, 0xa3, 0x18, 0xcf,
-	0x1a, 0x0f, 0xee, 0xab, 0xca, 0xee, 0xaf, 0x0a, 0xe4, 0x2c, 0x87, 0x91, 0x2d, 0x47, 0x12, 0x5b,
-	0x81, 0x8a, 0xe5, 0x74, 0xdb, 0x2d, 0xb3, 0xf3, 0x42, 0x55, 0x04, 0xf7, 0xac, 0x65, 0x36, 0xac,
-	0x33, 0x47, 0xcd, 0xa1, 0x55, 0xa8, 0x5a, 0x4e, 0xb7, 0x61, 0xd8, 0x67, 0x2d, 0x53, 0xcd, 0xb3,
-	0xd5, 0x65, 0x39, 0x5d, 0xa3, 0xf5, 0x42, 0x2d, 0x30, 0x8f, 0x8c, 0x65, 0x1b, 0x47, 0x96, 0x79,
-	0xd8, 0xfe, 0x56, 0x2d, 0x0a, 0xe5, 0x43, 0xbb, 0xd9, 0x7c, 0xe2, 0x34, 0xd4, 0x92, 0x50, 0x36,
-	0x9b, 0xa7, 0xec, 0x5a, 0x16, 0x6c, 0xeb, 0x79, 0xd3, 0x64, 0xf7, 0x8a, 0xf0, 0xfc, 0xbc, 0x6d,
-	0x98, 0x0f, 0xd5, 0xaa, 0xe0, 0x3a, 0x56, 0xdb, 0xb0, 0x5b, 0x8e, 0x0a, 0xbb, 0xbf, 0x28, 0x50,
-	0x4d, 0xab, 0x88, 0xb6, 0x00, 0x9d, 0x58, 0x4f, 0xba, 0xce, 0xa9, 0x71, 0xda, 0x91, 0xa3, 0xd7,
-	0x60, 0x43, 0xa2, 0x3b, 0x07, 0xc7, 0xcd, 0x46, 0x87, 0x6d, 0x56, 0x25, 0xa3, 0x61, 0x77, 0x4c,
-	0xb3, 0x65, 0x1e, 0xa9, 0x39, 0x74, 0x1d, 0xae, 0x49, 0xf4, 0xc3, 0x96, 0xd9, 0x72, 0x8e, 0x9b,
-	0x0d, 0x35, 0x8f, 0x36, 0x61, 0x5d, 0x66, 0xc4, 0x1b, 0xba, 0x90, 0xf1, 0x70, 0x60, 0x98, 0x07,
-	0xcd, 0x36, 0xe3, 0x14, 0xf7, 0x7f, 0x2e, 0x43, 0xa1, 0x61, 0xb7, 0x9f, 0xa1, 0xc7, 0x50, 0x4d,
-	0xe1, 0x3b, 0xda, 0x92, 0xc0, 0xa1, 0xf4, 0x1f, 0x50, 0xbf, 0x3e, 0x47, 0x17, 0x0f, 0x6d, 0x09,
-	0x3d, 0x8b, 0xc1, 0xf0, 0x14, 0x7b, 0x23, 0x09, 0x61, 0xce, 0x41, 0xf5, 0xfa, 0xc7, 0x8b, 0x99,
-	0xa9, 0xb9, 0xaf, 0xa1, 0x2c, 0x50, 0x32, 0xda, 0x98, 0x8a, 0x4e, 0x91, 0x5c, 0x7d, 0x33, 0x43,
-	0x4d, 0x35, 0x0d, 0x80, 0x29, 0x4a, 0x46, 0x52, 0xc4, 0x33, 0xf0, 0xa4, 0xae, 0xcd, 0x33, 0x52,
-	0x13, 0x8f, 0xa0, 0x92, 0xe0, 0x62, 0xb4, 0x99, 0xc5, 0xc9, 0xb1, 0xfa, 0xd6, 0x62, 0xf8, 0x1c,
-	0x2b, 0x27, 0x78, 0x2f, 0x51, 0xce, 0xa0, 0xd0, 0x44, 0x79, 0x0e, 0x16, 0x2e, 0xa1, 0x16, 0xac,
-	0xc8, 0xb0, 0x0c, 0x6d, 0x2f, 0x82, 0x6a, 0xb1, 0x91, 0xfa, 0xdb, 0x51, 0x9c, 0xbe, 0xb4, 0xa3,
-	0xa0, 0x06, 0x2c, 0x4b, 0x88, 0x0a, 0x69, 0x92, 0xf8, 0x6c, 0x25, 0xb6, 0x17, 0x70, 0xd2, 0x80,
-	0x1e, 0x43, 0x35, 0x85, 0x50, 0x68, 0x6b, 0x0e, 0x53, 0xcd, 0x8c, 0xc5, 0x1c, 0xd6, 0x92, 0xaa,
-	0x71, 0x84, 0xe9, 0x4c, 0x35, 0xa6, 0x9b, 0x7e, 0xa6, 0x1a, 0xd2, 0x62, 0xd7, 0x97, 0x58, 0x0a,
-	0xd2, 0x56, 0x48, 0x52, 0x98, 0xdf, 0x38, 0xf5, 0xed, 0x05, 0x1c, 0x39, 0x85, 0x74, 0x33, 0x24,
-	0x29, 0x64, 0xb7, 0x4a, 0x92, 0xc2, 0xfc, 0x0a, 0xe1, 0xa3, 0x28, 0xbe, 0xf6, 0xc9, 0x28, 0xce,
-	0xee, 0x94, 0x64, 0x14, 0x33, 0x2b, 0x21, 0xf5, 0x1c, 0x7f, 0x1a, 0x25, 0xcf, 0x33, 0xdf, 0x64,
-	0xc9, 0xf3, 0xec, 0x37, 0x54, 0x5f, 0xea, 0x95, 0xf8, 0xf6, 0xbd, 0xf7, 0x67, 0x00, 0x00, 0x00,
-	0xff, 0xff, 0x11, 0xe0, 0x55, 0x84, 0xc6, 0x0f, 0x00, 0x00,
+	// 1758 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x18, 0xdb, 0x72, 0xdb, 0xc6,
+	0x55, 0xe0, 0x9d, 0x47, 0x12, 0x0d, 0xad, 0x25, 0x0a, 0x82, 0x2b, 0xdb, 0x83, 0x19, 0x8f, 0x55,
+	0x37, 0x91, 0xa7, 0x72, 0x9a, 0xa9, 0x27, 0xd3, 0xcc, 0xc0, 0x22, 0x25, 0x53, 0xa1, 0x41, 0x0f,
+	0x20, 0xc5, 0xe9, 0x43, 0x87, 0x01, 0x85, 0xb5, 0x44, 0x8b, 0xc4, 0xa2, 0x00, 0x18, 0xd7, 0xcf,
+	0x69, 0x9f, 0x3a, 0x93, 0x4f, 0x68, 0x7f, 0xa0, 0x7f, 0xd0, 0xe9, 0x7b, 0x1f, 0xfb, 0x49, 0x9d,
+	0x5d, 0xec, 0x82, 0x8b, 0x0b, 0xed, 0x24, 0x6d, 0xa7, 0x2f, 0x79, 0xc3, 0x9e, 0xfb, 0x6d, 0xf7,
+	0x9c, 0x03, 0x00, 0x2f, 0x9c, 0xcd, 0x0f, 0x83, 0x90, 0xc4, 0x04, 0xd5, 0xe8, 0xb7, 0x7e, 0xef,
+	0x8a, 0x90, 0xab, 0x19, 0x7e, 0xcc, 0x60, 0x93, 0xc5, 0xeb, 0xc7, 0xf1, 0x74, 0x8e, 0xa3, 0xd8,
+	0x9d, 0x07, 0x09, 0x99, 0xf1, 0x29, 0xa8, 0x17, 0x11, 0x0e, 0x87, 0xe4, 0x6a, 0xea, 0xdb, 0xf8,
+	0xf7, 0x0b, 0x1c, 0xc5, 0x48, 0x85, 0xea, 0x22, 0x0a, 0x35, 0xe5, 0xbe, 0x72, 0xd0, 0xb6, 0xe9,
+	0x27, 0x85, 0x04, 0x6f, 0x3d, 0xad, 0x92, 0x40, 0x82, 0xb7, 0x9e, 0x71, 0x0d, 0x5b, 0x12, 0x5f,
+	0x14, 0x10, 0x3f, 0xc2, 0x94, 0x2c, 0xbe, 0xf1, 0x05, 0x63, 0x7c, 0xe3, 0x23, 0x13, 0x3a, 0xf1,
+	0x8d, 0x3f, 0xc6, 0x7f, 0x08, 0xa6, 0xa1, 0x1b, 0x4f, 0x89, 0xcf, 0x64, 0xac, 0x1f, 0xe9, 0x87,
+	0x89, 0x61, 0x87, 0xc2, 0xb0, 0xc3, 0x73, 0x61, 0x98, 0xbd, 0x19, 0xdf, 0xf8, 0xfd, 0x94, 0xc1,
+	0xd8, 0x85, 0x1d, 0xaa, 0xe9, 0x9c, 0xdc, 0x60, 0xdf, 0xc6, 0x3e, 0x7e, 0xcb, 0xcd, 0x34, 0xe6,
+	0xd0, 0xcd, 0x23, 0xfe, 0x97, 0x76, 0x7c, 0x02, 0x1d, 0xaa, 0xce, 0xf4, 0xbc, 0x1f, 0x12, 0xa7,
+	0x2d, 0xb8, 0x95, 0x72, 0x25, 0xd6, 0x19, 0x0f, 0x92, 0xd0, 0xf5, 0xf0, 0x0c, 0xc7, 0x78, 0xa5,
+	0x2c, 0x63, 0x1b, 0x90, 0x4c, 0xc6, 0x99, 0xb9, 0xbc, 0xe1, 0x34, 0x8a, 0x45, 0x1c, 0xbe, 0xad,
+	0xf0, 0x1c, 0x32, 0x18, 0x0f, 0xc1, 0x2f, 0xa1, 0xbe, 0x88, 0x70, 0x18, 0x69, 0xca, 0xfd, 0xea,
+	0xc1, 0xfa, 0xd1, 0x9d, 0x43, 0x56, 0x1a, 0x79, 0x32, 0x06, 0xb0, 0x13, 0x4a, 0xfd, 0xef, 0x0a,
+	0xd4, 0xe8, 0xb9, 0xc4, 0xaf, 0x5f, 0x40, 0xdb, 0x5d, 0xc4, 0xd7, 0xe3, 0xf8, 0x5d, 0x80, 0x99,
+	0x77, 0x9d, 0xa3, 0x4e, 0x22, 0xd1, 0x5c, 0xc4, 0xd7, 0xe7, 0xef, 0x02, 0x6c, 0xb7, 0x5c, 0xfe,
+	0x85, 0x9e, 0x02, 0x5c, 0x86, 0xd8, 0x8d, 0xb1, 0x37, 0x76, 0x63, 0xad, 0xfa, 0xc1, 0x38, 0xb7,
+	0x39, 0xb5, 0x19, 0x53, 0xd6, 0x45, 0xe0, 0x09, 0xd6, 0xda, 0x87, 0x59, 0x39, 0xb5, 0x19, 0x1b,
+	0x5f, 0xc3, 0xf6, 0xcb, 0xd9, 0x82, 0x55, 0x63, 0x40, 0xa4, 0x24, 0x21, 0xa8, 0xf9, 0xee, 0x1c,
+	0x73, 0x6f, 0xd8, 0x37, 0x73, 0x30, 0x9c, 0x89, 0x34, 0x2d, 0xc2, 0x99, 0x70, 0xb9, 0x5a, 0x48,
+	0x65, 0x6d, 0x99, 0xca, 0x5d, 0xd8, 0xc9, 0x69, 0xe0, 0x39, 0xf9, 0x18, 0x76, 0x97, 0x88, 0x6c,
+	0x5a, 0x4b, 0xb4, 0x1b, 0x3a, 0x68, 0x45, 0x72, 0x2e, 0x2a, 0xa3, 0x43, 0x4e, 0xf2, 0x9f, 0x15,
+	0xe8, 0xe6, 0x31, 0x3c, 0xd5, 0xbf, 0x81, 0x7a, 0x88, 0x03, 0x22, 0x52, 0xfd, 0x30, 0x49, 0x4c,
+	0x39, 0xb1, 0x04, 0xb6, 0x13, 0x2e, 0xfd, 0x08, 0x60, 0x09, 0xfc, 0x7e, 0xe1, 0x32, 0x1e, 0xc2,
+	0x56, 0xc2, 0x23, 0x99, 0x48, 0x59, 0xa9, 0x44, 0xc1, 0x4a, 0xbf, 0x8d, 0x7f, 0x28, 0x80, 0x64,
+	0x4a, 0x6e, 0xf2, 0x53, 0x68, 0x06, 0x0c, 0x2a, 0x8c, 0xbe, 0x27, 0x1b, 0x5d, 0x66, 0xb0, 0xa0,
+	0xd7, 0x67, 0xd0, 0x48, 0x40, 0x65, 0xfa, 0x52, 0xf3, 0x2b, 0x92, 0xf9, 0x1a, 0x34, 0xbf, 0xc1,
+	0x61, 0x44, 0x2f, 0x7d, 0x92, 0x5f, 0x71, 0x44, 0xf7, 0x61, 0xdd, 0xc3, 0xd1, 0x65, 0x38, 0x0d,
+	0xd8, 0x93, 0x90, 0xe4, 0x5a, 0x06, 0x19, 0x7f, 0x54, 0xe0, 0x96, 0x79, 0x85, 0xfd, 0x38, 0x5b,
+	0x51, 0xd7, 0x24, 0x8a, 0x85, 0x5e, 0xfa, 0x4d, 0x61, 0x01, 0x09, 0x63, 0xa6, 0xb7, 0x6e, 0xb3,
+	0x6f, 0x0a, 0xa3, 0x17, 0x8b, 0x2b, 0x65, 0xdf, 0x48, 0x87, 0x56, 0xe0, 0x46, 0xd1, 0x5b, 0x12,
+	0x8a, 0xd2, 0x4a, 0xcf, 0x68, 0x0f, 0x5a, 0xd3, 0x68, 0xec, 0x7a, 0xf3, 0xa9, 0xaf, 0xd5, 0xef,
+	0x2b, 0x07, 0x2d, 0xbb, 0x39, 0x8d, 0x4c, 0x7a, 0x34, 0x10, 0xa8, 0x4b, 0x2b, 0x78, 0xa9, 0x7c,
+	0x06, 0xb7, 0x19, 0x6c, 0xe0, 0x47, 0xb1, 0x3b, 0x9b, 0xbd, 0xcf, 0x3a, 0x15, 0xaa, 0x93, 0x69,
+	0xf2, 0xe4, 0x6d, 0xd8, 0xf4, 0xd3, 0xf8, 0x4e, 0x81, 0xed, 0x2c, 0x37, 0xcf, 0x8c, 0x06, 0xcd,
+	0x39, 0x8e, 0x22, 0xf7, 0x4a, 0x94, 0x80, 0x38, 0xa2, 0x27, 0x50, 0xbb, 0x24, 0x9e, 0xb8, 0xfe,
+	0x3c, 0x61, 0x65, 0x32, 0x0e, 0x8f, 0x89, 0x87, 0x6d, 0x46, 0x6c, 0x3c, 0x84, 0x1a, 0x3d, 0xa1,
+	0x75, 0x68, 0x5e, 0x58, 0x5f, 0x58, 0xa3, 0x57, 0x96, 0xba, 0x86, 0x1a, 0x50, 0x19, 0x7d, 0xa1,
+	0x2a, 0x08, 0xa0, 0x71, 0x62, 0x0e, 0x86, 0xfd, 0x9e, 0x5a, 0x31, 0x9e, 0x01, 0x62, 0xb2, 0x0a,
+	0xd7, 0xa7, 0xe0, 0x8c, 0x06, 0xcd, 0xcb, 0x19, 0x76, 0xfd, 0x45, 0xc0, 0x4c, 0x69, 0xd9, 0xe2,
+	0x68, 0xec, 0xf0, 0x88, 0xe4, 0xee, 0x94, 0x08, 0x9e, 0x7c, 0x9d, 0xfe, 0x55, 0x85, 0x2d, 0x09,
+	0xc8, 0x9d, 0xff, 0x15, 0x34, 0x5c, 0x0a, 0x14, 0x55, 0xb9, 0x2f, 0x39, 0x99, 0x29, 0x4a, 0x06,
+	0xb1, 0x39, 0xb1, 0xfe, 0x6d, 0x15, 0xea, 0x0c, 0xf2, 0x1f, 0x95, 0x46, 0x17, 0x1a, 0xd1, 0xc2,
+	0x23, 0x38, 0x64, 0x85, 0xd1, 0xb2, 0xf9, 0x49, 0x2e, 0xdf, 0x7a, 0xb6, 0x7c, 0xef, 0x42, 0xcd,
+	0x0d, 0x2f, 0xaf, 0xb5, 0x06, 0xcb, 0x08, 0x70, 0x63, 0xc3, 0xcb, 0x6b, 0x9b, 0xc1, 0x91, 0x06,
+	0x15, 0x12, 0x69, 0x4d, 0x86, 0x6d, 0x25, 0xd8, 0x91, 0x63, 0x57, 0x48, 0x84, 0xf6, 0x01, 0x48,
+	0x34, 0x16, 0x62, 0x5b, 0x4c, 0x6c, 0x9b, 0x44, 0x5f, 0x72, 0xc1, 0x5d, 0x68, 0x78, 0xd3, 0x28,
+	0x0e, 0x89, 0xd6, 0x66, 0x28, 0x7e, 0x42, 0x0f, 0xa0, 0x93, 0x7c, 0xa5, 0xac, 0xc0, 0xf0, 0x9b,
+	0x09, 0x54, 0xb0, 0x67, 0x1b, 0xc0, 0xfa, 0x8f, 0x6f, 0x00, 0x1b, 0x3f, 0xa4, 0x01, 0x3c, 0xe0,
+	0x37, 0xf5, 0x14, 0xc7, 0xef, 0x29, 0x1f, 0xe3, 0xbb, 0x2a, 0x2f, 0x07, 0x46, 0xc7, 0x13, 0xff,
+	0x53, 0xde, 0xfe, 0x7f, 0x79, 0xfb, 0x1d, 0xec, 0xb0, 0x7c, 0x24, 0xaf, 0xfa, 0x07, 0xde, 0xd9,
+	0x2e, 0x34, 0x92, 0x46, 0xc0, 0x5f, 0x78, 0x7e, 0x5a, 0xfd, 0xc6, 0x1b, 0x1a, 0x74, 0xf3, 0xe2,
+	0xf9, 0xbb, 0x70, 0x02, 0x9a, 0x84, 0xb1, 0xf1, 0x9c, 0x7c, 0x83, 0x7f, 0x84, 0x6e, 0xe3, 0x0e,
+	0xec, 0x95, 0xc8, 0xe1, 0x4a, 0xbe, 0xce, 0x28, 0xb9, 0x60, 0x5e, 0xff, 0x77, 0x1d, 0xcc, 0xaa,
+	0x17, 0x1a, 0xb8, 0xfa, 0x8f, 0x32, 0xde, 0xe7, 0xba, 0x75, 0xe1, 0x6e, 0x3c, 0x81, 0xdd, 0x02,
+	0xf5, 0xb2, 0x2f, 0xc8, 0x1d, 0xbb, 0x9d, 0x36, 0x64, 0xe3, 0x14, 0xd0, 0x19, 0x99, 0x38, 0x97,
+	0xd7, 0xd8, 0x5b, 0xcc, 0x52, 0xdf, 0xf6, 0x01, 0xd8, 0xeb, 0x38, 0x96, 0x94, 0xb4, 0x19, 0xe4,
+	0x39, 0x91, 0xe6, 0x22, 0xa9, 0x4f, 0xd3, 0xe7, 0x3b, 0x23, 0x88, 0xbb, 0xf0, 0x73, 0x50, 0xcf,
+	0xc8, 0xe4, 0xd8, 0xf5, 0x2f, 0x71, 0xda, 0xe4, 0x76, 0xa0, 0xf1, 0x86, 0x4c, 0xc6, 0x53, 0x8f,
+	0x49, 0xde, 0xb4, 0xeb, 0x6f, 0xc8, 0x64, 0xe0, 0x19, 0xb7, 0x61, 0x4b, 0x22, 0xe5, 0xfc, 0x8f,
+	0xa1, 0x73, 0x46, 0x26, 0xb2, 0xeb, 0xef, 0xb7, 0xcd, 0xf8, 0xa7, 0x02, 0xb7, 0x52, 0x0e, 0xee,
+	0xfe, 0xc7, 0x50, 0x7b, 0x43, 0x26, 0xa2, 0x2f, 0xec, 0x25, 0x97, 0x32, 0x47, 0x44, 0xcf, 0x36,
+	0x23, 0xd3, 0xff, 0xa4, 0x40, 0xf5, 0x8c, 0x4c, 0x50, 0x07, 0x2a, 0xa9, 0x8d, 0x95, 0xa9, 0x57,
+	0x3a, 0x9e, 0x64, 0xad, 0xa9, 0xe6, 0x23, 0xf5, 0x10, 0x1a, 0x51, 0xec, 0xc6, 0x8b, 0x88, 0x3d,
+	0x2f, 0x9d, 0xa3, 0x5b, 0xa9, 0x6e, 0x87, 0x81, 0x6d, 0x8e, 0xa6, 0xb2, 0xa7, 0xfe, 0x6b, 0xc2,
+	0x1f, 0x1b, 0xf6, 0x6d, 0xbc, 0x66, 0xb1, 0xb3, 0x48, 0x3c, 0x7d, 0xfd, 0xee, 0xfd, 0xb1, 0x93,
+	0xf4, 0x54, 0xbe, 0x9f, 0x9e, 0xaa, 0xa4, 0x27, 0x09, 0xbc, 0xd0, 0x93, 0x84, 0xe3, 0xd1, 0x47,
+	0xd0, 0x12, 0xdb, 0x01, 0x52, 0x61, 0xc3, 0xbc, 0x38, 0x7f, 0x3e, 0x5e, 0x0e, 0x01, 0x1d, 0x00,
+	0x06, 0x19, 0x8e, 0x8e, 0xcd, 0xa1, 0xaa, 0x3c, 0x3a, 0x80, 0x1a, 0x7d, 0x02, 0x19, 0xa5, 0x7d,
+	0x9c, 0xa7, 0xa4, 0x10, 0xf3, 0x45, 0xef, 0xd3, 0x4f, 0x54, 0xe5, 0xd1, 0xdf, 0x14, 0xa8, 0x8c,
+	0x1c, 0x0a, 0x1e, 0x39, 0x12, 0xd9, 0x06, 0xb4, 0x46, 0xce, 0x78, 0x38, 0xb0, 0x2e, 0xbe, 0x52,
+	0x15, 0x8e, 0x7d, 0x35, 0xb0, 0x7a, 0xa3, 0x57, 0x8e, 0x5a, 0x41, 0x9b, 0xd0, 0x1e, 0x39, 0xe3,
+	0x9e, 0x69, 0xbf, 0x1a, 0x58, 0x6a, 0x95, 0x8e, 0x1e, 0x23, 0x67, 0x6c, 0x0e, 0xbe, 0x52, 0x6b,
+	0x54, 0x23, 0x45, 0xd9, 0xe6, 0xe9, 0xc8, 0x3a, 0x19, 0xfe, 0x56, 0xad, 0x73, 0xe6, 0x13, 0xbb,
+	0xdf, 0x7f, 0xe6, 0xf4, 0xd4, 0x06, 0x67, 0xb6, 0xfa, 0xe7, 0xf4, 0xd8, 0xe4, 0xe8, 0xd1, 0xcb,
+	0xbe, 0x45, 0xcf, 0x2d, 0xae, 0xf9, 0xe5, 0xd0, 0xb4, 0x9e, 0xaa, 0x6d, 0x8e, 0x75, 0x46, 0x43,
+	0xd3, 0x1e, 0x38, 0x2a, 0x3c, 0xfa, 0xab, 0x02, 0xed, 0x34, 0x8a, 0xa8, 0x0b, 0xe8, 0x6c, 0xf4,
+	0x6c, 0xec, 0x9c, 0x9b, 0xe7, 0x17, 0xb2, 0xf5, 0x1a, 0x6c, 0x4b, 0x70, 0xe7, 0xf8, 0x79, 0xbf,
+	0x77, 0x41, 0x27, 0x23, 0x25, 0xc7, 0x61, 0x5f, 0x58, 0xd6, 0xc0, 0x3a, 0x55, 0x2b, 0x68, 0x17,
+	0x6e, 0x4b, 0xf0, 0x93, 0x81, 0x35, 0x70, 0x9e, 0xf7, 0x7b, 0x6a, 0x15, 0xed, 0xc0, 0x96, 0x8c,
+	0x48, 0x26, 0xac, 0x5a, 0x4e, 0xc3, 0xb1, 0x69, 0x1d, 0xf7, 0x87, 0x14, 0x53, 0x3f, 0xfa, 0xcb,
+	0x06, 0xd4, 0x7a, 0xf6, 0xf0, 0x05, 0xfa, 0x1c, 0xda, 0xe9, 0x52, 0x8f, 0xba, 0xd2, 0xca, 0x28,
+	0xfd, 0x1d, 0xd0, 0x77, 0x0b, 0x70, 0x7e, 0xd1, 0xd6, 0xd0, 0x8b, 0x64, 0x45, 0x5e, 0x6e, 0xe4,
+	0x48, 0xda, 0x3b, 0x0b, 0x0b, 0xbc, 0xfe, 0xb3, 0x72, 0x64, 0x2a, 0xee, 0xd7, 0xd0, 0xe4, 0xbb,
+	0x33, 0xda, 0x5e, 0x92, 0x2e, 0x3b, 0x84, 0xbe, 0x93, 0x83, 0xa6, 0x9c, 0x26, 0xc0, 0x72, 0x77,
+	0x46, 0x92, 0xc5, 0x99, 0xf1, 0x52, 0xd7, 0x8a, 0x88, 0x54, 0xc4, 0x67, 0xd0, 0x12, 0xdb, 0x32,
+	0xda, 0xc9, 0x6f, 0xcf, 0x09, 0x7b, 0xb7, 0x7c, 0xa9, 0x36, 0xd6, 0xd0, 0x19, 0x6c, 0x66, 0x56,
+	0x45, 0xa4, 0xe7, 0x97, 0x32, 0xc9, 0x8b, 0x3b, 0xa5, 0xb8, 0x54, 0x96, 0x03, 0x6a, 0x7e, 0x5d,
+	0x44, 0xfb, 0x79, 0x96, 0xac, 0x5f, 0x77, 0x57, 0xa1, 0xe5, 0x4c, 0x65, 0x17, 0x44, 0x74, 0xa7,
+	0x7c, 0x6d, 0xcc, 0x64, 0xaa, 0x7c, 0xa7, 0x4c, 0xe2, 0xbd, 0xec, 0x19, 0x22, 0xde, 0x85, 0x9e,
+	0x23, 0xe2, 0x5d, 0x6c, 0x2f, 0x49, 0xbc, 0xc5, 0x8a, 0x23, 0xe2, 0x9d, 0x5b, 0xbc, 0x44, 0xbc,
+	0x0b, 0x9b, 0xd0, 0x1a, 0x1a, 0xc0, 0x86, 0xbc, 0x89, 0xa0, 0xbd, 0xb2, 0xed, 0x24, 0x11, 0xa2,
+	0xaf, 0x5e, 0x5c, 0x8c, 0xb5, 0x03, 0x05, 0xf5, 0x60, 0x5d, 0x5a, 0x22, 0x90, 0x26, 0x91, 0x67,
+	0x83, 0xbc, 0x57, 0x82, 0x49, 0x0d, 0xfa, 0x1c, 0xda, 0xe9, 0xd6, 0x80, 0xba, 0x85, 0x35, 0x22,
+	0x73, 0x93, 0x0a, 0xeb, 0x85, 0x14, 0x8d, 0x53, 0x1c, 0x67, 0xa2, 0xb1, 0x1c, 0x6e, 0x33, 0xd1,
+	0x90, 0x66, 0xd9, 0x24, 0xb9, 0xd9, 0x91, 0x47, 0x24, 0xb7, 0x74, 0xce, 0x12, 0xc9, 0x5d, 0x31,
+	0x25, 0xad, 0xa1, 0x2f, 0xf9, 0xaa, 0x24, 0xcf, 0x37, 0xe8, 0x6e, 0x81, 0x29, 0x33, 0x40, 0xe9,
+	0xf7, 0x56, 0xe2, 0x57, 0xc8, 0x4d, 0x06, 0x97, 0x12, 0xb9, 0x99, 0x99, 0xa9, 0x44, 0x6e, 0x6e,
+	0xe2, 0x59, 0x43, 0x2f, 0xf9, 0x22, 0x20, 0x55, 0x64, 0xd1, 0x45, 0x39, 0x0f, 0xfb, 0x2b, 0xb0,
+	0xa9, 0xc4, 0x1e, 0xac, 0x4b, 0x93, 0x89, 0xa8, 0x89, 0xe2, 0xd4, 0xa3, 0xef, 0x95, 0x60, 0xe4,
+	0x9a, 0x48, 0xa7, 0x13, 0x51, 0x13, 0xf9, 0xc9, 0x46, 0xd4, 0x44, 0x71, 0x8c, 0x61, 0xcf, 0x21,
+	0x9f, 0x38, 0xc4, 0x73, 0x98, 0x9d, 0x6b, 0xc4, 0x73, 0x98, 0x1b, 0x4b, 0x52, 0xcd, 0x49, 0x7b,
+	0x96, 0x34, 0x67, 0xe6, 0x02, 0x49, 0x73, 0xb6, 0x8f, 0x1b, 0x6b, 0x93, 0x06, 0x9b, 0xe0, 0x9f,
+	0xfc, 0x3b, 0x00, 0x00, 0xff, 0xff, 0x49, 0x59, 0x46, 0xd6, 0x60, 0x16, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1819,6 +2610,14 @@ type DRLMClient interface {
 	UserDelete(ctx context.Context, in *UserDeleteRequest, opts ...grpc.CallOption) (*UserDeleteResponse, error)
 	// UserList lists all the users
 	UserList(ctx context.Context, in *UserListRequest, opts ...grpc.CallOption) (*UserListResponse, error)
+	// PluginRepoAdd adds a new plugin repository
+	PluginRepoAdd(ctx context.Context, in *PluginRepoAddRequest, opts ...grpc.CallOption) (*PluginRepoAddResponse, error)
+	// PluginRepoDelete removes a plugin repository
+	PluginRepoDelete(ctx context.Context, in *PluginRepoDeleteRequest, opts ...grpc.CallOption) (*PluginRepoDeleteResponse, error)
+	// PluginRepoList lists the plugin repositories
+	PluginRepoList(ctx context.Context, in *PluginRepoListRequest, opts ...grpc.CallOption) (*PluginRepoListResponse, error)
+	// PluginList returns a list of all the available plugins
+	PluginList(ctx context.Context, in *PluginListRequest, opts ...grpc.CallOption) (*PluginListResponse, error)
 	// AgentAdd adds a new Agent to the DB
 	AgentAdd(ctx context.Context, in *AgentAddRequest, opts ...grpc.CallOption) (*AgentAddResponse, error)
 	// AgentInstall installs the agent binary to the agent machine
@@ -1829,6 +2628,14 @@ type DRLMClient interface {
 	AgentList(ctx context.Context, in *AgentListRequest, opts ...grpc.CallOption) (*AgentListResponse, error)
 	// AgentGet returns a specific agent
 	AgentGet(ctx context.Context, in *AgentGetRequest, opts ...grpc.CallOption) (*AgentGetResponse, error)
+	// AgentPluginAdd adds a new plugin to the Agent
+	AgentPluginAdd(ctx context.Context, in *AgentPluginAddRequest, opts ...grpc.CallOption) (*AgentPluginAddResponse, error)
+	// AgentPluginRemove removes a plugin from the Agent
+	AgentPluginRemove(ctx context.Context, in *AgentPluginRemoveRequest, opts ...grpc.CallOption) (*AgentPluginRemoveResponse, error)
+	// AgentPluginUpdate updates a plugin of the Agent
+	AgentPluginUpdate(ctx context.Context, in *AgentPluginUpdateRequest, opts ...grpc.CallOption) (*AgentPluginUpdateResponse, error)
+	// AgentPluginList lists the plugins of the Agent
+	AgentPluginList(ctx context.Context, in *AgentPluginListRequest, opts ...grpc.CallOption) (*AgentPluginListResponse, error)
 	// JobSchedule schedules a new job
 	JobSchedule(ctx context.Context, in *JobScheduleRequest, opts ...grpc.CallOption) (*JobScheduleResponse, error)
 	// JobCancel cancels an scheduled or running Job
@@ -1886,6 +2693,42 @@ func (c *dRLMClient) UserDelete(ctx context.Context, in *UserDeleteRequest, opts
 func (c *dRLMClient) UserList(ctx context.Context, in *UserListRequest, opts ...grpc.CallOption) (*UserListResponse, error) {
 	out := new(UserListResponse)
 	err := c.cc.Invoke(ctx, "/drlm.DRLM/UserList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dRLMClient) PluginRepoAdd(ctx context.Context, in *PluginRepoAddRequest, opts ...grpc.CallOption) (*PluginRepoAddResponse, error) {
+	out := new(PluginRepoAddResponse)
+	err := c.cc.Invoke(ctx, "/drlm.DRLM/PluginRepoAdd", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dRLMClient) PluginRepoDelete(ctx context.Context, in *PluginRepoDeleteRequest, opts ...grpc.CallOption) (*PluginRepoDeleteResponse, error) {
+	out := new(PluginRepoDeleteResponse)
+	err := c.cc.Invoke(ctx, "/drlm.DRLM/PluginRepoDelete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dRLMClient) PluginRepoList(ctx context.Context, in *PluginRepoListRequest, opts ...grpc.CallOption) (*PluginRepoListResponse, error) {
+	out := new(PluginRepoListResponse)
+	err := c.cc.Invoke(ctx, "/drlm.DRLM/PluginRepoList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dRLMClient) PluginList(ctx context.Context, in *PluginListRequest, opts ...grpc.CallOption) (*PluginListResponse, error) {
+	out := new(PluginListResponse)
+	err := c.cc.Invoke(ctx, "/drlm.DRLM/PluginList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1962,6 +2805,42 @@ func (c *dRLMClient) AgentGet(ctx context.Context, in *AgentGetRequest, opts ...
 	return out, nil
 }
 
+func (c *dRLMClient) AgentPluginAdd(ctx context.Context, in *AgentPluginAddRequest, opts ...grpc.CallOption) (*AgentPluginAddResponse, error) {
+	out := new(AgentPluginAddResponse)
+	err := c.cc.Invoke(ctx, "/drlm.DRLM/AgentPluginAdd", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dRLMClient) AgentPluginRemove(ctx context.Context, in *AgentPluginRemoveRequest, opts ...grpc.CallOption) (*AgentPluginRemoveResponse, error) {
+	out := new(AgentPluginRemoveResponse)
+	err := c.cc.Invoke(ctx, "/drlm.DRLM/AgentPluginRemove", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dRLMClient) AgentPluginUpdate(ctx context.Context, in *AgentPluginUpdateRequest, opts ...grpc.CallOption) (*AgentPluginUpdateResponse, error) {
+	out := new(AgentPluginUpdateResponse)
+	err := c.cc.Invoke(ctx, "/drlm.DRLM/AgentPluginUpdate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dRLMClient) AgentPluginList(ctx context.Context, in *AgentPluginListRequest, opts ...grpc.CallOption) (*AgentPluginListResponse, error) {
+	out := new(AgentPluginListResponse)
+	err := c.cc.Invoke(ctx, "/drlm.DRLM/AgentPluginList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dRLMClient) JobSchedule(ctx context.Context, in *JobScheduleRequest, opts ...grpc.CallOption) (*JobScheduleResponse, error) {
 	out := new(JobScheduleResponse)
 	err := c.cc.Invoke(ctx, "/drlm.DRLM/JobSchedule", in, out, opts...)
@@ -2010,6 +2889,14 @@ type DRLMServer interface {
 	UserDelete(context.Context, *UserDeleteRequest) (*UserDeleteResponse, error)
 	// UserList lists all the users
 	UserList(context.Context, *UserListRequest) (*UserListResponse, error)
+	// PluginRepoAdd adds a new plugin repository
+	PluginRepoAdd(context.Context, *PluginRepoAddRequest) (*PluginRepoAddResponse, error)
+	// PluginRepoDelete removes a plugin repository
+	PluginRepoDelete(context.Context, *PluginRepoDeleteRequest) (*PluginRepoDeleteResponse, error)
+	// PluginRepoList lists the plugin repositories
+	PluginRepoList(context.Context, *PluginRepoListRequest) (*PluginRepoListResponse, error)
+	// PluginList returns a list of all the available plugins
+	PluginList(context.Context, *PluginListRequest) (*PluginListResponse, error)
 	// AgentAdd adds a new Agent to the DB
 	AgentAdd(context.Context, *AgentAddRequest) (*AgentAddResponse, error)
 	// AgentInstall installs the agent binary to the agent machine
@@ -2020,6 +2907,14 @@ type DRLMServer interface {
 	AgentList(context.Context, *AgentListRequest) (*AgentListResponse, error)
 	// AgentGet returns a specific agent
 	AgentGet(context.Context, *AgentGetRequest) (*AgentGetResponse, error)
+	// AgentPluginAdd adds a new plugin to the Agent
+	AgentPluginAdd(context.Context, *AgentPluginAddRequest) (*AgentPluginAddResponse, error)
+	// AgentPluginRemove removes a plugin from the Agent
+	AgentPluginRemove(context.Context, *AgentPluginRemoveRequest) (*AgentPluginRemoveResponse, error)
+	// AgentPluginUpdate updates a plugin of the Agent
+	AgentPluginUpdate(context.Context, *AgentPluginUpdateRequest) (*AgentPluginUpdateResponse, error)
+	// AgentPluginList lists the plugins of the Agent
+	AgentPluginList(context.Context, *AgentPluginListRequest) (*AgentPluginListResponse, error)
 	// JobSchedule schedules a new job
 	JobSchedule(context.Context, *JobScheduleRequest) (*JobScheduleResponse, error)
 	// JobCancel cancels an scheduled or running Job
@@ -2049,6 +2944,18 @@ func (*UnimplementedDRLMServer) UserDelete(ctx context.Context, req *UserDeleteR
 func (*UnimplementedDRLMServer) UserList(ctx context.Context, req *UserListRequest) (*UserListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserList not implemented")
 }
+func (*UnimplementedDRLMServer) PluginRepoAdd(ctx context.Context, req *PluginRepoAddRequest) (*PluginRepoAddResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PluginRepoAdd not implemented")
+}
+func (*UnimplementedDRLMServer) PluginRepoDelete(ctx context.Context, req *PluginRepoDeleteRequest) (*PluginRepoDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PluginRepoDelete not implemented")
+}
+func (*UnimplementedDRLMServer) PluginRepoList(ctx context.Context, req *PluginRepoListRequest) (*PluginRepoListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PluginRepoList not implemented")
+}
+func (*UnimplementedDRLMServer) PluginList(ctx context.Context, req *PluginListRequest) (*PluginListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PluginList not implemented")
+}
 func (*UnimplementedDRLMServer) AgentAdd(ctx context.Context, req *AgentAddRequest) (*AgentAddResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AgentAdd not implemented")
 }
@@ -2063,6 +2970,18 @@ func (*UnimplementedDRLMServer) AgentList(ctx context.Context, req *AgentListReq
 }
 func (*UnimplementedDRLMServer) AgentGet(ctx context.Context, req *AgentGetRequest) (*AgentGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AgentGet not implemented")
+}
+func (*UnimplementedDRLMServer) AgentPluginAdd(ctx context.Context, req *AgentPluginAddRequest) (*AgentPluginAddResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AgentPluginAdd not implemented")
+}
+func (*UnimplementedDRLMServer) AgentPluginRemove(ctx context.Context, req *AgentPluginRemoveRequest) (*AgentPluginRemoveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AgentPluginRemove not implemented")
+}
+func (*UnimplementedDRLMServer) AgentPluginUpdate(ctx context.Context, req *AgentPluginUpdateRequest) (*AgentPluginUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AgentPluginUpdate not implemented")
+}
+func (*UnimplementedDRLMServer) AgentPluginList(ctx context.Context, req *AgentPluginListRequest) (*AgentPluginListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AgentPluginList not implemented")
 }
 func (*UnimplementedDRLMServer) JobSchedule(ctx context.Context, req *JobScheduleRequest) (*JobScheduleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method JobSchedule not implemented")
@@ -2171,6 +3090,78 @@ func _DRLM_UserList_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DRLM_PluginRepoAdd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PluginRepoAddRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DRLMServer).PluginRepoAdd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlm.DRLM/PluginRepoAdd",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DRLMServer).PluginRepoAdd(ctx, req.(*PluginRepoAddRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DRLM_PluginRepoDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PluginRepoDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DRLMServer).PluginRepoDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlm.DRLM/PluginRepoDelete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DRLMServer).PluginRepoDelete(ctx, req.(*PluginRepoDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DRLM_PluginRepoList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PluginRepoListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DRLMServer).PluginRepoList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlm.DRLM/PluginRepoList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DRLMServer).PluginRepoList(ctx, req.(*PluginRepoListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DRLM_PluginList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PluginListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DRLMServer).PluginList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlm.DRLM/PluginList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DRLMServer).PluginList(ctx, req.(*PluginListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DRLM_AgentAdd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AgentAddRequest)
 	if err := dec(in); err != nil {
@@ -2265,6 +3256,78 @@ func _DRLM_AgentGet_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DRLMServer).AgentGet(ctx, req.(*AgentGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DRLM_AgentPluginAdd_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AgentPluginAddRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DRLMServer).AgentPluginAdd(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlm.DRLM/AgentPluginAdd",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DRLMServer).AgentPluginAdd(ctx, req.(*AgentPluginAddRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DRLM_AgentPluginRemove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AgentPluginRemoveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DRLMServer).AgentPluginRemove(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlm.DRLM/AgentPluginRemove",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DRLMServer).AgentPluginRemove(ctx, req.(*AgentPluginRemoveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DRLM_AgentPluginUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AgentPluginUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DRLMServer).AgentPluginUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlm.DRLM/AgentPluginUpdate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DRLMServer).AgentPluginUpdate(ctx, req.(*AgentPluginUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DRLM_AgentPluginList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AgentPluginListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DRLMServer).AgentPluginList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/drlm.DRLM/AgentPluginList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DRLMServer).AgentPluginList(ctx, req.(*AgentPluginListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2366,6 +3429,22 @@ var _DRLM_serviceDesc = grpc.ServiceDesc{
 			Handler:    _DRLM_UserList_Handler,
 		},
 		{
+			MethodName: "PluginRepoAdd",
+			Handler:    _DRLM_PluginRepoAdd_Handler,
+		},
+		{
+			MethodName: "PluginRepoDelete",
+			Handler:    _DRLM_PluginRepoDelete_Handler,
+		},
+		{
+			MethodName: "PluginRepoList",
+			Handler:    _DRLM_PluginRepoList_Handler,
+		},
+		{
+			MethodName: "PluginList",
+			Handler:    _DRLM_PluginList_Handler,
+		},
+		{
 			MethodName: "AgentAdd",
 			Handler:    _DRLM_AgentAdd_Handler,
 		},
@@ -2380,6 +3459,22 @@ var _DRLM_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AgentGet",
 			Handler:    _DRLM_AgentGet_Handler,
+		},
+		{
+			MethodName: "AgentPluginAdd",
+			Handler:    _DRLM_AgentPluginAdd_Handler,
+		},
+		{
+			MethodName: "AgentPluginRemove",
+			Handler:    _DRLM_AgentPluginRemove_Handler,
+		},
+		{
+			MethodName: "AgentPluginUpdate",
+			Handler:    _DRLM_AgentPluginUpdate_Handler,
+		},
+		{
+			MethodName: "AgentPluginList",
+			Handler:    _DRLM_AgentPluginList_Handler,
 		},
 		{
 			MethodName: "JobSchedule",
