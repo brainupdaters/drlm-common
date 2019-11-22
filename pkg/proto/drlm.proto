@@ -22,15 +22,6 @@ service DRLM {
     // UserList lists all the users
     rpc UserList(UserListRequest) returns (UserListResponse) {}
 
-    // PluginRepoAdd adds a new plugin repository
-    rpc PluginRepoAdd(PluginRepoAddRequest) returns (PluginRepoAddResponse) {}
-
-    // PluginRepoDelete removes a plugin repository
-    rpc PluginRepoDelete(PluginRepoDeleteRequest) returns (PluginRepoDeleteResponse) {}
-
-    // PluginRepoList lists the plugin repositories
-    rpc PluginRepoList(PluginRepoListRequest) returns (PluginRepoListResponse) {}
-
     // AgentAdd adds a new Agent to the DB
     rpc AgentAdd(AgentAddRequest) returns (AgentAddResponse) {}
 
@@ -140,29 +131,6 @@ message UserListResponse {
     }
 
     repeated User users = 1;
-}
-
-message PluginRepoAddRequest {
-    string name = 1;
-    string url = 2;
-    string usr = 3;
-    string pwd = 4;
-}
-message PluginRepoAddResponse {}
-
-message PluginRepoDeleteRequest {
-    string name = 1;
-}
-message PluginRepoDeleteResponse {}
-
-message PluginRepoListRequest {}
-message PluginRepoListResponse {
-    message PluginRepo {
-        string name = 1;
-        string url = 2;
-    }
-
-    repeated PluginRepo repos = 1;
 }
 
 message AgentAddRequest {
