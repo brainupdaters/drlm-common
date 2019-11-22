@@ -31,9 +31,6 @@ service DRLM {
     // PluginRepoList lists the plugin repositories
     rpc PluginRepoList(PluginRepoListRequest) returns (PluginRepoListResponse) {}
 
-    // PluginList returns a list of all the available plugins
-    rpc PluginList (PluginListRequest) returns (PluginListResponse) {}
-
     // AgentAdd adds a new Agent to the DB
     rpc AgentAdd(AgentAddRequest) returns (AgentAddResponse) {}
 
@@ -166,20 +163,6 @@ message PluginRepoListResponse {
     }
 
     repeated PluginRepo repos = 1;
-}
-
-message PluginListRequest {
-    string repo = 1;
-}
-message PluginListResponse {
-    message Plugin {
-        string repo = 1;
-        string name = 2;
-        string version = 3;
-        string description = 4;
-    }
-
-    repeated Plugin plugins = 1;
 }
 
 message AgentAddRequest {
