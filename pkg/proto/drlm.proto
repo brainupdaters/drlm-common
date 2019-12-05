@@ -38,13 +38,13 @@ service DRLM {
     rpc AgentGet(AgentGetRequest) returns (AgentGetResponse) {}
 
     // AgentPluginAdd adds a new plugin to the Agent
-    rpc AgentPluginAdd (AgentPluginAddRequest) returns (AgentPluginAddResponse) {}
+    rpc AgentPluginAdd (stream AgentPluginAddRequest) returns (AgentPluginAddResponse) {}
 
     // AgentPluginRemove removes a plugin from the Agent
     rpc AgentPluginRemove (AgentPluginRemoveRequest) returns (AgentPluginRemoveResponse) {}
 
     // AgentPluginUpdate updates a plugin of the Agent
-    rpc AgentPluginUpdate (AgentPluginUpdateRequest) returns (AgentPluginUpdateResponse) {}
+    rpc AgentPluginUpdate (stream AgentPluginUpdateRequest) returns (AgentPluginUpdateResponse) {}
 
     // AgentPluginList lists the plugins of the Agent
     rpc AgentPluginList (AgentPluginListRequest) returns (AgentPluginListResponse) {}
@@ -208,8 +208,9 @@ message AgentGetResponse {
 
 message AgentPluginAddRequest {
     string host = 1;
-    string plugin = 2;
-    string version = 3;
+    string plugin = 3;
+    string version = 4;
+    bytes bin = 5;
 }
 message AgentPluginAddResponse {}
 
@@ -223,6 +224,7 @@ message AgentPluginUpdateRequest {
     string host = 1;
     string plugin = 2;
     string version = 3;
+    bytes bin = 5;
 }
 message AgentPluginUpdateResponse {}
 
