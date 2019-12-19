@@ -97,7 +97,7 @@ func (os OS) DetectDistro(c client.Client) (string, string, error) {
 
 	switch os {
 	case Linux:
-		out, err := c.ReadFile("cat /etc/os-release")
+		out, err := c.ReadFile("/etc/os-release")
 		if err != nil {
 			return distro, version, fmt.Errorf("error detecting the linux distro: %v", err)
 		}
