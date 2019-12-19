@@ -9,21 +9,20 @@ import (
 	"strings"
 
 	"github.com/brainupdaters/drlm-common/pkg/os/client"
+	"github.com/rs/xid"
 )
 
 // CmdUserCreate creates a new user in the OS
 func (os OS) CmdUserCreate(c client.Client, name, pwd string) error {
 	switch {
 	case os.IsUnix():
-		out, err := c.Exec("echo", fmt.Sprintf(`"%q"`, pwd), "|", "openssl", "passwd", "-1", "-stdin")
-		if err != nil {
-			return fmt.Errorf("error encrypting the password: %v", err)
-		}
-
-		cryptPwd := strings.TrimSpace(string(out))
-		_, err = c.Exec("useradd", "-m", "-c", `"DRLM Agent user"`, "-p", fmt.Sprintf(`"%s"`, cryptPwd), fmt.Sprintf(`"%s"`, name))
+		_, err := c.Exec("useradd", "-m", "-c", `"DRLM user"`, fmt.Sprintf(`"%s"`, name))
 		if err != nil {
 			return fmt.Errorf("error creating the user: %v", err)
+		}
+
+		if err := os.CmdUserChangePasswd(c, name, pwd); err != nil {
+			return err
 		}
 
 		return nil
@@ -79,12 +78,24 @@ func (os OS) CmdUserGID(c client.Client, usr string) (int, error) {
 func (os OS) CmdUserDisable(c client.Client, usr string) error {
 	switch {
 	case os.IsUnix():
-		_, err := c.Exec("passwd", "-l", usr)
+		distro, _, err := os.DetectDistro(c)
 		if err != nil {
 			return fmt.Errorf("error disabling the user: %v", err)
 		}
 
-		return nil
+		switch distro {
+		case "alpine":
+			// TODO: Maybe this should be an actual random password and not an "uuid"?
+			return os.CmdUserChangePasswd(c, usr, xid.New().String())
+
+		default:
+			_, err := c.Exec("passwd", "-l", usr)
+			if err != nil {
+				return fmt.Errorf("error disabling the user: %v", err)
+			}
+
+			return nil
+		}
 
 		// TODO: Windows support
 	default:
@@ -135,6 +146,23 @@ Cmnd_Alias DRLM = TODO: CANVIAR AIXÒ :D
 		return nil
 
 		// TODO: Windows support (and all other unixes)
+	default:
+		return ErrUnsupportedOS
+	}
+}
+
+// CmdUserChangePasswd changes the password of an user
+func (os OS) CmdUserChangePasswd(c client.Client, usr, pwd string) error {
+	switch {
+	case os.IsUnix():
+		_, err := c.Exec(fmt.Sprintf(`echo -e "%s\n%s" | passwd %s`, pwd, pwd, usr))
+		if err != nil {
+			return fmt.Errorf("error changing the user password: %v", err)
+		}
+
+		return nil
+
+		// TODO: Windows support
 	default:
 		return ErrUnsupportedOS
 	}

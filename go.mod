@@ -4,6 +4,7 @@ require (
 	github.com/golang/protobuf v1.3.1
 	github.com/pkg/sftp v1.10.1
 	github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5
+	github.com/rs/xid v1.2.1
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/afero v1.2.2
 	github.com/spf13/viper v1.4.0
@@ -13,3 +14,5 @@ require (
 	google.golang.org/genproto v0.0.0-20190404172233-64821d5d2107 // indirect
 	google.golang.org/grpc v1.22.0
 )
+
+go 1.13
