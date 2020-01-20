@@ -76,11 +76,26 @@ func (c *Local) Mkdir(path string, perm os.FileMode) error {
 
 // Write writes content to a file
 func (c *Local) Write(path string, b []byte) error {
-	f, err := os.Create(path)
+	exists, err := c.Exists(path)
 	if err != nil {
-		return fmt.Errorf("error creating the file: %v", err)
+		return err
 	}
-	defer f.Close()
+
+	var f *os.File
+	if exists {
+		f, err = os.Open(path)
+		if err != nil {
+			return fmt.Errorf("error opening the file: %v", err)
+		}
+		defer f.Close()
+
+	} else {
+		f, err = os.Create(path)
+		if err != nil {
+			return fmt.Errorf("error creating the file: %v", err)
+		}
+		defer f.Close()
+	}
 
 	if _, err := f.Write(b); err != nil {
 		return fmt.Errorf("error writting the file: %v", err)

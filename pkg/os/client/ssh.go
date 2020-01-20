@@ -12,6 +12,8 @@ import (
 	"strings"
 
 	"github.com/brainupdaters/drlm-common/pkg/ssh"
+
+	"github.com/pkg/sftp"
 )
 
 // SSH is an OS client using SSH
@@ -73,11 +75,26 @@ func (c *SSH) Mkdir(path string, perm os.FileMode) error {
 
 // Write writes content to a file
 func (c *SSH) Write(path string, b []byte) error {
-	f, err := c.Session.SFTP.Create(path)
+	exists, err := c.Exists(path)
 	if err != nil {
-		return fmt.Errorf("error creating the file: %v", err)
+		return err
 	}
-	defer f.Close()
+
+	var f *sftp.File
+	if exists {
+		f, err = c.Session.SFTP.Open(path)
+		if err != nil {
+			return fmt.Errorf("error opening the file: %v", err)
+		}
+		defer f.Close()
+
+	} else {
+		f, err = c.Session.SFTP.Create(path)
+		if err != nil {
+			return fmt.Errorf("error creating the file: %v", err)
+		}
+		defer f.Close()
+	}
 
 	if _, err := f.Write(b); err != nil {
 		return fmt.Errorf("error writting the file: %v", err)
