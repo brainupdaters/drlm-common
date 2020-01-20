@@ -15,6 +15,7 @@ type Client interface {
 	Write(path string, b []byte) error
 	Append(path string, b []byte) error
 	ReadFile(path string) ([]byte, error)
+	Remove(src string) error
 	Copy(src, dst string) error
 	Move(src, dst string) error
 }
