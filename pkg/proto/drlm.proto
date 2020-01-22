@@ -268,6 +268,7 @@ message AgentConnectionFromCore {
 message JobScheduleRequest {
     string agent_host = 1;
     string name = 2;
+    google.protobuf.Timestamp time = 3;
 }
 message JobScheduleResponse {}
 
