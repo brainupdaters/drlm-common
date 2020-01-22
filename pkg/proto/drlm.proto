@@ -239,9 +239,19 @@ message AgentPluginListResponse {
 }
 
 message AgentConnectionFromAgent {
-    uint32 job_id = 1;
-    JobStatus status = 2;
-    string info = 3;
+    enum MessageType {
+        MESSAGE_TYPE_UNKNOWN = 0;
+        MESSAGE_TYPE_CONN_ESTABLISH = 1;
+        MESSAGE_TYPE_JOB_UPDATE = 2;
+    }
+    message JobUpdate {
+        uint32 job_id = 1;
+        JobStatus status = 2;
+        string info = 3;
+    }
+
+    MessageType message_type = 1;
+    JobUpdate job_update = 2;
 }
 
 message AgentConnectionFromCore {
