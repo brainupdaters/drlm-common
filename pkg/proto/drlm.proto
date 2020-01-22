@@ -49,6 +49,9 @@ service DRLM {
     // AgentPluginList lists the plugins of the Agent
     rpc AgentPluginList (AgentPluginListRequest) returns (AgentPluginListResponse) {}
 
+    // AgentConnection creates the connection between the Agent and the Core. It's used for both notifying new jobs and for returning the response / updates of them
+    rpc AgentConnection (stream AgentConnectionFromAgent) returns (stream AgentConnectionFromCore) {}
+
     // JobSchedule schedules a new job
     rpc JobSchedule(JobScheduleRequest) returns (JobScheduleResponse) {}
 
@@ -57,9 +60,6 @@ service DRLM {
 
     // JobList returns a list with the the jobs of an agent. If the agent ID is 0, it will return all the jobs
     rpc JobList(JobListRequest) returns (JobListResponse) {}
-
-    // JobNotify notifies a change in a job (this is called from the agent) (status change, stdout...)
-    rpc JobNotify(JobNotifyRequest) returns (JobNotifyResponse) {}
 }
 
 enum AuthType {
@@ -238,6 +238,23 @@ message AgentPluginListResponse {
     repeated string plugins = 1;
 }
 
+message AgentConnectionFromAgent {
+    uint32 job_id = 1;
+    JobStatus status = 2;
+    string info = 3;
+}
+
+message AgentConnectionFromCore {
+    message Job {
+        uint32 id = 1;
+        string name = 2;
+        // Depending on the status, it might be a new job or an existing job that has been cancelled
+        JobStatus status = 4;
+    }
+
+    Job job = 1;
+}
+
 message JobScheduleRequest {
     string agent_host = 1;
     string name = 2;
@@ -263,10 +280,3 @@ message JobListResponse {
 
     repeated Job jobs = 1;
 }
-
-message JobNotifyRequest {
-    uint32 job_id = 1;
-    JobStatus status = 2;
-    string info = 3;
-}
-message JobNotifyResponse {}
