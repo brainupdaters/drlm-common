@@ -58,8 +58,8 @@ func (c *SSH) Exists(path string) (bool, error) {
 	return true, nil
 }
 
-// Mkdir creates a new directory with the specified name and permission bits (before umask)
-func (c *SSH) Mkdir(path string, perm os.FileMode) error {
+// MkdirAll creates a new directory with the specified name and permission bits (before umask)
+func (c *SSH) MkdirAll(path string, perm os.FileMode) error {
 	if err := c.Session.SFTP.Mkdir(path); err != nil {
 		return fmt.Errorf("error creating the directory: %v", err)
 	}

@@ -67,7 +67,7 @@ func (os OS) CmdSSHCopyID(c client.Client, usr string, key []byte) error {
 
 		// If the SSH directory doesn't exist, create it
 		if !exists {
-			if err = c.Mkdir(sshDir, 0700); err != nil {
+			if err = c.MkdirAll(sshDir, 0700); err != nil {
 				return fmt.Errorf("error creating the SSH directory: %v", err)
 			}
 

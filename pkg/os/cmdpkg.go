@@ -25,7 +25,7 @@ func (os OS) CmdPkgInstallBinary(c client.Client, usr, name string, b []byte) er
 			return fmt.Errorf("error installing the binary: %v", err)
 		}
 		if !exists {
-			if err = c.Mkdir(binDir, 0755); err != nil {
+			if err = c.MkdirAll(binDir, 0755); err != nil {
 				return fmt.Errorf("error creating the bin directory: %v", err)
 			}
 
@@ -68,7 +68,7 @@ func (os OS) CmdPkgWriteConfig(c client.Client, usr, name string, b []byte) erro
 			return fmt.Errorf("error writting the configuration: %v", err)
 		}
 		if !exists {
-			if err = c.Mkdir(cfgDir, 0755); err != nil {
+			if err = c.MkdirAll(cfgDir, 0755); err != nil {
 				return fmt.Errorf("error creating the configuration directory: %v", err)
 			}
 		}

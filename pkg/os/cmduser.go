@@ -115,7 +115,7 @@ func (os OS) CmdUserMakeAdmin(c client.Client, usr string) error {
 		}
 
 		if !exists {
-			if err = c.Mkdir(sudoersDir, 0755); err != nil {
+			if err = c.MkdirAll(sudoersDir, 0755); err != nil {
 				return fmt.Errorf("error creating the /etc/sudoers.d directory: %v", err)
 			}
 

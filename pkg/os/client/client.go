@@ -11,7 +11,7 @@ type Client interface {
 	Chmod(path string, mode os.FileMode) error
 	Chown(path string, uid, gid int) error
 	Exists(path string) (bool, error)
-	Mkdir(path string, perm os.FileMode) error
+	MkdirAll(path string, perm os.FileMode) error
 	Write(path string, b []byte) error
 	Append(path string, b []byte) error
 	ReadFile(path string) ([]byte, error)

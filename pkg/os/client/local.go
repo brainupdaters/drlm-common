@@ -65,8 +65,8 @@ func (c *Local) Exists(path string) (bool, error) {
 	return true, nil
 }
 
-// Mkdir creates a new directory with the specified name and permission bits (before umask)
-func (c *Local) Mkdir(path string, perm os.FileMode) error {
+// MkdirAll creates a new directory with the specified name and permission bits (before umask)
+func (c *Local) MkdirAll(path string, perm os.FileMode) error {
 	if err := os.Mkdir(path, perm); err != nil {
 		return fmt.Errorf("error creating the directory: %v", err)
 	}
