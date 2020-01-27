@@ -208,7 +208,7 @@ message AgentGetResponse {
 
 message AgentPluginAddRequest {
     string host = 1;
-    string repo_url = 2;
+    string repo = 2;
     string plugin = 3;
     string version = 4;
     repeated Arch arch = 6;
