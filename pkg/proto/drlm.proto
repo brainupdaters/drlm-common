@@ -255,14 +255,24 @@ message AgentConnectionFromAgent {
 }
 
 message AgentConnectionFromCore {
-    message Job {
+    enum MessageType {
+        MESSAGE_TYPE_UNKNOWN = 0;
+        MESSAGE_TYPE_JOB_NEW = 1;
+        MESSAGE_TYPE_JOB_CANCEL = 2;
+    }
+    message JobNew {
         uint32 id = 1;
         string name = 2;
-        // Depending on the status, it might be a new job or an existing job that has been cancelled
-        JobStatus status = 4;
+        string config = 3;
+        string target = 4;
+    }
+    message JobCancel {
+        uint32 id = 1;
     }
 
-    Job job = 1;
+    MessageType message_type = 1;
+    JobNew job_new = 2;
+    JobCancel job_cancel = 3;
 }
 
 message JobScheduleRequest {
