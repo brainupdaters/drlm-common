@@ -123,15 +123,14 @@ func (os OS) CmdUserMakeAdmin(c client.Client, usr string) error {
 				return fmt.Errorf("error changing the owner of /etc/sudoers.d: %v", err)
 			}
 
-			if err = c.Append("/etc/sudoers", []byte("#includedir /etc/sudoers.d")); err != nil {
+			if err = c.Append("/etc/sudoers", []byte("includedir /etc/sudoers.d")); err != nil {
 				return fmt.Errorf("error adding the /etc/sudoers.d directory to the /etc/sudoers: %v", err)
 			}
 		}
 
 		sudoFile := filepath.Join(sudoersDir, usr)
 		if err = c.Append(sudoFile, []byte(fmt.Sprintf(`
-Cmnd_Alias DRLM = TODO: CANVIAR AIXÒ :D
-%s ALL(root) NOPASSWD: DRLM`, usr))); err != nil {
+%s ALL=(ALL) NOPASSWD:ALL`, usr))); err != nil {
 			return fmt.Errorf("error creating the user sudoer file: %v", err)
 		}
 
