@@ -288,8 +288,9 @@ message AgentConnectionFromCore {
     }
 
     MessageType message_type = 1;
-    JobNew job_new = 2;
-    JobCancel job_cancel = 3;
+    JoinResponse join_response = 2;
+    JobNew job_new = 3;
+    JobCancel job_cancel = 4;
 }
 
 message JobScheduleRequest {
