@@ -256,7 +256,8 @@ message AgentConnectionFromAgent {
     }
 
     MessageType message_type = 1;
-    JobUpdate job_update = 2;
+    JoinRequest join_request = 2;
+    JobUpdate job_update = 3;
 }
 
 message AgentConnectionFromCore {
