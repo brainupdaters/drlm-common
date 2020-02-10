@@ -241,8 +241,13 @@ message AgentPluginListResponse {
 message AgentConnectionFromAgent {
     enum MessageType {
         MESSAGE_TYPE_UNKNOWN = 0;
-        MESSAGE_TYPE_CONN_ESTABLISH = 1;
-        MESSAGE_TYPE_JOB_UPDATE = 2;
+        MESSAGE_TYPE_JOIN_REQUEST = 1;
+        MESSAGE_TYPE_CONN_ESTABLISH = 2;
+        MESSAGE_TYPE_JOB_UPDATE = 3;
+    }
+    message JoinRequest {
+        Arch arch = 1;
+        OS os = 2;
     }
     message JobUpdate {
         uint32 job_id = 1;
@@ -257,8 +262,20 @@ message AgentConnectionFromAgent {
 message AgentConnectionFromCore {
     enum MessageType {
         MESSAGE_TYPE_UNKNOWN = 0;
-        MESSAGE_TYPE_JOB_NEW = 1;
-        MESSAGE_TYPE_JOB_CANCEL = 2;
+        MESSAGE_TYPE_JOIN_RESPONSE = 1;
+        MESSAGE_TYPE_JOB_NEW = 2;
+        MESSAGE_TYPE_JOB_CANCEL = 3;
+    }
+    message JoinResponse {
+        enum Status {
+            STATUS_UNKNOWN = 0;
+            STATUS_ACCEPT = 1;
+            STATUS_REJECT = 2;
+        }
+        Status status = 1;
+        string core_secret = 2;
+        string minio_access_key = 3;
+        string minio_secret_key = 4;
     }
     message JobNew {
         uint32 id = 1;
