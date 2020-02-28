@@ -10,13 +10,11 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/brainupdaters/drlm-common/pkg/fs"
-
 	"github.com/spf13/afero"
 )
 
 // GenerateCert generates a new TLS certificate and stores it into fs.FS: `path/certname.key` and `path/certname.crt`
-func (t *Test) GenerateCert(certname, path string) {
+func (t *Test) GenerateCert(fs afero.Fs, certname, path string) {
 	// Request the certificate to the cfssl certs API
 	body := strings.NewReader(fmt.Sprintf(`{
 		"request": {
@@ -50,9 +48,9 @@ func (t *Test) GenerateCert(certname, path string) {
 	t.Require().True(certs.Success)
 
 	// Store the certificate
-	t.Require().Nil(fs.FS.MkdirAll(path, 0755))
-	t.Require().Nil(afero.WriteFile(fs.FS, filepath.Join(path, certname+".key"), []byte(certs.Result.PrivateKey), 0755))
-	t.Require().Nil(afero.WriteFile(fs.FS, filepath.Join(path, certname+".crt"), []byte(certs.Result.Certificate), 0755))
+	t.Require().Nil(fs.MkdirAll(path, 0755))
+	t.Require().Nil(afero.WriteFile(fs, filepath.Join(path, certname+".key"), []byte(certs.Result.PrivateKey), 0755))
+	t.Require().Nil(afero.WriteFile(fs, filepath.Join(path, certname+".crt"), []byte(certs.Result.Certificate), 0755))
 }
 
 type certRsp struct {

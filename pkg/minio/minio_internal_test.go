@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/brainupdaters/drlm-common/pkg/fs"
 	"github.com/brainupdaters/drlm-common/pkg/test"
 
 	"github.com/spf13/afero"
@@ -32,27 +31,27 @@ func (s *TestMinioSuite) TestConn() {
 
 func (s *TestMinioSuite) TestTransport() {
 	s.Run("should return a correct transport", func() {
-		fs.FS = afero.NewMemMapFs()
-		s.GenerateCert("minio", "cert")
+		fs := afero.NewMemMapFs()
+		s.GenerateCert(fs, "minio", "cert")
 
 		tr := http.DefaultTransport.(*http.Transport)
 		tr.TLSClientConfig = nil
-		s.Nil(transport(tr, "cert/minio.crt"))
+		s.Nil(transport(fs, tr, "cert/minio.crt"))
 	})
 
 	s.Run("should return an error if there's an error reading the cert", func() {
-		fs.FS = afero.NewMemMapFs()
+		fs := afero.NewMemMapFs()
 
 		tr := http.DefaultTransport.(*http.Transport)
-		s.EqualError(transport(tr, "cert/minio.crt"), "error creating the minio http transport: error reading the certificate: open cert/minio.crt: file does not exist")
+		s.EqualError(transport(fs, tr, "cert/minio.crt"), "error creating the minio http transport: error reading the certificate: open cert/minio.crt: file does not exist")
 	})
 
 	s.Run("should return an error if there's SOMETHING", func() {
-		fs.FS = afero.NewMemMapFs()
+		fs := afero.NewMemMapFs()
 
-		s.Require().Nil(afero.WriteFile(fs.FS, "cert/minio.crt", []byte(`invalid cert`), 0644))
+		s.Require().Nil(afero.WriteFile(fs, "cert/minio.crt", []byte(`invalid cert`), 0644))
 
 		tr := http.DefaultTransport.(*http.Transport)
-		s.EqualError(transport(tr, "cert/minio.crt"), "error creating the minio http transport: error parsing the certificate")
+		s.EqualError(transport(fs, tr, "cert/minio.crt"), "error creating the minio http transport: error parsing the certificate")
 	})
 }

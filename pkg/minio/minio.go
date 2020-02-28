@@ -8,8 +8,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/brainupdaters/drlm-common/pkg/fs"
-
 	sdk "github.com/minio/minio-go/v6"
 	"github.com/minio/minio/pkg/madmin"
 	"github.com/spf13/afero"
@@ -24,8 +22,8 @@ func conn(host string, port int, accessKey, secretKey string, ssl bool) (string,
 }
 
 // transport returns the http transport for the minio connections
-func transport(tr *http.Transport, certPath string) error {
-	b, err := afero.ReadFile(fs.FS, certPath)
+func transport(fs afero.Fs, tr *http.Transport, certPath string) error {
+	b, err := afero.ReadFile(fs, certPath)
 	if err != nil {
 		return fmt.Errorf("error creating the minio http transport: error reading the certificate: %v", err)
 	}
@@ -62,7 +60,7 @@ func transport(tr *http.Transport, certPath string) error {
 }
 
 // NewSDK returns a Minio SDK
-func NewSDK(host string, port int, accessKey, secretKey string, ssl bool, certPath string) (*sdk.Client, error) {
+func NewSDK(fs afero.Fs, host string, port int, accessKey, secretKey string, ssl bool, certPath string) (*sdk.Client, error) {
 	minio, err := sdk.New(conn(host, port, accessKey, secretKey, ssl))
 	if err != nil {
 		return minio, fmt.Errorf("error creating the connection to minio: %v", err)
@@ -76,7 +74,7 @@ func NewSDK(host string, port int, accessKey, secretKey string, ssl bool, certPa
 		}
 
 		tr := defaultTransport.(*http.Transport)
-		if err = transport(tr, certPath); err != nil {
+		if err = transport(fs, tr, certPath); err != nil {
 			return minio, fmt.Errorf("error creating the minio connection: %v", err)
 		}
 
@@ -87,7 +85,7 @@ func NewSDK(host string, port int, accessKey, secretKey string, ssl bool, certPa
 }
 
 // NewAdminClient returns a Minio Admin client
-func NewAdminClient(host string, port int, accessKey, secretKey string, ssl bool, certPath string) (*madmin.AdminClient, error) {
+func NewAdminClient(fs afero.Fs, host string, port int, accessKey, secretKey string, ssl bool, certPath string) (*madmin.AdminClient, error) {
 	cli, err := madmin.New(conn(host, port, accessKey, secretKey, ssl))
 	if err != nil {
 		return nil, fmt.Errorf("error creating the minio admin connection: %v", err)
@@ -95,7 +93,7 @@ func NewAdminClient(host string, port int, accessKey, secretKey string, ssl bool
 	// If the certificate is self signed, add it to the transport certificates pool
 	if ssl && certPath != "" {
 		tr := http.DefaultTransport.(*http.Transport)
-		if err := transport(tr, certPath); err != nil {
+		if err := transport(fs, tr, certPath); err != nil {
 			return nil, fmt.Errorf("error creating the minio admin connection: %v", err)
 		}
 

@@ -7,7 +7,6 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/brainupdaters/drlm-common/pkg/fs"
 	drlm "github.com/brainupdaters/drlm-common/pkg/proto"
 
 	log "github.com/sirupsen/logrus"
@@ -17,11 +16,11 @@ import (
 )
 
 // NewClient returns a new client connection to the DRLM Core
-func NewClient(tls bool, certPath, host string, port int) (drlm.DRLMClient, *grpc.ClientConn) {
+func NewClient(fs afero.Fs, tls bool, certPath, host string, port int) (drlm.DRLMClient, *grpc.ClientConn) {
 	var grpcDialOptions = []grpc.DialOption{}
 
 	if tls {
-		cp, err := readCert(certPath)
+		cp, err := readCert(fs, certPath)
 		if err != nil {
 			log.WithFields(log.Fields{
 				"cert_path": certPath,
@@ -46,8 +45,8 @@ func NewClient(tls bool, certPath, host string, port int) (drlm.DRLMClient, *grp
 	return drlm.NewDRLMClient(conn), conn
 }
 
-func readCert(certPath string) (*x509.CertPool, error) {
-	b, err := afero.ReadFile(fs.FS, certPath)
+func readCert(fs afero.Fs, certPath string) (*x509.CertPool, error) {
+	b, err := afero.ReadFile(fs, certPath)
 	if err != nil {
 		return &x509.CertPool{}, fmt.Errorf("error reading the certificate file: %v", err)
 	}

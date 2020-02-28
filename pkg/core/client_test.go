@@ -7,7 +7,6 @@ import (
 	"testing"
 
 	"github.com/brainupdaters/drlm-common/pkg/core"
-	"github.com/brainupdaters/drlm-common/pkg/fs"
 	"github.com/brainupdaters/drlm-common/pkg/test"
 
 	"github.com/spf13/afero"
@@ -27,23 +26,23 @@ func (s *TestClientSuite) TestNewClient() {
 	const certPath = "cert/server.crt"
 
 	s.Run("should work as expected with TLS", func() {
-		fs.FS = afero.NewMemMapFs()
-		s.GenerateCert("server", filepath.Dir(certPath))
+		fs := afero.NewMemMapFs()
+		s.GenerateCert(fs, "server", filepath.Dir(certPath))
 
-		_, conn := core.NewClient(true, certPath, "host", 1312)
+		_, conn := core.NewClient(fs, true, certPath, "host", 1312)
 		s.NotEqual(&grpc.ClientConn{}, conn)
 	})
 
 	s.Run("should work as expected without TLS", func() {
-		fs.FS = afero.NewMemMapFs()
+		fs := afero.NewMemMapFs()
 
-		_, conn := core.NewClient(false, "", "host", 1312)
+		_, conn := core.NewClient(fs, false, "", "host", 1312)
 		s.NotEqual(&grpc.ClientConn{}, conn)
 	})
 
 	s.Run("should exit if there's an error loading the TLS certificate", func() {
-		fs.FS = afero.NewMemMapFs()
+		fs := afero.NewMemMapFs()
 
-		s.Exits(func() { core.NewClient(true, certPath, "host", 1312) })
+		s.Exits(func() { core.NewClient(fs, true, certPath, "host", 1312) })
 	})
 }
