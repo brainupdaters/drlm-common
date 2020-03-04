@@ -135,16 +135,16 @@ message UserListResponse {
 
 message AgentAddRequest {
     string host = 1;
-    int32 port = 2;
-    string user = 3;
-    string password = 4;
-    bool is_admin = 5;
 }
 message AgentAddResponse {}
 
 message AgentInstallRequest {
     string host = 1;
-    bytes bin = 2;
+    int32 ssh_port = 2;
+    string ssh_user = 3;
+    string ssh_password = 4; 
+
+    bytes bin = 5;
 }
 message AgentInstallResponse {
     enum Code {
