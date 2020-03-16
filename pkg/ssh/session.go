@@ -7,16 +7,14 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/brainupdaters/drlm-common/pkg/fs"
-
 	"github.com/pkg/sftp"
 	"github.com/spf13/afero"
 	stdSSH "golang.org/x/crypto/ssh"
 )
 
 // NewSessionWithKey creates a new session using a private key as authentication
-func NewSessionWithKey(host string, port int, user string, keysPath string, hostKeys []string) (*Session, error) {
-	b, err := afero.ReadFile(fs.FS, filepath.Join(keysPath, "id_rsa"))
+func NewSessionWithKey(fs afero.Fs, host string, port int, user string, keysPath string, hostKeys []string) (*Session, error) {
+	b, err := afero.ReadFile(fs, filepath.Join(keysPath, "id_rsa"))
 	if err != nil {
 		return &Session{}, fmt.Errorf("error reading the private key: %v", err)
 	}
