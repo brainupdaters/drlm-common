@@ -25,6 +25,9 @@ service DRLM {
     // AgentAdd adds a new Agent to the DB
     rpc AgentAdd(AgentAddRequest) returns (AgentAddResponse) {}
 
+    // AgentAccept accepts a request to join DRLM that has made an Agent
+    rpc AgentAccept(AgentAcceptRequest) returns (AgentAcceptResponse) {}
+
     // AgentInstall installs the agent binary to the agent machine
     rpc AgentInstall(stream AgentInstallRequest) returns (AgentInstallResponse) {}
 
@@ -33,6 +36,9 @@ service DRLM {
 
     // AgentList returns a list of all the agents
     rpc AgentList(AgentListRequest) returns (AgentListResponse) {}
+
+    // AgentRequestList returns a list of all the agents that have requested to join DRLM
+    rpc AgentRequestList(AgentRequestListRequest) returns (AgentRequestListResponse) {}
 
     // AgentGet returns a specific agent
     rpc AgentGet(AgentGetRequest) returns (AgentGetResponse) {}
@@ -138,8 +144,14 @@ message AgentAddRequest {
 }
 message AgentAddResponse {}
 
+message AgentAcceptRequest {
+    string host = 1;
+}
+message AgentAcceptResponse {}
+
 message AgentInstallRequest {
     string host = 1;
+
     int32 ssh_port = 2;
     string ssh_user = 3;
     string ssh_password = 4; 
@@ -160,7 +172,6 @@ message AgentInstallResponse {
 
 message AgentDeleteRequest {
     string host = 1;
-    bool cleanup = 2;
 }
 message AgentDeleteResponse{}
 
@@ -168,22 +179,39 @@ message AgentListRequest {}
 message AgentListResponse {
     message Agent {
         string host = 1;
-        int32 port = 2;
-        string user = 3;
-        bool sudoer = 4;
+    
+        int32 ssh_port = 2;
+        string ssh_user = 3;
 
-        string version = 5;
-        Arch arch = 6;
-        OS os = 7;
-        string os_version = 8;
-        string distro = 9;
-        string distro_version = 10;
+        string version = 4;
+        Arch arch = 5;
+        OS os = 6;
+        string os_version = 7;
+        string distro = 8;
+        string distro_version = 9;
 
-        google.protobuf.Timestamp created_at = 11;
-        google.protobuf.Timestamp updated_at = 12;
+        google.protobuf.Timestamp created_at = 10;
+        google.protobuf.Timestamp updated_at = 11;
     }
 
     repeated Agent agents = 1;
+}
+
+message AgentRequestListRequest {}
+message AgentRequestListResponse {
+    message Agent {
+        string host = 1;
+
+        string version = 2;
+        Arch arch = 3;
+        OS os = 4;
+        string os_version = 5;
+        string distro = 6;
+        string distro_version = 7;
+
+        google.protobuf.Timestamp created_at = 8;
+        google.protobuf.Timestamp updated_at = 9;
+    }
 }
 
 message AgentGetRequest {
@@ -191,9 +219,10 @@ message AgentGetRequest {
 }
 message AgentGetResponse {
         string host = 1;
-        int32 port = 2;
-        string user = 3;
-        bool sudoer = 4;
+        bool accepted = 2;
+    
+        int32 ssh_port = 3;
+        string ssh_user = 4;
 
         string version = 5;
         Arch arch = 6;
@@ -266,6 +295,7 @@ message AgentConnectionFromCore {
         MESSAGE_TYPE_JOIN_RESPONSE = 1;
         MESSAGE_TYPE_JOB_NEW = 2;
         MESSAGE_TYPE_JOB_CANCEL = 3;
+        MESSAGE_TYPE_INSTALL_BINARY = 4;
     }
     message JoinResponse {
         enum Status {
@@ -286,6 +316,10 @@ message AgentConnectionFromCore {
     }
     message JobCancel {
         uint32 id = 1;
+    }
+    message InstallBinary {
+        string bucket = 1;
+        string name = 2;
     }
 
     MessageType message_type = 1;
