@@ -326,6 +326,7 @@ message AgentConnectionFromCore {
     JoinResponse join_response = 2;
     JobNew job_new = 3;
     JobCancel job_cancel = 4;
+    InstallBinary install_binary = 5;
 }
 
 message JobScheduleRequest {
