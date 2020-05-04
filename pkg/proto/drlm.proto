@@ -212,6 +212,8 @@ message AgentRequestListResponse {
         google.protobuf.Timestamp created_at = 8;
         google.protobuf.Timestamp updated_at = 9;
     }
+
+    repeated Agent agents = 1;
 }
 
 message AgentGetRequest {
