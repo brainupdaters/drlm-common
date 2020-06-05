@@ -27,12 +27,17 @@ func DetectArch(c client.Client) (Arch, error) {
 		return ArchUnknown, fmt.Errorf("error getting the kernel architecture: %v", err)
 	}
 
-	a := strings.TrimSpace(string(out))
+	return ArchFromString(strings.TrimSpace(string(out))), nil
+}
+
+// ArchFromString returns an Arch based on a string
+func ArchFromString(s string) Arch {
+	s = strings.ToLower(s)
 	switch {
-	case a == "x86_64" || a == "amd64":
-		return ArchAmd64, nil
+	case s == "x86_64" || s == "amd64":
+		return ArchAmd64
 
 	default:
-		return ArchUnknown, nil
+		return ArchUnknown
 	}
 }

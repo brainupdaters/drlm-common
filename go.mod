@@ -1,6 +1,8 @@
 module github.com/brainupdaters/drlm-common
 
 require (
+	github.com/blang/semver v3.5.1+incompatible
+	github.com/goccy/go-yaml v1.4.3
 	github.com/golang/protobuf v1.3.4
 	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
 	github.com/magiconair/properties v1.8.1 // indirect

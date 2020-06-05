@@ -60,7 +60,7 @@ params:
 ```
 
 - `name`: the name of the parameter
-- `required`: the actions where the parameter is required. If it's required and it's not provided when scheduling a job, the scheduling will fail
+- `required`: the actions where the parameter is required. If it's required and it's not provided when scheduling a job, the scheduling will fail. Setting it to true will make it required for all the actions
 
 ## Actions
 
@@ -232,7 +232,7 @@ commands:
         - "$DRLM_STORAGE/drlm.tar.gz"
         - -C
         - $DRLM_PLUGIN_DESTINATION
-    check: &restore-compressedCheck
+    check: &restoreCompressedCheck
       workdir: /
       command:
         - test

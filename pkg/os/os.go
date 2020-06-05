@@ -59,19 +59,7 @@ func DetectOS(c client.Client) (OS, error) {
 		return Unknown, fmt.Errorf("error getting the OS: %v", err)
 	}
 
-	switch strings.TrimSpace(string(out)) {
-	case "Linux":
-		return Linux, nil
-
-	case "Darwin":
-		return Darwin, nil
-
-	case "OpenBSD":
-		return OpenBSD, nil
-
-	default:
-		return Unknown, nil
-	}
+	return FromString(strings.TrimSpace(string(out))), nil
 }
 
 // DetectVersion returns the OS version
@@ -87,6 +75,44 @@ func (os OS) DetectVersion(c client.Client) (string, error) {
 
 	default:
 		return "unknown", ErrUnsupportedOS
+	}
+}
+
+// FromString returns an OS based on a string
+func FromString(s string) OS {
+	switch strings.ToLower(s) {
+	case "linux":
+		return Linux
+
+	case "windows":
+		return Windows
+
+	case "darwin":
+		return Darwin
+
+	case "aix":
+		return AIX
+
+	case "dragonfly":
+		return Dragonfly
+
+	case "freebsd":
+		return FreeBSD
+
+	case "netbsd":
+		return NetBSD
+
+	case "openbsd":
+		return OpenBSD
+
+	case "plan9":
+		return Plan9
+
+	case "solaris":
+		return Solaris
+
+	default:
+		return Unknown
 	}
 }
 
